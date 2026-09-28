@@ -5,9 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="/src/css/base.css" />
+    <link rel="stylesheet" href="/src/css/custom.css" />
     <script src="/dist/app.js" defer type="module"></script>
   </head>
   <body>
-    <div class="test">test</div>
+    <div class="container">
+      <div class="screen memory-game">
+        <div class="game-header">
+          <div class="title">Title</div>
+        </div>
+        <div class="game-ui">
+          <div class="points-display" data-player="user">You: 0 points</div>
+          <div class="points-display" data-player="computer">
+            Computer: 0 points
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
