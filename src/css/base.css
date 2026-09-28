@@ -1,3 +1,20 @@
 :root {
-  --global-anim-dur: 400ms;
+  --global-anim-dur: ;
+}
+
+.test {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  animation: slideRight var(--global-anim-dur) ease-in-out 2000ms 1 forwards;
+  position: relative;
+}
+
+@keyframes slideRight {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: 1000px;
+  }
 }
