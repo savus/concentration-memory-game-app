@@ -33,6 +33,9 @@ const computerScoreTicker =
 const setComputerScoreTicker = (points: number) =>
   (userScoreTicker.innerText = `+ ${points} points!`);
 
+const countDown = document.querySelector(".count-down");
+console.log(countDown);
+
 const wait = async (ms: number) => {
   return new Promise((resolve) => {
     return setTimeout(() => {
@@ -72,9 +75,13 @@ const initializeGlobalSettings = async () => {
 
 initializeGlobalSettings();
 
-await wait(5000);
-setUserPointsDisplay(50);
-setUserScoreTicker(100);
-setComputerPointsDisplay(200);
-setComputerScoreTicker(300);
+await wait(500);
+countDown.innerText = "3";
+await wait(1000);
+countDown.innerText = "2";
+await wait(1000);
+countDown.innerText = "1";
+await wait(1000);
+
 await animateElement(userPointsDisplay);
+userPointsDisplay.classList.remove("show");

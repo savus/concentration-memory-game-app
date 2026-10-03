@@ -16,3 +16,7 @@
 .game-ui .points-display-container:last-child {
   margin-left: auto;
 }
+
+.count-down {
+  margin-top: 100px;
+}
