@@ -1,19 +1,20 @@
 import { ANIMATION_DURATION, GLOBAL_ANIMATION_DUR, pointsDisplayContainerClass, } from "./constants.js";
 const root = document.documentElement;
-const userPointsDisplay = document.querySelector(`${pointsDisplayContainerClass}[data-anim-dir="left"]`);
-const setUserPointsDisplay = (points) => {
-    userPointsDisplay.innerText = `You: ${points} points`;
+const userPointsDisplayContainer = document.querySelector(`${pointsDisplayContainerClass}[data-anim-dir="left"]`);
+const computerPointsDisplayContainer = document.querySelector(`${pointsDisplayContainerClass}[data-anim-dir="right"]`);
+const setPointsDisplay = (points, parentContainer) => {
+    const pointsDisplay = parentContainer.querySelector(".points-display");
+    const player = parentContainer === userPointsDisplayContainer ? "You: " : "Computer: ";
+    pointsDisplay.innerText = `${player} ${points} points!`;
 };
-const userScoreTicker = userPointsDisplay.querySelector(".score-ticker");
-const setUserScoreTicker = (points) => (userScoreTicker.innerText = `+ ${points} points!`);
-const computerPointsDisplay = document.querySelector(`${pointsDisplayContainerClass}[data-anim-dir="right"]`);
-const setComputerPointsDisplay = (points) => {
-    computerPointsDisplay.innerText = `Computer: ${points} points`;
+const setScoreTicker = (points, parentContainer) => {
+    const scoreTicker = parentContainer.querySelector(".score-ticker");
+    scoreTicker.innerText = `+ ${points} points!`;
 };
-const computerScoreTicker = computerPointsDisplay.querySelector(".score-ticker");
-const setComputerScoreTicker = (points) => (userScoreTicker.innerText = `+ ${points} points!`);
-const countDown = document.querySelector(".count-down");
-console.log(countDown);
+const setPointsAndTicker = (points, parentContainer) => {
+    setPointsDisplay(points, parentContainer);
+    setScoreTicker(points, parentContainer);
+};
 const wait = async (ms) => {
     return new Promise((resolve) => {
         return setTimeout(() => {
@@ -21,31 +22,43 @@ const wait = async (ms) => {
         }, ms);
     });
 };
-const animateElement = async (element) => {
+const waitForAnimationEnd = async (element, eventTargetMatch, transitionOrAnimation, classToAdd) => {
     return new Promise((resolve) => {
         function handleTransitionEnd(event) {
             const target = event.target;
-            if (target?.matches(".score-ticker")) {
-                element.removeEventListener("transitionend", handleTransitionEnd);
+            if (target?.matches(eventTargetMatch)) {
+                element.removeEventListener(`${transitionOrAnimation}end`, handleTransitionEnd);
                 resolve();
             }
         }
-        element.addEventListener("transitionend", handleTransitionEnd);
-        element.classList.add("show");
+        element.addEventListener(`${transitionOrAnimation}end`, handleTransitionEnd);
+        element.classList.add(classToAdd);
     });
 };
-const tickPoints = (scoreTicker, scoreReceiver) => { };
+const tickPoints = async (receiver, previousPoints, newPoints) => {
+    while (newPoints > 0) {
+        previousPoints++;
+        newPoints--;
+        setPointsDisplay(previousPoints, receiver);
+        setScoreTicker(newPoints, receiver);
+        await wait(10);
+    }
+    return;
+};
 const initializeGlobalSettings = async () => {
     root.style.setProperty(GLOBAL_ANIMATION_DUR, `${ANIMATION_DURATION}ms`);
 };
 initializeGlobalSettings();
-await wait(500);
-countDown.innerText = "3";
+let userPoints = 30;
+let computerPoints = 100;
+setPointsDisplay(userPoints, userPointsDisplayContainer);
+setPointsDisplay(computerPoints, computerPointsDisplayContainer);
 await wait(1000);
-countDown.innerText = "2";
+await waitForAnimationEnd(userPointsDisplayContainer, ".score-ticker", "transition", "show");
+await tickPoints(userPointsDisplayContainer, userPoints, 500);
+userPointsDisplayContainer.classList.remove("show");
 await wait(1000);
-countDown.innerText = "1";
-await wait(1000);
-await animateElement(userPointsDisplay);
-userPointsDisplay.classList.remove("show");
+await waitForAnimationEnd(computerPointsDisplayContainer, ".score-ticker", "transition", "show");
+await tickPoints(computerPointsDisplayContainer, computerPoints, 1000);
+computerPointsDisplayContainer.classList.remove("show");
 //# sourceMappingURL=app.js.map

@@ -6,35 +6,34 @@ import {
 
 const root = document.documentElement;
 
-const userPointsDisplay = document.querySelector(
+const userPointsDisplayContainer = document.querySelector(
   `${pointsDisplayContainerClass}[data-anim-dir="left"]`,
 )! as HTMLElement;
 
-const setUserPointsDisplay = (points: number) => {
-  userPointsDisplay.innerText = `You: ${points} points`;
-};
-
-const userScoreTicker = userPointsDisplay.querySelector(
-  ".score-ticker",
-)! as HTMLElement;
-const setUserScoreTicker = (points: number) =>
-  (userScoreTicker.innerText = `+ ${points} points!`);
-
-const computerPointsDisplay = document.querySelector(
+const computerPointsDisplayContainer = document.querySelector(
   `${pointsDisplayContainerClass}[data-anim-dir="right"]`,
 )! as HTMLElement;
 
-const setComputerPointsDisplay = (points: number) => {
-  computerPointsDisplay.innerText = `Computer: ${points} points`;
+const setPointsDisplay = (points: number, parentContainer: HTMLElement) => {
+  const pointsDisplay = parentContainer.querySelector(
+    ".points-display",
+  )! as HTMLElement;
+  const player =
+    parentContainer === userPointsDisplayContainer ? "You: " : "Computer: ";
+  pointsDisplay.innerText = `${player} ${points} points!`;
 };
 
-const computerScoreTicker =
-  computerPointsDisplay.querySelector(".score-ticker")!;
-const setComputerScoreTicker = (points: number) =>
-  (userScoreTicker.innerText = `+ ${points} points!`);
+const setScoreTicker = (points: number, parentContainer: HTMLElement) => {
+  const scoreTicker = parentContainer.querySelector(
+    ".score-ticker",
+  )! as HTMLElement;
+  scoreTicker.innerText = `+ ${points} points!`;
+};
 
-const countDown = document.querySelector(".count-down");
-console.log(countDown);
+const setPointsAndTicker = (points: number, parentContainer: HTMLElement) => {
+  setPointsDisplay(points, parentContainer);
+  setScoreTicker(points, parentContainer);
+};
 
 const wait = async (ms: number) => {
   return new Promise((resolve) => {
@@ -44,19 +43,45 @@ const wait = async (ms: number) => {
   });
 };
 
-const animateElement = async (element: HTMLElement): Promise<void> => {
+const waitForAnimationEnd = async (
+  element: HTMLElement,
+  eventTargetMatch: string,
+  transitionOrAnimation: "transition" | "animation",
+  classToAdd: string,
+): Promise<void> => {
   return new Promise((resolve) => {
     function handleTransitionEnd(event: Event) {
       const target = event.target as HTMLElement | null;
-      if (target?.matches(".score-ticker")) {
-        element.removeEventListener("transitionend", handleTransitionEnd);
+      if (target?.matches(eventTargetMatch)) {
+        element.removeEventListener(
+          `${transitionOrAnimation}end`,
+          handleTransitionEnd,
+        );
         resolve();
       }
     }
 
-    element.addEventListener("transitionend", handleTransitionEnd);
-    element.classList.add("show");
+    element.addEventListener(
+      `${transitionOrAnimation}end`,
+      handleTransitionEnd,
+    );
+    element.classList.add(classToAdd);
   });
+};
+
+const tickPoints = async (
+  receiver: HTMLElement,
+  previousPoints: number,
+  newPoints: number,
+) => {
+  while (newPoints > 0) {
+    previousPoints++;
+    newPoints--;
+    setPointsDisplay(previousPoints, receiver);
+    setScoreTicker(newPoints, receiver);
+    await wait(10);
+  }
+  return;
 };
 
 type scoreTracker = {
@@ -64,24 +89,31 @@ type scoreTracker = {
   points: number;
 };
 
-const tickPoints = (
-  scoreTicker: scoreTracker,
-  scoreReceiver: scoreTracker,
-) => {};
-
 const initializeGlobalSettings = async () => {
   root.style.setProperty(GLOBAL_ANIMATION_DUR, `${ANIMATION_DURATION}ms`);
 };
 
 initializeGlobalSettings();
 
-await wait(500);
-countDown.innerText = "3";
+let userPoints = 30;
+let computerPoints = 100;
+setPointsDisplay(userPoints, userPointsDisplayContainer);
+setPointsDisplay(computerPoints, computerPointsDisplayContainer);
 await wait(1000);
-countDown.innerText = "2";
+await waitForAnimationEnd(
+  userPointsDisplayContainer,
+  ".score-ticker",
+  "transition",
+  "show",
+);
+await tickPoints(userPointsDisplayContainer, userPoints, 500);
+userPointsDisplayContainer.classList.remove("show");
 await wait(1000);
-countDown.innerText = "1";
-await wait(1000);
-
-await animateElement(userPointsDisplay);
-userPointsDisplay.classList.remove("show");
+await waitForAnimationEnd(
+  computerPointsDisplayContainer,
+  ".score-ticker",
+  "transition",
+  "show",
+);
+await tickPoints(computerPointsDisplayContainer, computerPoints, 1000);
+computerPointsDisplayContainer.classList.remove("show");
