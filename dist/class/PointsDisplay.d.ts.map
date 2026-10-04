@@ -1,0 +1,1 @@
+{"version":3,"file":"PointsDisplay.d.ts","sourceRoot":"","sources":["../../src/class/PointsDisplay.ts"],"names":[],"mappings":"AAAA,cAAM,aAAa;IACjB,IAAI,EAAE,WAAW,CAAC;IAClB,IAAI,EAAE,MAAM,CAAC;IACb,YAAY,OAAO,EAAE,WAAW,EAAE,IAAI,EAAE,MAAM,EAG7C;IAED,gBAAgB,WAAY,MAAM,UAMhC;IAEF,cAAc,WAAY,MAAM,UAK9B;CACH;eAEc,aAAa"}

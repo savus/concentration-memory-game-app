@@ -1,39 +1,28 @@
+import { API_REQUESTS } from "./api.js";
+import PointsDisplay from "./class/PointsDisplay.js";
 import {
   ANIMATION_DURATION,
+  Data_Anim_Dir_Left,
+  Data_Anim_Dir_Right,
   GLOBAL_ANIMATION_DUR,
-  pointsDisplayContainerClass,
+  Points_Display_Container_Class,
 } from "./constants.js";
 
 const root = document.documentElement;
 
 const userPointsDisplayContainer = document.querySelector(
-  `${pointsDisplayContainerClass}[data-anim-dir="left"]`,
+  `${Points_Display_Container_Class}${Data_Anim_Dir_Left}`,
 )! as HTMLElement;
 
 const computerPointsDisplayContainer = document.querySelector(
-  `${pointsDisplayContainerClass}[data-anim-dir="right"]`,
+  `${Points_Display_Container_Class}${Data_Anim_Dir_Right}`,
 )! as HTMLElement;
 
-const setPointsDisplay = (points: number, parentContainer: HTMLElement) => {
-  const pointsDisplay = parentContainer.querySelector(
-    ".points-display",
-  )! as HTMLElement;
-  const player =
-    parentContainer === userPointsDisplayContainer ? "You: " : "Computer: ";
-  pointsDisplay.innerText = `${player} ${points} points!`;
-};
-
-const setScoreTicker = (points: number, parentContainer: HTMLElement) => {
-  const scoreTicker = parentContainer.querySelector(
-    ".score-ticker",
-  )! as HTMLElement;
-  scoreTicker.innerText = `+ ${points} points!`;
-};
-
-const setPointsAndTicker = (points: number, parentContainer: HTMLElement) => {
-  setPointsDisplay(points, parentContainer);
-  setScoreTicker(points, parentContainer);
-};
+const userPointsDisplay = new PointsDisplay(userPointsDisplayContainer, "You");
+const computerPointsDisplay = new PointsDisplay(
+  computerPointsDisplayContainer,
+  "Computer",
+);
 
 const wait = async (ms: number) => {
   return new Promise((resolve) => {
@@ -69,20 +58,20 @@ const waitForAnimationEnd = async (
   });
 };
 
-const tickPoints = async (
-  receiver: HTMLElement,
-  previousPoints: number,
-  newPoints: number,
-) => {
-  while (newPoints > 0) {
-    previousPoints++;
-    newPoints--;
-    setPointsDisplay(previousPoints, receiver);
-    setScoreTicker(newPoints, receiver);
-    await wait(10);
-  }
-  return;
-};
+// const tickPoints = async (
+//   receiver: HTMLElement,
+//   previousPoints: number,
+//   newPoints: number,
+// ) => {
+//   while (newPoints > 0) {
+//     previousPoints++;
+//     newPoints--;
+//     setPointsDisplay(previousPoints, receiver);
+//     setScoreTicker(newPoints, receiver);
+//     await wait(10);
+//   }
+//   return;
+// };
 
 type scoreTracker = {
   element: HTMLElement;
@@ -94,26 +83,6 @@ const initializeGlobalSettings = async () => {
 };
 
 initializeGlobalSettings();
-
-let userPoints = 30;
-let computerPoints = 100;
-setPointsDisplay(userPoints, userPointsDisplayContainer);
-setPointsDisplay(computerPoints, computerPointsDisplayContainer);
-await wait(1000);
-await waitForAnimationEnd(
-  userPointsDisplayContainer,
-  ".score-ticker",
-  "transition",
-  "show",
-);
-await tickPoints(userPointsDisplayContainer, userPoints, 500);
-userPointsDisplayContainer.classList.remove("show");
-await wait(1000);
-await waitForAnimationEnd(
-  computerPointsDisplayContainer,
-  ".score-ticker",
-  "transition",
-  "show",
-);
-await tickPoints(computerPointsDisplayContainer, computerPoints, 1000);
-computerPointsDisplayContainer.classList.remove("show");
+API_REQUESTS.fetchData("pikachu").then((data) => {
+  console.log(data);
+});
