@@ -35,22 +35,20 @@ const initializeGlobalSettings = async () => {
 };
 
 initializeGlobalSettings();
-API_REQUESTS.fetchData("pikachu").then((data) => {
-  console.log(data);
-});
+API_REQUESTS.fetchData("pikachu").then((data) => {});
 
 const countDown = document.querySelector(".count-down")! as HTMLElement;
 
-countDown.innerText = "Count Down: 3";
-await wait(1000);
-countDown.innerText = "Count Down: 2";
-await wait(1000);
-countDown.innerText = "Count Down: 1";
-await wait(1000);
-countDown.innerText = "Count Down: 0";
-await wait(50);
-await userPointsDisplay.displayAndTickDownPoints(150);
-await computerPointsDisplay.displayAndTickDownPoints(300);
-await wait(500);
-await userPointsDisplay.displayAndTickDownPoints(150);
-await computerPointsDisplay.displayAndTickDownPoints(300);
+// countDown.innerText = "Count Down: 3";
+// await wait(1000);
+// countDown.innerText = "Count Down: 2";
+// await wait(1000);
+// countDown.innerText = "Count Down: 1";
+// await wait(1000);
+// countDown.innerText = "Count Down: 0";
+// await wait(50);
+// await userPointsDisplay.displayAndTickDownPoints(150);
+// await computerPointsDisplay.displayAndTickDownPoints(300);
+// await wait(500);
+// await userPointsDisplay.displayAndTickDownPoints(150);
+// await computerPointsDisplay.displayAndTickDownPoints(300);
