@@ -19,4 +19,10 @@ export const API_REQUESTS = {
         }
     },
 };
+const convertToTSObject = (data) => {
+    return {
+        name: data.name,
+        type: data.types.type,
+    };
+};
 //# sourceMappingURL=api.js.map

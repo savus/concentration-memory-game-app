@@ -7,6 +7,7 @@ import {
   GLOBAL_ANIMATION_DUR,
   Points_Display_Container_Class,
 } from "./constants.js";
+import { wait, waitForAnimation } from "./utility.js";
 
 const root = document.documentElement;
 
@@ -24,55 +25,6 @@ const computerPointsDisplay = new PointsDisplay(
   "Computer",
 );
 
-const wait = async (ms: number) => {
-  return new Promise((resolve) => {
-    return setTimeout(() => {
-      resolve("finished");
-    }, ms);
-  });
-};
-
-const waitForAnimationEnd = async (
-  element: HTMLElement,
-  eventTargetMatch: string,
-  transitionOrAnimation: "transition" | "animation",
-  classToAdd: string,
-): Promise<void> => {
-  return new Promise((resolve) => {
-    function handleTransitionEnd(event: Event) {
-      const target = event.target as HTMLElement | null;
-      if (target?.matches(eventTargetMatch)) {
-        element.removeEventListener(
-          `${transitionOrAnimation}end`,
-          handleTransitionEnd,
-        );
-        resolve();
-      }
-    }
-
-    element.addEventListener(
-      `${transitionOrAnimation}end`,
-      handleTransitionEnd,
-    );
-    element.classList.add(classToAdd);
-  });
-};
-
-// const tickPoints = async (
-//   receiver: HTMLElement,
-//   previousPoints: number,
-//   newPoints: number,
-// ) => {
-//   while (newPoints > 0) {
-//     previousPoints++;
-//     newPoints--;
-//     setPointsDisplay(previousPoints, receiver);
-//     setScoreTicker(newPoints, receiver);
-//     await wait(10);
-//   }
-//   return;
-// };
-
 type scoreTracker = {
   element: HTMLElement;
   points: number;
@@ -86,3 +38,19 @@ initializeGlobalSettings();
 API_REQUESTS.fetchData("pikachu").then((data) => {
   console.log(data);
 });
+
+const countDown = document.querySelector(".count-down")! as HTMLElement;
+
+countDown.innerText = "Count Down: 3";
+await wait(1000);
+countDown.innerText = "Count Down: 2";
+await wait(1000);
+countDown.innerText = "Count Down: 1";
+await wait(1000);
+countDown.innerText = "Count Down: 0";
+await wait(50);
+await userPointsDisplay.displayAndTickDownPoints(150);
+await computerPointsDisplay.displayAndTickDownPoints(300);
+await wait(500);
+await userPointsDisplay.displayAndTickDownPoints(150);
+await computerPointsDisplay.displayAndTickDownPoints(300);
