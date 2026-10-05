@@ -8,4 +8,5 @@ export type TPokeAPI = {
   special_attack: number;
   special_defense: number;
   speed: number;
+  isDummyData: boolean;
 };

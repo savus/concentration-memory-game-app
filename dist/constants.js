@@ -4,4 +4,18 @@ export const GLOBAL_ANIMATION_DUR = "--global-anim-dur";
 export const Points_Display_Container_Class = `.points-display-container`;
 export const Data_Anim_Dir_Left = `[data-anim-dir="left"]`;
 export const Data_Anim_Dir_Right = `[data-anim-dir="right"]`;
+export const POKEMON_NAMES = [
+    "pikachu",
+    "ditto",
+    "charmander",
+    "mewtwo",
+    "articuno",
+];
+export const POKEMON_NAMES_WRONG = [
+    "pikachwu",
+    "dittow",
+    "charmawnder",
+    "mewtwow",
+    "articunwo",
+];
 //# sourceMappingURL=constants.js.map

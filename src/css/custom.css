@@ -20,3 +20,40 @@
 .count-down {
   margin-top: 100px;
 }
+
+.card-container {
+  display: flex;
+  justify-content: center;
+  gap: var(--size-24);
+}
+
+.card-container .card {
+  width: 150px;
+  font-size: var(--size-14);
+  border: 1px solid black;
+  padding: var(--size-8);
+  border-radius: 10px;
+  box-shadow: inset 0px 0px 5px 0px rgba(0, 0, 0, 0.3);
+}
+
+.card-container .card .img {
+  display: block;
+}
+
+.card-container .card.is-dummy .img {
+  display: none;
+}
+
+.card-container .card .dummy-image {
+  display: none;
+}
+
+.card-container .card.card.is-dummy .dummy-image {
+  display: block;
+}
+
+.card-container .card-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
