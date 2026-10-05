@@ -8,6 +8,8 @@
   --size-18: 1.125rem;
   --size-20: 1.25rem;
   --size-24: 1.5rem;
+  --size-50: 3.125rem;
+  --size-100: 6.25rem;
 }
 
 *,
@@ -22,7 +24,8 @@ body {
 }
 
 .container {
-  max-width: 1200px;
+  --container-max-width: 1200px;
+  max-width: var(--container-max-width);
   margin: 0 auto;
   padding: 0 15px;
   position: relative;
@@ -34,8 +37,8 @@ body {
   left: 0;
   right: 0;
   top: 0;
-  bottom: 0;
   border: 1px solid black;
+  padding-bottom: var(--size-50);
 }
 
 .points-display-container {
