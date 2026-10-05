@@ -1,7 +1,7 @@
 import { Card } from "./Card.js";
 export class CardFactory {
     buildCardHTML = (data) => {
-        const cardTemplate = `<div class="card${data.isDummyData ? "is-dummy" : ""}" data-face-position="up">
+        const cardTemplate = `<div class="card${data.isDummyData ? "is-dummy" : ""}" data-face-position="down">
             <div class="card-inner">
               <div class="card-front">
                 <div class="card-header">
