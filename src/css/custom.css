@@ -1,0 +1,22 @@
+.game-header {
+  display: flex;
+  justify-content: center;
+}
+
+.game-ui {
+  display: flex;
+  padding: var(--size-18);
+  font-size: var(--size-24);
+}
+
+.game-ui .points-display-container {
+  background-color: rgba(255, 0, 0, 0.1);
+}
+
+.game-ui .points-display-container:last-child {
+  margin-left: auto;
+}
+
+.count-down {
+  margin-top: 100px;
+}

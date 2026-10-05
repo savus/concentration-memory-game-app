@@ -1,3 +1,84 @@
 :root {
-  --global-anim-dur: 400ms;
+  --global-anim-dur: ;
+
+  --size-8: 0.5rem;
+  --size-12: 0.75rem;
+  --size-14: 0.875rem;
+  --size-16: 1rem;
+  --size-18: 1.125rem;
+  --size-20: 1.25rem;
+  --size-24: 1.5rem;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: var(--size-16);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+  position: relative;
+  height: 100vh;
+}
+
+.screen {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  border: 1px solid black;
+}
+
+.points-display-container {
+  position: relative;
+}
+
+.points-display-container .score-ticker {
+  --transition-dur: 600ms;
+  --opacity: 0;
+  --visibility: hidden;
+  visibility: var(--visibility);
+  opacity: var(--opacity);
+  position: absolute;
+  top: 150%;
+}
+
+.points-display-container[data-anim-dir="left"] .score-ticker {
+  --left: -100%;
+  left: var(--left);
+  transition:
+    left var(--transition-dur) ease-in-out,
+    visibility var(--transition-dur) ease-in-out,
+    opacity var(--transition-dur) ease-in-out;
+}
+
+.points-display-container[data-anim-dir="right"] .score-ticker {
+  --right: -100%;
+  right: var(--right);
+  transition:
+    right var(--transition-dur) ease-in-out,
+    visibility var(--transition-dur) ease-in-out,
+    opacity var(--transition-dur) ease-in-out;
+}
+
+.points-display-container.show .score-ticker {
+  --visibility: visible;
+  --opacity: 1;
+}
+
+.points-display-container[data-anim-dir="left"].show .score-ticker {
+  --left: 0;
+}
+
+.points-display-container[data-anim-dir="right"].show .score-ticker {
+  --right: 0;
 }
