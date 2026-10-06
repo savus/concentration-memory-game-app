@@ -17,10 +17,11 @@ const initializeGlobalSettings = async () => {
         .then((data) => {
         data.forEach((pokemon) => allPokemonData.push(pokemon));
     })
+        .then(() => {
+        cardFactory.createCardsAndAppend(allPokemonData, cardContainer, allCards);
+    })
         .finally(() => {
-        allPokemonData.forEach((pokemon) => {
-            cardFactory.createCard(pokemon, cardContainer, allCards);
-        });
+        console.log(allCards);
     });
     return;
 };
