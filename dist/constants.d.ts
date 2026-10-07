@@ -4,6 +4,7 @@ export declare const GLOBAL_ANIMATION_DUR = "--global-anim-dur";
 export declare const Points_Display_Container_Class = ".points-display-container";
 export declare const Data_Anim_Dir_Left = "[data-anim-dir=\"left\"]";
 export declare const Data_Anim_Dir_Right = "[data-anim-dir=\"right\"]";
+export declare const Dataset_Face_Position = "data-face-position";
 export declare const POKEMON_NAMES: string[];
 export declare const POKEMON_NAMES_WRONG: string[];
 //# sourceMappingURL=constants.d.ts.map

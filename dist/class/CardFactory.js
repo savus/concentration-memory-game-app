@@ -1,3 +1,4 @@
+import { Dataset_Face_Position } from "../constants.js";
 import { Card } from "./Card.js";
 export class CardFactory {
     buildCardHTML = (data) => {
@@ -29,6 +30,8 @@ export class CardFactory {
         </div>
       </div>`;
         card.className = `card ${data.isDummyData ? "is-dummy" : ""}`;
+        card.setAttribute(Dataset_Face_Position, "up");
+        ``;
         card.insertAdjacentHTML("beforeend", cardTemplate);
         return card;
     };
@@ -39,10 +42,8 @@ export class CardFactory {
     };
     createCardsAndAppend = (dataList, parentToAppend, arrayToPush) => {
         dataList.forEach((item) => {
-            const cardTemplate = this.buildCardHTML(item);
-            const cardTemplate2 = this.buildCardHTML(item);
-            const card1 = new Card(cardTemplate);
-            const card2 = new Card(cardTemplate2);
+            const card1 = this.createCard(item);
+            const card2 = this.createCard(item);
             parentToAppend.append(card1.html);
             parentToAppend.append(card2.html);
             arrayToPush.push(card1);

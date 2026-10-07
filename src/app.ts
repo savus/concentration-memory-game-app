@@ -39,6 +39,7 @@ const cardContainer = document.querySelector(".card-container")! as HTMLElement;
 
 const initializeGlobalSettings = async () => {
   root.style.setProperty(GLOBAL_ANIMATION_DUR, `${ANIMATION_DURATION}ms`);
+
   await API_REQUESTS.fetchAndConvertAllPokemon(POKEMON_NAMES)
     .then((data) => {
       data.forEach((pokemon) => allPokemonData.push(pokemon));
@@ -49,9 +50,8 @@ const initializeGlobalSettings = async () => {
     .finally(() => {
       console.log(allCards);
     });
+
   return;
 };
 
 await initializeGlobalSettings();
-
-const countDown = document.querySelector(".count-down")! as HTMLElement;

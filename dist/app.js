@@ -26,5 +26,4 @@ const initializeGlobalSettings = async () => {
     return;
 };
 await initializeGlobalSettings();
-const countDown = document.querySelector(".count-down");
 //# sourceMappingURL=app.js.map
