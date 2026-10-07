@@ -10,7 +10,6 @@ export declare class Card {
     flipUp: () => void;
     flipDown: () => void;
     flip: (direction: "up" | "down" | "toggle") => void;
-    onClick: () => void;
 }
 export {};
 //# sourceMappingURL=Card.d.ts.map

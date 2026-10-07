@@ -1,4 +1,5 @@
 import { Dataset_Face_Position } from "../constants.js";
+import GameHandler from "./GameHandler.js";
 export class Card {
     html;
     state = {
@@ -8,7 +9,6 @@ export class Card {
     };
     constructor(cardHTML) {
         this.html = cardHTML;
-        this.html.addEventListener("click", this.onClick);
         this.flip(this.state.facePosition);
     }
     flipUp = () => {
@@ -43,11 +43,6 @@ export class Card {
                 }
                 break;
         }
-    };
-    onClick = () => {
-        if (!this.state.isClickable)
-            return;
-        this.flip("toggle");
     };
 }
 //# sourceMappingURL=Card.js.map

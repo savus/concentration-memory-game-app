@@ -1,6 +1,7 @@
 import API_REQUESTS from "./api.js";
 import type { Card } from "./class/Card.js";
 import { CardFactory } from "./class/CardFactory.js";
+import { Player } from "./class/Player.js";
 import PointsDisplay from "./class/PointsDisplay.js";
 import {
   ANIMATION_DURATION,
@@ -36,6 +37,9 @@ const allCards: Card[] = [];
 const cardFactory = new CardFactory();
 
 const cardContainer = document.querySelector(".card-container")! as HTMLElement;
+
+export const user = new Player("you", "user");
+export const computer = new Player("computer", "computer");
 
 const initializeGlobalSettings = async () => {
   root.style.setProperty(GLOBAL_ANIMATION_DUR, `${ANIMATION_DURATION}ms`);

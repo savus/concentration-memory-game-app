@@ -1,4 +1,6 @@
+import { user } from "../app.js";
 import { Dataset_Face_Position } from "../constants.js";
+import GameHandler from "./GameHandler.js";
 
 type TState = {
   facePosition: "up" | "down";
@@ -32,23 +34,18 @@ export class Card {
 
   flip = (direction: "up" | "down" | "toggle") => {
     if (!this.state.isFlippable) return;
-    console.log(this.state.facePosition);
     switch (direction) {
       case "up":
         this.flipUp();
-        console.log(this.state.facePosition);
         break;
       case "down":
         this.flipDown();
-        console.log(this.state.facePosition);
         break;
       case "toggle":
         if (this.state.facePosition === "down") {
           this.flipUp();
-          console.log(this.state.facePosition);
         } else if (this.state.facePosition === "up") {
           this.flipDown();
-          console.log(this.state.facePosition);
         }
         break;
     }
@@ -56,6 +53,6 @@ export class Card {
 
   onClick = () => {
     if (!this.state.isClickable) return;
-    this.flip("toggle");
+    GameHandler.handlePlayerChoice(this, user);
   };
 }
