@@ -1,5 +1,5 @@
-import type { Card } from "./Card.js";
-import { Player } from "./Player.js";
+import type { Card } from "../class/Card.js";
+import { Player } from "../class/Player.js";
 declare const handlePlayerChoice: (choice: Card, player: Player) => void;
 declare const GameHandler: {
     handlePlayerChoice: typeof handlePlayerChoice;

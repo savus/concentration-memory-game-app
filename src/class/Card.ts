@@ -2,7 +2,7 @@ import { user } from "../app.js";
 import { Dataset_Face_Position } from "../constants.js";
 import type { TPokeAPI } from "../types.js";
 import { waitForAnimation } from "../utility.js";
-import GameHandler from "./GameHandler.js";
+import GameHandler from "../singleton/GameHandler.js";
 
 type TState = {
   facePosition: "up" | "down";

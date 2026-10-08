@@ -1,4 +1,4 @@
-import { Player } from "./Player.js";
+import { Player } from "../class/Player.js";
 const handlePlayerChoice = (choice, player) => {
     if (player.choices.firstChoice === null) {
         player.setFirstChoice(choice);

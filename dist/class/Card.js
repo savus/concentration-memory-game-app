@@ -1,7 +1,7 @@
 import { user } from "../app.js";
 import { Dataset_Face_Position } from "../constants.js";
 import { waitForAnimation } from "../utility.js";
-import GameHandler from "./GameHandler.js";
+import GameHandler from "../singleton/GameHandler.js";
 export class Card {
     id;
     html;

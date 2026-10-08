@@ -22,7 +22,7 @@ export class Player {
         choice.select();
         console.log(this.choices);
         this.choicesMatched = this.doChoicesMatch();
-        await wait(500);
+        await wait(ANIMATION_DURATION);
         this.resetChoices();
     };
     doChoicesMatch = () => {
