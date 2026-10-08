@@ -1,5 +1,6 @@
 import API_REQUESTS from "./api.js";
 import { CardFactory } from "./class/CardFactory.js";
+import { Player } from "./class/Player.js";
 import PointsDisplay from "./class/PointsDisplay.js";
 import { ANIMATION_DURATION, Data_Anim_Dir_Left, Data_Anim_Dir_Right, GLOBAL_ANIMATION_DUR, Points_Display_Container_Class, POKEMON_NAMES, POKEMON_NAMES_WRONG, } from "./constants.js";
 const root = document.documentElement;
@@ -11,6 +12,8 @@ const computerPointsDisplay = new PointsDisplay(computerPointsDisplayContainer, 
 const allCards = [];
 const cardFactory = new CardFactory();
 const cardContainer = document.querySelector(".card-container");
+export const user = new Player("you", "user");
+export const computer = new Player("computer", "computer");
 const initializeGlobalSettings = async () => {
     root.style.setProperty(GLOBAL_ANIMATION_DUR, `${ANIMATION_DURATION}ms`);
     await API_REQUESTS.fetchAndConvertAllPokemon(POKEMON_NAMES)

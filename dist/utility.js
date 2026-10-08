@@ -9,9 +9,10 @@ export const waitForAnimation = async (element, eventTargetMatch, transitionOrAn
     return new Promise((resolve) => {
         function handleTransitionEnd(event) {
             const target = event.target;
-            if (target?.matches(eventTargetMatch)) {
+            if (target?.closest(eventTargetMatch)) {
                 element.removeEventListener(`${transitionOrAnimation}end`, handleTransitionEnd);
                 endAnimation();
+                console.log("animation end");
                 resolve();
             }
         }

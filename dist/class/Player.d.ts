@@ -12,6 +12,8 @@ export declare class Player {
     constructor(name: string, type: TType);
     setFirstChoice: (choice: Card) => Promise<void>;
     setSecondChoice: (choice: Card) => Promise<void>;
+    doChoicesMatch: () => boolean;
+    resetChoices: () => void;
 }
 export {};
 //# sourceMappingURL=Player.d.ts.map

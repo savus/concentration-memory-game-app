@@ -1,5 +1,7 @@
 import { user } from "../app.js";
 import { Dataset_Face_Position } from "../constants.js";
+import type { TPokeAPI } from "../types.js";
+import { waitForAnimation } from "../utility.js";
 import GameHandler from "./GameHandler.js";
 
 type TState = {
@@ -9,17 +11,21 @@ type TState = {
 };
 
 export class Card {
+  id: number;
   html: HTMLElement;
+  stats: TPokeAPI;
   state: TState = {
-    facePosition: "up",
+    facePosition: "down",
     isClickable: true,
     isFlippable: true,
   };
 
-  constructor(cardHTML: HTMLElement) {
+  constructor(cardHTML: HTMLElement, pokemonData: TPokeAPI, id: number) {
     this.html = cardHTML;
     this.html.addEventListener("click", this.onClick);
     this.flip(this.state.facePosition);
+    this.stats = pokemonData;
+    this.id = id;
   }
 
   flipUp = () => {
@@ -51,8 +57,33 @@ export class Card {
     }
   };
 
+  select = async () => {
+    return await waitForAnimation(this.html, ".card", "transition", () => {
+      this.state.isClickable = false;
+      this.flipUp();
+    });
+  };
+
+  deselect = async () => {
+    return await waitForAnimation(
+      this.html,
+      ".card",
+      "transition",
+      () => {
+        this.flipDown();
+      },
+      () => {
+        this.state.isClickable = true;
+        console.log(this.state.isClickable);
+      },
+    );
+  };
+
   onClick = () => {
-    if (!this.state.isClickable) return;
+    if (!this.state.isClickable) {
+      console.log("you may not click at this time");
+      return;
+    }
     GameHandler.handlePlayerChoice(this, user);
   };
 }

@@ -16,12 +16,13 @@ export const waitForAnimation = async (
   return new Promise((resolve) => {
     function handleTransitionEnd(event: Event) {
       const target = event.target as HTMLElement | null;
-      if (target?.matches(eventTargetMatch)) {
+      if (target?.closest(eventTargetMatch)) {
         element.removeEventListener(
           `${transitionOrAnimation}end`,
           handleTransitionEnd,
         );
         endAnimation();
+        console.log("animation end");
         resolve();
       }
     }

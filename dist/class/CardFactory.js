@@ -30,20 +30,22 @@ export class CardFactory {
         </div>
       </div>`;
         card.className = `card ${data.isDummyData ? "is-dummy" : ""}`;
-        card.setAttribute(Dataset_Face_Position, "up");
+        card.setAttribute(Dataset_Face_Position, "down");
         ``;
         card.insertAdjacentHTML("beforeend", cardTemplate);
         return card;
     };
-    createCard = (apiData) => {
+    createCard = (apiData, id) => {
         const cardTemplate = this.buildCardHTML(apiData);
-        const card = new Card(cardTemplate);
+        const card = new Card(cardTemplate, apiData, id);
         return card;
     };
     createCardsAndAppend = (dataList, parentToAppend, arrayToPush) => {
+        let id = 0;
         dataList.forEach((item) => {
-            const card1 = this.createCard(item);
-            const card2 = this.createCard(item);
+            const card1 = this.createCard(item, id);
+            const card2 = this.createCard(item, id + 1);
+            id += 2;
             parentToAppend.append(card1.html);
             parentToAppend.append(card2.html);
             arrayToPush.push(card1);

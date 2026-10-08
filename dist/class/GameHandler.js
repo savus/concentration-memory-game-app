@@ -1,6 +1,4 @@
 import { Player } from "./Player.js";
-const user = new Player("you", "user");
-const computer = new Player("computer", "computer");
 const handlePlayerChoice = (choice, player) => {
     if (player.choices.firstChoice === null) {
         player.setFirstChoice(choice);
