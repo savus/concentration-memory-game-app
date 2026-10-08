@@ -29,4 +29,7 @@ const initializeGlobalSettings = async () => {
     return;
 };
 await initializeGlobalSettings();
+document.addEventListener("keyup", (e) => {
+    computerPointsDisplay.displayAndTickDownPoints(100);
+});
 //# sourceMappingURL=app.js.map

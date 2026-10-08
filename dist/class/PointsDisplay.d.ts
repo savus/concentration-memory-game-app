@@ -4,12 +4,12 @@ declare class PointsDisplay {
     currentPoints: number;
     tickerPoints: number;
     scoreTickerQuery: string;
+    isBusy: boolean;
     constructor(element: HTMLElement, name: string);
-    setPointsDisplay: (points: number) => void;
-    setScoreTicker: (points: number) => void;
+    overwritePointsDisplay: (points: number) => void;
+    overwriteScoreTicker: (points: number) => void;
     showScoreTicker: () => void;
     hideScoreTicker: () => void;
-    flashScoreTicker: () => Promise<void>;
     tickDownPoints: () => Promise<void>;
     displayAndTickDownPoints: (tickerPoints: number) => Promise<void>;
 }

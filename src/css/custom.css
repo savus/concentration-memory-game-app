@@ -7,14 +7,25 @@
   display: flex;
   padding: var(--size-18);
   font-size: var(--size-24);
+  background-color: #000;
+  z-index: 100;
+  margin-bottom: var(--size-100);
 }
 
 .game-ui .points-display-container {
-  background-color: rgba(255, 0, 0, 0.1);
+  color: #fff;
 }
 
 .game-ui .points-display-container:last-child {
   margin-left: auto;
+}
+
+.game-ui .points-display {
+  color: #fff;
+}
+
+.game-ui .score-ticker {
+  color: #000;
 }
 
 .count-down {

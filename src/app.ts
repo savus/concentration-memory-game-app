@@ -62,3 +62,7 @@ const initializeGlobalSettings = async () => {
 };
 
 await initializeGlobalSettings();
+
+document.addEventListener("keyup", (e) => {
+  computerPointsDisplay.displayAndTickDownPoints(100);
+});
