@@ -26,8 +26,11 @@ const computerPointsDisplayContainer = document.querySelector(
   `${Points_Display_Container_Class}${Data_Anim_Dir_Right}`,
 )! as HTMLElement;
 
-const userPointsDisplay = new PointsDisplay(userPointsDisplayContainer, "You");
-const computerPointsDisplay = new PointsDisplay(
+export const userPointsDisplay = new PointsDisplay(
+  userPointsDisplayContainer,
+  "You",
+);
+export const computerPointsDisplay = new PointsDisplay(
   computerPointsDisplayContainer,
   "Computer",
 );

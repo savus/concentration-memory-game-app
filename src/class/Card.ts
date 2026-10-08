@@ -74,7 +74,6 @@ export class Card {
       },
       () => {
         this.state.isClickable = true;
-        console.log(this.state.isClickable);
       },
     );
   };

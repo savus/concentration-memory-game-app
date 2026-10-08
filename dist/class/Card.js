@@ -57,7 +57,6 @@ export class Card {
             this.flipDown();
         }, () => {
             this.state.isClickable = true;
-            console.log(this.state.isClickable);
         });
     };
     onClick = () => {

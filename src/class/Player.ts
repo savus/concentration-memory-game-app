@@ -1,3 +1,4 @@
+import { computerPointsDisplay, userPointsDisplay } from "../app.js";
 import { ANIMATION_DURATION } from "../constants.js";
 import { wait, waitForAnimation } from "../utility.js";
 import type { Card } from "./Card.js";
@@ -27,13 +28,11 @@ export class Player {
   setFirstChoice = async (choice: Card) => {
     this.choices.firstChoice = choice;
     choice.select();
-    console.log(this.choices);
   };
 
   setSecondChoice = async (choice: Card) => {
     this.choices.secondChoice = choice;
     choice.select();
-    console.log(this.choices);
     this.choicesMatched = this.doChoicesMatch();
     await wait(ANIMATION_DURATION);
     this.resetChoices();
@@ -49,6 +48,9 @@ export class Player {
     if (!this.choicesMatched) {
       this.choices.firstChoice?.deselect();
       this.choices.secondChoice?.deselect();
+    } else {
+      if (this.type === "user") userPointsDisplay.displayAndTickDownPoints(1);
+      else computerPointsDisplay.displayAndTickDownPoints(1);
     }
     this.choices.firstChoice = null;
     this.choices.secondChoice = null;
