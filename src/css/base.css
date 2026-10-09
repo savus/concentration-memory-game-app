@@ -10,6 +10,9 @@
   --size-24: 1.5rem;
   --size-50: 3.125rem;
   --size-100: 6.25rem;
+
+  --theme-dark: #000;
+  --theme-light: #fff;
 }
 
 *,

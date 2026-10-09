@@ -1,3 +1,75 @@
+.screen-message-container {
+  --anim-duration: 800ms;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  z-index: 500;
+  font-size: var(--size-50);
+  width: 100%;
+}
+
+.screen-message-container .top-container {
+  margin-bottom: var(--size-12);
+}
+.screen-message-container .top-container,
+.screen-message-container .bottom-container {
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--theme-dark) 10%,
+    var(--theme-dark) 90%,
+    transparent
+  );
+  color: var(--theme-light);
+  padding: var(--size-18) 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.screen-message-container .top-message,
+.screen-message-container .bottom-message {
+  /* --translateX: 0;
+  --opacity: 0;
+  --visibility: hidden; */
+  position: relative;
+  /* transform: translateX(var(--translateX)); */
+  /* opacity: var(--opacity);
+  visibility: var(--visibility);
+  transition:
+    transform var(--global-anim-dur) ease-in-out,
+    opacity var(--global-anim-dur) ease-in-out,
+    visibility var(--global-anim-dur) ease-in-out; */
+}
+/* 
+.screen-message-container .top-message {
+  --translateX: -100%;
+}
+
+.screen-message-container .bottom-message {
+  --translateX: 100%;
+}
+
+.screen-message-container.show .top-message,
+.screen-message-container.show .bottom-message {
+  --translateX: 0;
+  --opacity: 1;
+  --visibility: visible;
+} */
+
+.screen-message-container.scroll .top-message {
+  animation: scrollInOutFromLeft
+    calc(var(--global-anim-dur) + var(--anim-duration)) ease-in-out 0s 1 normal
+    forwards;
+}
+
+.screen-message-container.scroll .bottom-message {
+  animation: scrollInOutFromLeft
+    calc(var(--global-anim-dur) + var(--anim-duration)) ease-in-out 0s 1 reverse
+    forwards;
+}
+
 .game-header {
   display: flex;
   justify-content: center;
@@ -110,4 +182,20 @@
 
 .card.card.is-dummy .dummy-image {
   display: block;
+}
+
+@keyframes scrollInOutFromLeft {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  20%,
+  80% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
 }

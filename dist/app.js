@@ -5,6 +5,7 @@ import PointsDisplay from "./class/PointsDisplay.js";
 import { ANIMATION_DURATION, Data_Anim_Dir_Left, Data_Anim_Dir_Right, GLOBAL_ANIMATION_DUR, Points_Display_Container_Class, POKEMON_NAMES, POKEMON_NAMES_WRONG, } from "./constants.js";
 const root = document.documentElement;
 let allPokemonData = [];
+const screenMessageContainer = document.querySelector(".screen-message-container");
 const userPointsDisplayContainer = document.querySelector(`${Points_Display_Container_Class}${Data_Anim_Dir_Left}`);
 const computerPointsDisplayContainer = document.querySelector(`${Points_Display_Container_Class}${Data_Anim_Dir_Right}`);
 export const userPointsDisplay = new PointsDisplay(userPointsDisplayContainer, "You");
@@ -30,6 +31,8 @@ const initializeGlobalSettings = async () => {
 };
 await initializeGlobalSettings();
 document.addEventListener("keyup", (e) => {
-    computerPointsDisplay.displayAndTickDownPoints(100);
+    if (e.key === "Enter") {
+        screenMessageContainer?.classList.add("scroll");
+    }
 });
 //# sourceMappingURL=app.js.map

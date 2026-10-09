@@ -18,6 +18,10 @@ const root = document.documentElement;
 
 let allPokemonData: TPokeAPI[] = [];
 
+const screenMessageContainer = document.querySelector(
+  ".screen-message-container",
+);
+
 const userPointsDisplayContainer = document.querySelector(
   `${Points_Display_Container_Class}${Data_Anim_Dir_Left}`,
 )! as HTMLElement;
@@ -64,5 +68,7 @@ const initializeGlobalSettings = async () => {
 await initializeGlobalSettings();
 
 document.addEventListener("keyup", (e) => {
-  computerPointsDisplay.displayAndTickDownPoints(100);
+  if (e.key === "Enter") {
+    screenMessageContainer?.classList.add("scroll");
+  }
 });
