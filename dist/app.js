@@ -2,10 +2,11 @@ import API_REQUESTS from "./api.js";
 import { CardFactory } from "./class/CardFactory.js";
 import { Player } from "./class/Player.js";
 import PointsDisplay from "./class/PointsDisplay.js";
-import { ANIMATION_DURATION, Data_Anim_Dir_Left, Data_Anim_Dir_Right, GLOBAL_ANIMATION_DUR, Points_Display_Container_Class, POKEMON_NAMES, POKEMON_NAMES_WRONG, } from "./constants.js";
+import { ANIMATION_DURATION, Data_Anim_Dir_Left, Data_Anim_Dir_Right, GLOBAL_ANIMATION_DUR, Points_Display_Container_Class, POKEMON_NAMES, Screen_Message_Container_Query, } from "./constants.js";
+import { displayGameScreenMessage, wait } from "./utility.js";
 const root = document.documentElement;
 let allPokemonData = [];
-const screenMessageContainer = document.querySelector(".screen-message-container");
+export const screenMessageContainer = document.querySelector(Screen_Message_Container_Query);
 const userPointsDisplayContainer = document.querySelector(`${Points_Display_Container_Class}${Data_Anim_Dir_Left}`);
 const computerPointsDisplayContainer = document.querySelector(`${Points_Display_Container_Class}${Data_Anim_Dir_Right}`);
 export const userPointsDisplay = new PointsDisplay(userPointsDisplayContainer, "You");
@@ -30,9 +31,11 @@ const initializeGlobalSettings = async () => {
     return;
 };
 await initializeGlobalSettings();
-document.addEventListener("keyup", (e) => {
-    if (e.key === "Enter") {
-        screenMessageContainer?.classList.add("scroll");
-    }
+document.addEventListener("keyup", async (e) => {
+    await displayGameScreenMessage("This is", "the first message");
+    await wait(1000);
+    await displayGameScreenMessage("This is the", "second message");
+    await wait(1000);
+    await displayGameScreenMessage("And finally", "this is the third message");
 });
 //# sourceMappingURL=app.js.map

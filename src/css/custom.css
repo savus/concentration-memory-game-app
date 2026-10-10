@@ -1,5 +1,5 @@
 .screen-message-container {
-  --anim-duration: 800ms;
+  --anim-duration: 1500ms;
   position: absolute;
   top: 50%;
   left: 0;
@@ -9,9 +9,6 @@
   width: 100%;
 }
 
-.screen-message-container .top-container {
-  margin-bottom: var(--size-12);
-}
 .screen-message-container .top-container,
 .screen-message-container .bottom-container {
   background: linear-gradient(
@@ -28,46 +25,42 @@
   align-items: center;
 }
 
+.screen-message-container .top-container,
+.screen-message-container .bottom-container,
 .screen-message-container .top-message,
 .screen-message-container .bottom-message {
-  /* --translateX: 0;
-  --opacity: 0;
-  --visibility: hidden; */
   position: relative;
-  /* transform: translateX(var(--translateX)); */
-  /* opacity: var(--opacity);
-  visibility: var(--visibility);
-  transition:
-    transform var(--global-anim-dur) ease-in-out,
-    opacity var(--global-anim-dur) ease-in-out,
-    visibility var(--global-anim-dur) ease-in-out; */
-}
-/* 
-.screen-message-container .top-message {
-  --translateX: -100%;
+  opacity: 0;
 }
 
-.screen-message-container .bottom-message {
-  --translateX: 100%;
+.screen-message-container[data-animation="scrollInOutFromLeft"] .top-container,
+.screen-message-container[data-animation="scrollInOutFromLeft"]
+  .bottom-container,
+.screen-message-container[data-animation="scrollInOutFromLeft"] .top-message,
+.screen-message-container[data-animation="scrollInOutFromLeft"]
+  .bottom-message {
+  animation-name: scrollInOutFromLeft;
+  animation-fill-mode: forwards;
 }
 
-.screen-message-container.show .top-message,
-.screen-message-container.show .bottom-message {
-  --translateX: 0;
-  --opacity: 1;
-  --visibility: visible;
-} */
-
-.screen-message-container.scroll .top-message {
-  animation: scrollInOutFromLeft
-    calc(var(--global-anim-dur) + var(--anim-duration)) ease-in-out 0s 1 normal
-    forwards;
+.screen-message-container[data-animation="scrollInOutFromLeft"]
+  .bottom-container,
+.screen-message-container[data-animation="scrollInOutFromLeft"] .top-message {
+  animation-duration: var(--anim-duration);
+  animation-direction: reverse;
 }
 
-.screen-message-container.scroll .bottom-message {
-  animation: scrollInOutFromLeft
-    calc(var(--global-anim-dur) + var(--anim-duration)) ease-in-out 0s 1 reverse
-    forwards;
+.screen-message-container[data-animation="scrollInOutFromLeft"] .top-container,
+.screen-message-container[data-animation="scrollInOutFromLeft"]
+  .bottom-message {
+  animation-duration: var(--anim-duration);
+}
+
+.screen-message-container[data-animation="scrollInOutFromLeft"] .top-message,
+.screen-message-container[data-animation="scrollInOutFromLeft"]
+  .bottom-message {
+  animation-duration: calc(var(--anim-duration) / 2);
+  animation-delay: calc(var(--anim-duration) * 1 / 4);
 }
 
 .game-header {

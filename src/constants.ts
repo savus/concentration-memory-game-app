@@ -5,6 +5,7 @@ export const Points_Display_Container_Class = `.points-display-container`;
 export const Data_Anim_Dir_Left = `[data-anim-dir="left"]`;
 export const Data_Anim_Dir_Right = `[data-anim-dir="right"]`;
 export const Dataset_Face_Position = "data-face-position";
+export const Screen_Message_Container_Query = ".screen-message-container";
 
 export const POKEMON_NAMES = [
   "pikachu",

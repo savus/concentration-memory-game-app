@@ -10,16 +10,17 @@ import {
   GLOBAL_ANIMATION_DUR,
   Points_Display_Container_Class,
   POKEMON_NAMES,
-  POKEMON_NAMES_WRONG,
+  Screen_Message_Container_Query,
 } from "./constants.js";
 import type { TPokeAPI } from "./types.js";
+import { displayGameScreenMessage, wait } from "./utility.js";
 
 const root = document.documentElement;
 
 let allPokemonData: TPokeAPI[] = [];
 
-const screenMessageContainer = document.querySelector(
-  ".screen-message-container",
+export const screenMessageContainer = document.querySelector(
+  Screen_Message_Container_Query,
 );
 
 const userPointsDisplayContainer = document.querySelector(
@@ -67,8 +68,10 @@ const initializeGlobalSettings = async () => {
 
 await initializeGlobalSettings();
 
-document.addEventListener("keyup", (e) => {
-  if (e.key === "Enter") {
-    screenMessageContainer?.classList.add("scroll");
-  }
+document.addEventListener("keyup", async (e) => {
+  await displayGameScreenMessage("This is", "the first message");
+  await wait(1000);
+  await displayGameScreenMessage("This is the", "second message");
+  await wait(1000);
+  await displayGameScreenMessage("And finally", "this is the third message");
 });
