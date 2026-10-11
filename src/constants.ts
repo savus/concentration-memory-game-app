@@ -1,11 +1,14 @@
 export const ANIMATION_DURATION = 500;
 export const TICK_DOWN_PAUSE = 10;
 export const GLOBAL_ANIMATION_DUR = "--global-anim-dur";
-export const Points_Display_Container_Class = `.points-display-container`;
-export const Data_Anim_Dir_Left = `[data-anim-dir="left"]`;
-export const Data_Anim_Dir_Right = `[data-anim-dir="right"]`;
-export const Dataset_Face_Position = "data-face-position";
-export const Screen_Message_Container_Query = ".screen-message-container";
+export const POINTS_DISPLAY_CONTAINER_CLASS = `.points-display-container`;
+
+export const DATA_USER = `[data-player="user"]`;
+export const DATA_COMPUTER = `[data-player="computer"]`;
+export const DATA_ANIM_DIR_LEFT = `[data-anim-dir="left"]`;
+export const DATA_ANIM_DIR_RIGHT = `[data-anim-dir="right"]`;
+export const DATASET_FACE_POSITION = "data-face-position";
+export const SCREEN_MESSAGE_CONTAINER = ".screen-message-container";
 
 export const POKEMON_NAMES = [
   "pikachu",

@@ -1,7 +1,7 @@
 import { user } from "../app.js";
-import { Dataset_Face_Position } from "../constants.js";
 import { waitForAnimation } from "../utility.js";
 import GameHandler from "../singleton/GameHandler.js";
+import { DATASET_FACE_POSITION } from "../constants.js";
 export class Card {
     id;
     html;
@@ -20,11 +20,11 @@ export class Card {
     }
     flipUp = () => {
         this.state.facePosition = "up";
-        this.html.setAttribute(Dataset_Face_Position, "up");
+        this.html.setAttribute(DATASET_FACE_POSITION, "up");
     };
     flipDown = () => {
         this.state.facePosition = "down";
-        this.html.setAttribute(Dataset_Face_Position, "down");
+        this.html.setAttribute(DATASET_FACE_POSITION, "down");
     };
     flip = (direction) => {
         if (!this.state.isFlippable)

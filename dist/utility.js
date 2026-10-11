@@ -1,4 +1,4 @@
-import { screenMessageContainer, userPointsDisplay } from "./app.js";
+import { screenMessageContainer } from "./app.js";
 export const wait = async (ms) => {
     return new Promise((resolve) => {
         return setTimeout(() => {
@@ -17,7 +17,7 @@ export const waitForAnimation = async (element, transitionOrAnimation, beginAnim
         element.addEventListener(`${transitionOrAnimation}end`, handleTransitionEnd, { once: true });
     });
 };
-export const displayGameScreenMessage = async (topText, bottomText, pointsDisplay = null, pointsToDisplay = 0) => {
+export const displayGameScreenMessage = async (topText, bottomText, pointsDisplay = null, pointsToAdd = 0) => {
     const topMessage = screenMessageContainer?.querySelector(".top-message");
     const bottomMessage = screenMessageContainer?.querySelector(".bottom-message");
     const bottomContainer = screenMessageContainer?.querySelector(".bottom-container");
@@ -25,8 +25,6 @@ export const displayGameScreenMessage = async (topText, bottomText, pointsDispla
     bottomMessage.innerText = bottomText;
     await waitForAnimation(bottomContainer, "animation", () => {
         screenMessageContainer?.setAttribute("data-animation", "scrollInOutFromLeft");
-        if (pointsDisplay)
-            pointsDisplay.displayAndTickDownPoints(pointsToDisplay);
     }, () => {
         screenMessageContainer?.removeAttribute("data-animation");
     });

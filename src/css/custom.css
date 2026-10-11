@@ -1,5 +1,5 @@
 .screen-message-container {
-  --anim-duration: 3000ms;
+  --anim-duration: 2900ms;
   position: absolute;
   top: 50%;
   left: 0;
@@ -62,7 +62,7 @@
 .screen-message-container[data-animation="scrollInOutFromLeft"]
   .bottom-container,
 .screen-message-container[data-animation="scrollInOutFromLeft"] .top-message {
-  animation-direction: reverse;
+  animation-name: scrollInOutFromRight;
 }
 
 .screen-message-container[data-animation="scrollInOutFromLeft"] .top-message,
@@ -188,18 +188,36 @@
 
 @keyframes scrollInOutFromLeft {
   0%,
-  10% {
+  5% {
     transform: translateX(-100%);
     opacity: 0;
   }
-  25%,
-  75% {
+  15%,
+  70% {
     transform: translateX(0);
     opacity: 1;
   }
-  90%,
+  85%,
   100% {
     opacity: 0;
     transform: translateX(100%);
+  }
+}
+
+@keyframes scrollInOutFromRight {
+  0%,
+  5% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  15%,
+  70% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  85%,
+  100% {
+    opacity: 0;
+    transform: translateX(-100%);
   }
 }

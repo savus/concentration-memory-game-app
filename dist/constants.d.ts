@@ -1,11 +1,13 @@
 export declare const ANIMATION_DURATION = 500;
 export declare const TICK_DOWN_PAUSE = 10;
 export declare const GLOBAL_ANIMATION_DUR = "--global-anim-dur";
-export declare const Points_Display_Container_Class = ".points-display-container";
-export declare const Data_Anim_Dir_Left = "[data-anim-dir=\"left\"]";
-export declare const Data_Anim_Dir_Right = "[data-anim-dir=\"right\"]";
-export declare const Dataset_Face_Position = "data-face-position";
-export declare const Screen_Message_Container_Query = ".screen-message-container";
+export declare const POINTS_DISPLAY_CONTAINER_CLASS = ".points-display-container";
+export declare const DATA_USER = "[data-player=\"user\"]";
+export declare const DATA_COMPUTER = "[data-player=\"computer\"]";
+export declare const DATA_ANIM_DIR_LEFT = "[data-anim-dir=\"left\"]";
+export declare const DATA_ANIM_DIR_RIGHT = "[data-anim-dir=\"right\"]";
+export declare const DATASET_FACE_POSITION = "data-face-position";
+export declare const SCREEN_MESSAGE_CONTAINER = ".screen-message-container";
 export declare const POKEMON_NAMES: string[];
 export declare const POKEMON_NAMES_WRONG: string[];
 //# sourceMappingURL=constants.d.ts.map

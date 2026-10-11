@@ -1,4 +1,5 @@
-import { screenMessageContainer, userPointsDisplay } from "./app.js";
+import { screenMessageContainer } from "./app.js";
+import type { Player } from "./class/Player.js";
 import type PointsDisplay from "./class/PointsDisplay.js";
 
 export const wait = async (ms: number) => {
@@ -35,7 +36,7 @@ export const displayGameScreenMessage = async (
   topText: string,
   bottomText: string,
   pointsDisplay: PointsDisplay | null = null,
-  pointsToDisplay: number = 0,
+  pointsToAdd: number = 0,
 ) => {
   const topMessage = screenMessageContainer?.querySelector(
     ".top-message",
@@ -58,8 +59,6 @@ export const displayGameScreenMessage = async (
         "data-animation",
         "scrollInOutFromLeft",
       );
-      if (pointsDisplay)
-        pointsDisplay.displayAndTickDownPoints(pointsToDisplay);
     },
     () => {
       screenMessageContainer?.removeAttribute("data-animation");

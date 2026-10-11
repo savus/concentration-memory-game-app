@@ -1,4 +1,4 @@
-import { Dataset_Face_Position } from "../constants.js";
+import { DATASET_FACE_POSITION } from "../constants.js";
 import { Card } from "./Card.js";
 export class CardFactory {
     buildCardHTML = (data) => {
@@ -30,7 +30,7 @@ export class CardFactory {
         </div>
       </div>`;
         card.className = `card ${data.isDummyData ? "is-dummy" : ""}`;
-        card.setAttribute(Dataset_Face_Position, "down");
+        card.setAttribute(DATASET_FACE_POSITION, "down");
         ``;
         card.insertAdjacentHTML("beforeend", cardTemplate);
         return card;

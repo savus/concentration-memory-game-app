@@ -5,39 +5,33 @@ import { Player } from "./class/Player.js";
 import PointsDisplay from "./class/PointsDisplay.js";
 import {
   ANIMATION_DURATION,
-  Data_Anim_Dir_Left,
-  Data_Anim_Dir_Right,
   GLOBAL_ANIMATION_DUR,
-  Points_Display_Container_Class,
   POKEMON_NAMES,
-  Screen_Message_Container_Query,
+  SCREEN_MESSAGE_CONTAINER,
 } from "./constants.js";
 import type { TPokeAPI } from "./types.js";
-import { displayGameScreenMessage, wait } from "./utility.js";
+import { wait, waitForAnimation } from "./utility.js";
 
 const root = document.documentElement;
 
 let allPokemonData: TPokeAPI[] = [];
 
 export const screenMessageContainer = document.querySelector(
-  Screen_Message_Container_Query,
+  SCREEN_MESSAGE_CONTAINER,
 );
 
-const userPointsDisplayContainer = document.querySelector(
-  `${Points_Display_Container_Class}${Data_Anim_Dir_Left}`,
+const playerPoints = document.querySelector(
+  '[data-player="user"] .points',
 )! as HTMLElement;
 
-const computerPointsDisplayContainer = document.querySelector(
-  `${Points_Display_Container_Class}${Data_Anim_Dir_Right}`,
+const computerPoints = document.querySelector(
+  '[data-player="computer"] .points',
 )! as HTMLElement;
 
-export const userPointsDisplay = new PointsDisplay(
-  userPointsDisplayContainer,
-  "You",
-);
+export const userPointsDisplay = new PointsDisplay(playerPoints, "you");
 export const computerPointsDisplay = new PointsDisplay(
-  computerPointsDisplayContainer,
-  "Computer",
+  computerPoints,
+  "computer",
 );
 
 const allCards: Card[] = [];
@@ -70,4 +64,6 @@ await initializeGlobalSettings();
 
 document.addEventListener("keyup", async (e) => {
   e.preventDefault();
+  if (e.key === "Enter") {
+  }
 });

@@ -2,15 +2,15 @@ import API_REQUESTS from "./api.js";
 import { CardFactory } from "./class/CardFactory.js";
 import { Player } from "./class/Player.js";
 import PointsDisplay from "./class/PointsDisplay.js";
-import { ANIMATION_DURATION, Data_Anim_Dir_Left, Data_Anim_Dir_Right, GLOBAL_ANIMATION_DUR, Points_Display_Container_Class, POKEMON_NAMES, Screen_Message_Container_Query, } from "./constants.js";
-import { displayGameScreenMessage, wait } from "./utility.js";
+import { ANIMATION_DURATION, GLOBAL_ANIMATION_DUR, POKEMON_NAMES, SCREEN_MESSAGE_CONTAINER, } from "./constants.js";
+import { wait, waitForAnimation } from "./utility.js";
 const root = document.documentElement;
 let allPokemonData = [];
-export const screenMessageContainer = document.querySelector(Screen_Message_Container_Query);
-const userPointsDisplayContainer = document.querySelector(`${Points_Display_Container_Class}${Data_Anim_Dir_Left}`);
-const computerPointsDisplayContainer = document.querySelector(`${Points_Display_Container_Class}${Data_Anim_Dir_Right}`);
-export const userPointsDisplay = new PointsDisplay(userPointsDisplayContainer, "You");
-export const computerPointsDisplay = new PointsDisplay(computerPointsDisplayContainer, "Computer");
+export const screenMessageContainer = document.querySelector(SCREEN_MESSAGE_CONTAINER);
+const playerPoints = document.querySelector('[data-player="user"] .points');
+const computerPoints = document.querySelector('[data-player="computer"] .points');
+export const userPointsDisplay = new PointsDisplay(playerPoints, "you");
+export const computerPointsDisplay = new PointsDisplay(computerPoints, "computer");
 const allCards = [];
 const cardFactory = new CardFactory();
 const cardContainer = document.querySelector(".card-container");
@@ -33,5 +33,7 @@ const initializeGlobalSettings = async () => {
 await initializeGlobalSettings();
 document.addEventListener("keyup", async (e) => {
     e.preventDefault();
+    if (e.key === "Enter") {
+    }
 });
 //# sourceMappingURL=app.js.map
