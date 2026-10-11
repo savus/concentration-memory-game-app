@@ -50,19 +50,13 @@ class PointsDisplay {
     this.isBusy = true;
     this.tickerPoints = tickerPoints;
     this.overwriteScoreTicker(tickerPoints);
-    await waitForAnimation(
-      this.html,
-      this.scoreTickerQuery,
-      "transition",
-      () => {
-        this.showScoreTicker();
-      },
-    );
+    await waitForAnimation(this.html, "transition", () => {
+      this.showScoreTicker();
+    });
     await this.tickDownPoints();
     this.hideScoreTicker();
     await waitForAnimation(
       this.html,
-      this.scoreTickerQuery,
       "transition",
       () => {},
       () => {

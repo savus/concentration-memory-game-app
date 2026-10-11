@@ -58,7 +58,7 @@ export class Card {
   };
 
   select = async () => {
-    return await waitForAnimation(this.html, ".card", "transition", () => {
+    return await waitForAnimation(this.html, "transition", () => {
       this.state.isClickable = false;
       this.flipUp();
     });
@@ -67,7 +67,6 @@ export class Card {
   deselect = async () => {
     return await waitForAnimation(
       this.html,
-      ".card",
       "transition",
       () => {
         this.flipDown();

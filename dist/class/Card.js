@@ -47,13 +47,13 @@ export class Card {
         }
     };
     select = async () => {
-        return await waitForAnimation(this.html, ".card", "transition", () => {
+        return await waitForAnimation(this.html, "transition", () => {
             this.state.isClickable = false;
             this.flipUp();
         });
     };
     deselect = async () => {
-        return await waitForAnimation(this.html, ".card", "transition", () => {
+        return await waitForAnimation(this.html, "transition", () => {
             this.flipDown();
         }, () => {
             this.state.isClickable = true;

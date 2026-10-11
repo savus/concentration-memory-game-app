@@ -1,5 +1,4 @@
-import { screenMessageContainer } from "./app.js";
-import { Screen_Message_Container_Query } from "./constants.js";
+import { screenMessageContainer, userPointsDisplay } from "./app.js";
 export const wait = async (ms) => {
     return new Promise((resolve) => {
         return setTimeout(() => {
@@ -7,31 +6,29 @@ export const wait = async (ms) => {
         }, ms);
     });
 };
-export const waitForAnimation = async (element, eventTargetMatch, transitionOrAnimation, beginAnimation = () => { }, endAnimation = () => { }) => {
+export const waitForAnimation = async (element, transitionOrAnimation, beginAnimation = () => { }, endAnimation = () => { }) => {
     return new Promise((resolve) => {
-        function handleTransitionEnd(event) {
-            const target = event.target;
-            if (target?.closest(eventTargetMatch)) {
-                element.removeEventListener(`${transitionOrAnimation}end`, handleTransitionEnd);
-                endAnimation();
-                console.log("animation end");
-                resolve();
-            }
+        function handleTransitionEnd() {
+            endAnimation();
+            console.log("animation end");
+            resolve();
         }
-        element.addEventListener(`${transitionOrAnimation}end`, handleTransitionEnd);
         beginAnimation();
+        element.addEventListener(`${transitionOrAnimation}end`, handleTransitionEnd, { once: true });
     });
 };
-export const displayGameScreenMessage = async (topText, bottomText) => {
+export const displayGameScreenMessage = async (topText, bottomText, pointsDisplay = null, pointsToDisplay = 0) => {
     const topMessage = screenMessageContainer?.querySelector(".top-message");
     const bottomMessage = screenMessageContainer?.querySelector(".bottom-message");
     const bottomContainer = screenMessageContainer?.querySelector(".bottom-container");
     topMessage.innerText = topText;
     bottomMessage.innerText = bottomText;
-    await waitForAnimation(bottomContainer, Screen_Message_Container_Query, "animation", () => {
+    await waitForAnimation(bottomContainer, "animation", () => {
         screenMessageContainer?.setAttribute("data-animation", "scrollInOutFromLeft");
+        if (pointsDisplay)
+            pointsDisplay.displayAndTickDownPoints(pointsToDisplay);
+    }, () => {
+        screenMessageContainer?.removeAttribute("data-animation");
     });
-    await wait(350);
-    screenMessageContainer?.removeAttribute("data-animation");
 };
 //# sourceMappingURL=utility.js.map

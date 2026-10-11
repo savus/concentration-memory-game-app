@@ -1,5 +1,5 @@
 .screen-message-container {
-  --anim-duration: 1500ms;
+  --anim-duration: 3000ms;
   position: absolute;
   top: 50%;
   left: 0;
@@ -45,22 +45,24 @@
 
 .screen-message-container[data-animation="scrollInOutFromLeft"]
   .bottom-container,
-.screen-message-container[data-animation="scrollInOutFromLeft"] .top-message {
-  animation-duration: var(--anim-duration);
-  animation-direction: reverse;
-}
-
+.screen-message-container[data-animation="scrollInOutFromLeft"] .top-message,
 .screen-message-container[data-animation="scrollInOutFromLeft"] .top-container,
 .screen-message-container[data-animation="scrollInOutFromLeft"]
   .bottom-message {
   animation-duration: var(--anim-duration);
 }
 
+.screen-message-container[data-animation="scrollInOutFromLeft"]
+  .bottom-container,
+.screen-message-container[data-animation="scrollInOutFromLeft"] .top-message {
+  animation-direction: reverse;
+}
+
 .screen-message-container[data-animation="scrollInOutFromLeft"] .top-message,
 .screen-message-container[data-animation="scrollInOutFromLeft"]
   .bottom-message {
   animation-duration: calc(var(--anim-duration) / 2);
-  animation-delay: calc(var(--anim-duration) * 1 / 4);
+  animation-delay: calc(var(--anim-duration) * 0.25);
 }
 
 .game-header {
@@ -178,15 +180,17 @@
 }
 
 @keyframes scrollInOutFromLeft {
-  0% {
+  0%,
+  15% {
     transform: translateX(-100%);
     opacity: 0;
   }
-  20%,
-  80% {
+  29%,
+  71% {
     transform: translateX(0);
     opacity: 1;
   }
+  85%,
   100% {
     opacity: 0;
     transform: translateX(100%);

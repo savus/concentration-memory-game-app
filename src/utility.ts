@@ -1,5 +1,5 @@
-import { screenMessageContainer } from "./app.js";
-import { Screen_Message_Container_Query } from "./constants.js";
+import { screenMessageContainer, userPointsDisplay } from "./app.js";
+import type PointsDisplay from "./class/PointsDisplay.js";
 
 export const wait = async (ms: number) => {
   return new Promise((resolve) => {
@@ -11,36 +11,31 @@ export const wait = async (ms: number) => {
 
 export const waitForAnimation = async (
   element: HTMLElement,
-  eventTargetMatch: string,
   transitionOrAnimation: "transition" | "animation",
   beginAnimation: () => void = () => {},
   endAnimation: () => void = () => {},
 ): Promise<void> => {
   return new Promise((resolve) => {
-    function handleTransitionEnd(event: Event) {
-      const target = event.target as HTMLElement | null;
-      if (target?.closest(eventTargetMatch)) {
-        element.removeEventListener(
-          `${transitionOrAnimation}end`,
-          handleTransitionEnd,
-        );
-        endAnimation();
-        console.log("animation end");
-        resolve();
-      }
+    function handleTransitionEnd() {
+      endAnimation();
+      console.log("animation end");
+      resolve();
     }
 
+    beginAnimation();
     element.addEventListener(
       `${transitionOrAnimation}end`,
       handleTransitionEnd,
+      { once: true },
     );
-    beginAnimation();
   });
 };
 
 export const displayGameScreenMessage = async (
   topText: string,
   bottomText: string,
+  pointsDisplay: PointsDisplay | null = null,
+  pointsToDisplay: number = 0,
 ) => {
   const topMessage = screenMessageContainer?.querySelector(
     ".top-message",
@@ -57,16 +52,17 @@ export const displayGameScreenMessage = async (
 
   await waitForAnimation(
     bottomContainer,
-    Screen_Message_Container_Query,
     "animation",
     () => {
       screenMessageContainer?.setAttribute(
         "data-animation",
         "scrollInOutFromLeft",
       );
+      if (pointsDisplay)
+        pointsDisplay.displayAndTickDownPoints(pointsToDisplay);
+    },
+    () => {
+      screenMessageContainer?.removeAttribute("data-animation");
     },
   );
-
-  await wait(350);
-  screenMessageContainer?.removeAttribute("data-animation");
 };

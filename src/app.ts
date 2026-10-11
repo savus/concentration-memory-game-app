@@ -69,9 +69,5 @@ const initializeGlobalSettings = async () => {
 await initializeGlobalSettings();
 
 document.addEventListener("keyup", async (e) => {
-  await displayGameScreenMessage("This is", "the first message");
-  await wait(1000);
-  await displayGameScreenMessage("This is the", "second message");
-  await wait(1000);
-  await displayGameScreenMessage("And finally", "this is the third message");
+  e.preventDefault();
 });
