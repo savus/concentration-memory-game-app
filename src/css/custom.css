@@ -7,6 +7,13 @@
   z-index: 500;
   font-size: var(--size-50);
   width: 100%;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.screen-message-container[data-animation="scrollInOutFromLeft"] {
+  visibility: visible;
+  opacity: 1;
 }
 
 .screen-message-container .top-container,
@@ -181,16 +188,16 @@
 
 @keyframes scrollInOutFromLeft {
   0%,
-  15% {
+  10% {
     transform: translateX(-100%);
     opacity: 0;
   }
-  29%,
-  71% {
+  25%,
+  75% {
     transform: translateX(0);
     opacity: 1;
   }
-  85%,
+  90%,
   100% {
     opacity: 0;
     transform: translateX(100%);

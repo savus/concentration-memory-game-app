@@ -33,17 +33,5 @@ const initializeGlobalSettings = async () => {
 await initializeGlobalSettings();
 document.addEventListener("keyup", async (e) => {
     e.preventDefault();
-    // await userPointsDisplay.displayAndTickDownPoints(100);
-    // await wait(1000);
-    // await computerPointsDisplay.displayAndTickDownPoints(1000);
-    await displayGameScreenMessage("This is", "the first message");
-    await userPointsDisplay.displayAndTickDownPoints(1);
-    await displayGameScreenMessage("This is the", "second message");
-    await userPointsDisplay.displayAndTickDownPoints(10);
-    // computerPointsDisplay.displayAndTickDownPoints(5);
-    // await wait(1000);
-    // await displayGameScreenMessage("And finally", "this is the third message");
-    // userPointsDisplay.displayAndTickDownPoints(100);
-    // computerPointsDisplay.displayAndTickDownPoints(100);
 });
 //# sourceMappingURL=app.js.map

@@ -13,7 +13,7 @@ export declare class Player {
     setFirstChoice: (choice: Card) => Promise<void>;
     setSecondChoice: (choice: Card) => Promise<void>;
     doChoicesMatch: () => boolean;
-    resetChoices: () => void;
+    resetChoices: () => Promise<void>;
 }
 export {};
 //# sourceMappingURL=Player.d.ts.map

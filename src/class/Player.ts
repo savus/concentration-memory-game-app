@@ -1,6 +1,10 @@
 import { computerPointsDisplay, userPointsDisplay } from "../app.js";
 import { ANIMATION_DURATION } from "../constants.js";
-import { wait, waitForAnimation } from "../utility.js";
+import {
+  displayGameScreenMessage,
+  wait,
+  waitForAnimation,
+} from "../utility.js";
 import type { Card } from "./Card.js";
 
 type TChoices = {
@@ -44,13 +48,15 @@ export class Player {
     return firstName === secondName;
   };
 
-  resetChoices = () => {
+  resetChoices = async () => {
     if (!this.choicesMatched) {
+      await displayGameScreenMessage("Oops!", "These two did not match!");
       this.choices.firstChoice?.deselect();
       this.choices.secondChoice?.deselect();
     } else {
-      if (this.type === "user") userPointsDisplay.displayAndTickDownPoints(1);
-      else computerPointsDisplay.displayAndTickDownPoints(1);
+      const player =
+        this.type === "user" ? userPointsDisplay : computerPointsDisplay;
+      await displayGameScreenMessage("Yay!", "You got a match!", player, 1);
     }
     this.choices.firstChoice = null;
     this.choices.secondChoice = null;
