@@ -4,8 +4,9 @@ import { Player } from "../class/Player.js";
 import { wait } from "../utility.js";
 
 type TState = {
-  phase: "choose-card" | "waiting" | "computer's-turn";
+  phase: "choose-card" | "busy" | "computer's-turn" | "game-end";
 };
+
 const state: TState = {
   phase: "choose-card",
 };
@@ -14,14 +15,28 @@ const handleUserChoice = async (
   choice: Card,
   user: Player,
   computer: Player,
+  cardsArray: Card[],
 ) => {
-  if (state.phase !== "choose-card") return;
-  if (user.choices.firstChoice === null) {
-    user.setFirstChoice(choice);
-  } else if (user.choices.secondChoice === null) {
+  if (state.phase === "choose-card") {
+    if (user.choices.firstChoice === null) {
+      user.setFirstChoice(choice);
+      return;
+    }
+    state.phase = "busy";
     await user.setSecondChoice(choice);
-    // handleComputerChoice(allCards, computer);
+    await wait(1000);
+  } else if (state.phase === "computer's-turn") {
+    await handleComputerChoice(cardsArray, computer);
   }
+  if (shouldGameEnd(cardsArray)) {
+    state.phase = "game-end";
+    return;
+  }
+  if (state.phase === "computer's-turn") {
+    state.phase = "choose-card";
+    return;
+  }
+  state.phase = "choose-card";
 };
 
 const handleComputerChoice = async (cardsArray: Card[], computer: Player) => {
@@ -34,10 +49,15 @@ const handleComputerChoice = async (cardsArray: Card[], computer: Player) => {
     return randomCard;
   };
 
-  computer.setFirstChoice(getRandomCard());
+  await computer.setFirstChoice(getRandomCard());
   await wait(3000);
-  computer.setSecondChoice(getRandomCard());
+  await computer.setSecondChoice(getRandomCard());
 };
+
+const areAllCardsUp = (cardsArray: Card[]) =>
+  cardsArray.every((card) => card.state.facePosition === "up");
+
+const shouldGameEnd = (cardsArray: Card[]) => areAllCardsUp(cardsArray);
 
 const GameHandler = {
   handleUserChoice,

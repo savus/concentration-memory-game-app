@@ -1,6 +1,6 @@
 import type { Card } from "../class/Card.js";
 import { Player } from "../class/Player.js";
-declare const handleUserChoice: (choice: Card, user: Player, computer: Player) => Promise<void>;
+declare const handleUserChoice: (choice: Card, user: Player, computer: Player, cardsArray: Card[]) => Promise<void>;
 declare const GameHandler: {
     handleUserChoice: typeof handleUserChoice;
 };

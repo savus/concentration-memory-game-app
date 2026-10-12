@@ -1,4 +1,4 @@
-import { userPointsDisplay } from "../app.js";
+import { computerPointsDisplay, userPointsDisplay } from "../app.js";
 import { ANIMATION_DURATION } from "../constants.js";
 import { displayGameScreenMessage, wait } from "../utility.js";
 import type { Card } from "./Card.js";
@@ -50,7 +50,14 @@ export class Player {
       this.choices.firstChoice?.deselect();
       this.choices.secondChoice?.deselect();
     } else {
-      userPointsDisplay.setAndAnimatePoints(1);
+      let gameMessage;
+      if (this.type === "user") {
+        gameMessage = "You got 1 point!";
+        userPointsDisplay.setAndAnimatePoints(1);
+      } else {
+        gameMessage = "The computer got 1";
+        computerPointsDisplay.setAndAnimatePoints(1);
+      }
       await displayGameScreenMessage("Match!", "You got 1 point!");
     }
     this.choices.firstChoice = null;

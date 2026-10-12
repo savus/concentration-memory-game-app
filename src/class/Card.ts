@@ -3,6 +3,7 @@ import type { TPokeAPI } from "../types.js";
 import { waitForAnimation } from "../utility.js";
 import GameHandler from "../singleton/GameHandler.js";
 import { DATASET_FACE_POSITION } from "../constants.js";
+import { cardOnClickHandler } from "../clickEvents.js";
 
 type TState = {
   facePosition: "up" | "down";
@@ -22,7 +23,9 @@ export class Card {
 
   constructor(cardHTML: HTMLElement, pokemonData: TPokeAPI, id: number) {
     this.html = cardHTML;
-    this.html.addEventListener("click", this.onClick);
+    this.html.addEventListener("click", () => {
+      cardOnClickHandler(this);
+    });
     this.flip(this.state.facePosition);
     this.stats = pokemonData;
     this.id = id;
@@ -75,13 +78,5 @@ export class Card {
         this.state.isClickable = true;
       },
     );
-  };
-
-  onClick = () => {
-    // if (!this.state.isClickable) {
-    //   console.log("you may not click at this time");
-    //   return;
-    // }
-    GameHandler.handleUserChoice(this, user, computer);
   };
 }

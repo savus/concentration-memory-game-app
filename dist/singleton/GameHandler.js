@@ -4,16 +4,28 @@ import { wait } from "../utility.js";
 const state = {
     phase: "choose-card",
 };
-const handleUserChoice = async (choice, user, computer) => {
+const handleUserChoice = async (choice, user, computer, cardsArray) => {
+    if (state.phase !== "choose-card")
+        return;
     if (user.choices.firstChoice === null) {
         user.setFirstChoice(choice);
     }
     else if (user.choices.secondChoice === null) {
+        state.phase = "busy";
         await user.setSecondChoice(choice);
-        // handleComputerChoice(allCards, computer);
+        await wait(1000);
+        await handleComputerChoice(cardsArray, computer);
+        if (shouldGameEnd(cardsArray)) {
+            console.log("game end");
+            state.phase = "game-end";
+        }
+        else {
+            state.phase = "choose-card";
+        }
     }
 };
 const handleComputerChoice = async (cardsArray, computer) => {
+    state.phase = "computer's-turn";
     const getRandomCard = () => {
         let randomCard = null;
         while (randomCard === null) {
@@ -23,10 +35,12 @@ const handleComputerChoice = async (cardsArray, computer) => {
         }
         return randomCard;
     };
-    computer.setFirstChoice(getRandomCard());
+    await computer.setFirstChoice(getRandomCard());
     await wait(3000);
-    computer.setSecondChoice(getRandomCard());
+    await computer.setSecondChoice(getRandomCard());
 };
+const areAllCardsUp = (cardsArray) => cardsArray.every((card) => card.state.facePosition === "up");
+const shouldGameEnd = (cardsArray) => areAllCardsUp(cardsArray);
 const GameHandler = {
     handleUserChoice,
 };

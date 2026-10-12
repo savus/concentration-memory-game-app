@@ -15,7 +15,6 @@ export declare class Card {
     flip: (direction: "up" | "down" | "toggle") => void;
     select: () => Promise<void>;
     deselect: () => Promise<void>;
-    onClick: () => void;
 }
 export {};
 //# sourceMappingURL=Card.d.ts.map

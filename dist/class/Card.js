@@ -2,6 +2,7 @@ import { allCards, computer, user } from "../app.js";
 import { waitForAnimation } from "../utility.js";
 import GameHandler from "../singleton/GameHandler.js";
 import { DATASET_FACE_POSITION } from "../constants.js";
+import { cardOnClickHandler } from "../clickEvents.js";
 export class Card {
     id;
     html;
@@ -13,7 +14,9 @@ export class Card {
     };
     constructor(cardHTML, pokemonData, id) {
         this.html = cardHTML;
-        this.html.addEventListener("click", this.onClick);
+        this.html.addEventListener("click", () => {
+            cardOnClickHandler(this);
+        });
         this.flip(this.state.facePosition);
         this.stats = pokemonData;
         this.id = id;
@@ -58,13 +61,6 @@ export class Card {
         }, () => {
             this.state.isClickable = true;
         });
-    };
-    onClick = () => {
-        // if (!this.state.isClickable) {
-        //   console.log("you may not click at this time");
-        //   return;
-        // }
-        GameHandler.handleUserChoice(this, user, computer);
     };
 }
 //# sourceMappingURL=Card.js.map
