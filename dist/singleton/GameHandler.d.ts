@@ -1,8 +1,8 @@
 import type { Card } from "../class/Card.js";
 import { Player } from "../class/Player.js";
-declare const handlePlayerChoice: (choice: Card, player: Player) => void;
+declare const handleUserChoice: (choice: Card, user: Player, computer: Player) => Promise<void>;
 declare const GameHandler: {
-    handlePlayerChoice: typeof handlePlayerChoice;
+    handleUserChoice: typeof handleUserChoice;
 };
 export default GameHandler;
 //# sourceMappingURL=GameHandler.d.ts.map

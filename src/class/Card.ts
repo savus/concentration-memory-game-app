@@ -1,4 +1,4 @@
-import { user } from "../app.js";
+import { allCards, computer, user } from "../app.js";
 import type { TPokeAPI } from "../types.js";
 import { waitForAnimation } from "../utility.js";
 import GameHandler from "../singleton/GameHandler.js";
@@ -78,10 +78,10 @@ export class Card {
   };
 
   onClick = () => {
-    if (!this.state.isClickable) {
-      console.log("you may not click at this time");
-      return;
-    }
-    GameHandler.handlePlayerChoice(this, user);
+    // if (!this.state.isClickable) {
+    //   console.log("you may not click at this time");
+    //   return;
+    // }
+    GameHandler.handleUserChoice(this, user, computer);
   };
 }

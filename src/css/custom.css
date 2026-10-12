@@ -11,6 +11,12 @@
   opacity: 0;
 }
 
+.screen-message-container,
+.screen-message-container * {
+  user-select: none;
+  pointer-events: none;
+}
+
 .screen-message-container[data-animation="scrollInOut"] {
   visibility: visible;
   opacity: 1;

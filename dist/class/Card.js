@@ -1,4 +1,4 @@
-import { user } from "../app.js";
+import { allCards, computer, user } from "../app.js";
 import { waitForAnimation } from "../utility.js";
 import GameHandler from "../singleton/GameHandler.js";
 import { DATASET_FACE_POSITION } from "../constants.js";
@@ -60,11 +60,11 @@ export class Card {
         });
     };
     onClick = () => {
-        if (!this.state.isClickable) {
-            console.log("you may not click at this time");
-            return;
-        }
-        GameHandler.handlePlayerChoice(this, user);
+        // if (!this.state.isClickable) {
+        //   console.log("you may not click at this time");
+        //   return;
+        // }
+        GameHandler.handleUserChoice(this, user, computer);
     };
 }
 //# sourceMappingURL=Card.js.map

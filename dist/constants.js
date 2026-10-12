@@ -1,6 +1,8 @@
 export const ANIMATION_DURATION = 500;
+export const POINTS_DELAY = 3;
 export const TICK_DOWN_PAUSE = 10;
 export const GLOBAL_ANIMATION_DUR = "--global-anim-dur";
+export const POINTS_DELAY_MODIFIER = "--points-delay-modifier";
 export const POINTS_DISPLAY_CONTAINER_CLASS = `.points-display-container`;
 export const DATA_USER = `[data-player="user"]`;
 export const DATA_COMPUTER = `[data-player="computer"]`;

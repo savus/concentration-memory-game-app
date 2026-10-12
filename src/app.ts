@@ -6,6 +6,8 @@ import PointsDisplay from "./class/PointsDisplay.js";
 import {
   ANIMATION_DURATION,
   GLOBAL_ANIMATION_DUR,
+  POINTS_DELAY,
+  POINTS_DELAY_MODIFIER,
   POKEMON_NAMES,
   SCREEN_MESSAGE_CONTAINER,
 } from "./constants.js";
@@ -34,8 +36,7 @@ export const computerPointsDisplay = new PointsDisplay(
   "computer",
 );
 
-console.log(userPointsDisplay, computerPointsDisplay);
-const allCards: Card[] = [];
+export const allCards: Card[] = [];
 
 const cardFactory = new CardFactory();
 
@@ -46,6 +47,7 @@ export const computer = new Player("computer", "computer");
 
 const initializeGlobalSettings = async () => {
   root.style.setProperty(GLOBAL_ANIMATION_DUR, `${ANIMATION_DURATION}ms`);
+  root.style.setProperty(POINTS_DELAY_MODIFIER, `${POINTS_DELAY}`);
 
   await API_REQUESTS.fetchAndConvertAllPokemon(POKEMON_NAMES)
     .then((data) => {

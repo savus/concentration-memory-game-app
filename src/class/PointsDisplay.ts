@@ -1,3 +1,4 @@
+import { ANIMATION_DURATION, POINTS_DELAY } from "../constants.js";
 import { wait, waitForAnimation } from "../utility.js";
 
 class PointsDisplay {
@@ -22,8 +23,9 @@ class PointsDisplay {
     await waitForAnimation(
       this.html,
       "animation",
-      () => {
+      async () => {
         this.html.setAttribute("data-animation", "scale");
+        await wait(ANIMATION_DURATION * POINTS_DELAY);
         this.overwritePointsDisplay(this.currentPoints);
       },
       () => {
