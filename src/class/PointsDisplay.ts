@@ -21,13 +21,13 @@ class PointsDisplay {
     this.currentPoints += pointsToAdd;
     await waitForAnimation(
       this.html,
-      "transition",
+      "animation",
       () => {
-        this.html.classList.add("scale-up");
+        this.html.setAttribute("data-animation", "scale");
+        this.overwritePointsDisplay(this.currentPoints);
       },
       () => {
-        this.overwritePointsDisplay(this.currentPoints);
-        this.html.classList.remove("scale-up");
+        this.html.removeAttribute("data-animation");
       },
     );
   };

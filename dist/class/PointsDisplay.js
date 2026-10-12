@@ -15,11 +15,11 @@ class PointsDisplay {
     };
     setAndAnimatePoints = async (pointsToAdd) => {
         this.currentPoints += pointsToAdd;
-        await waitForAnimation(this.html, "transition", () => {
-            this.html.classList.add("scale-up");
-        }, () => {
+        await waitForAnimation(this.html, "animation", () => {
+            this.html.setAttribute("data-animation", "scale");
             this.overwritePointsDisplay(this.currentPoints);
-            this.html.classList.remove("scale-up");
+        }, () => {
+            this.html.removeAttribute("data-animation");
         });
     };
 }

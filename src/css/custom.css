@@ -11,7 +11,7 @@
   opacity: 0;
 }
 
-.screen-message-container[data-animation="scrollInOutFromLeft"] {
+.screen-message-container[data-animation="scrollInOut"] {
   visibility: visible;
   opacity: 1;
 }
@@ -40,34 +40,28 @@
   opacity: 0;
 }
 
-.screen-message-container[data-animation="scrollInOutFromLeft"] .top-container,
-.screen-message-container[data-animation="scrollInOutFromLeft"]
-  .bottom-container,
-.screen-message-container[data-animation="scrollInOutFromLeft"] .top-message,
-.screen-message-container[data-animation="scrollInOutFromLeft"]
-  .bottom-message {
+.screen-message-container[data-animation="scrollInOut"] .top-container,
+.screen-message-container[data-animation="scrollInOut"] .bottom-container,
+.screen-message-container[data-animation="scrollInOut"] .top-message,
+.screen-message-container[data-animation="scrollInOut"] .bottom-message {
   animation-name: scrollInOutFromLeft;
   animation-fill-mode: forwards;
 }
 
-.screen-message-container[data-animation="scrollInOutFromLeft"]
-  .bottom-container,
-.screen-message-container[data-animation="scrollInOutFromLeft"] .top-message,
-.screen-message-container[data-animation="scrollInOutFromLeft"] .top-container,
-.screen-message-container[data-animation="scrollInOutFromLeft"]
-  .bottom-message {
+.screen-message-container[data-animation="scrollInOut"] .bottom-container,
+.screen-message-container[data-animation="scrollInOut"] .top-message,
+.screen-message-container[data-animation="scrollInOut"] .top-container,
+.screen-message-container[data-animation="scrollInOut"] .bottom-message {
   animation-duration: var(--anim-duration);
 }
 
-.screen-message-container[data-animation="scrollInOutFromLeft"]
-  .bottom-container,
-.screen-message-container[data-animation="scrollInOutFromLeft"] .top-message {
+.screen-message-container[data-animation="scrollInOut"] .bottom-container,
+.screen-message-container[data-animation="scrollInOut"] .top-message {
   animation-name: scrollInOutFromRight;
 }
 
-.screen-message-container[data-animation="scrollInOutFromLeft"] .top-message,
-.screen-message-container[data-animation="scrollInOutFromLeft"]
-  .bottom-message {
+.screen-message-container[data-animation="scrollInOut"] .top-message,
+.screen-message-container[data-animation="scrollInOut"] .bottom-message {
   animation-duration: calc(var(--anim-duration) / 2);
   animation-delay: calc(var(--anim-duration) * 0.25);
 }

@@ -48,12 +48,19 @@ body {
 }
 
 .points-display-container .points {
-  --scale: 1;
-  transform: scale(var(--scale));
-  transition: transform calc(var(--global-anim-dur) * 0.55) ease-in-out;
   display: inline-block;
 }
 
-.points-display-container .points.scale-up {
-  --scale: 3;
+.points-display-container .points[data-animation="scale"] {
+  animation: scaleUpDown var(--global-anim-dur) ease-in-out 0s forwards normal;
+}
+
+@keyframes scaleUpDown {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(3);
+  }
 }

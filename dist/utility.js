@@ -17,14 +17,14 @@ export const waitForAnimation = async (element, transitionOrAnimation, beginAnim
         element.addEventListener(`${transitionOrAnimation}end`, handleTransitionEnd, { once: true });
     });
 };
-export const displayGameScreenMessage = async (topText, bottomText, pointsDisplay = null, pointsToAdd = 0) => {
+export const displayGameScreenMessage = async (topText, bottomText) => {
     const topMessage = screenMessageContainer?.querySelector(".top-message");
     const bottomMessage = screenMessageContainer?.querySelector(".bottom-message");
     const bottomContainer = screenMessageContainer?.querySelector(".bottom-container");
     topMessage.innerText = topText;
     bottomMessage.innerText = bottomText;
     await waitForAnimation(bottomContainer, "animation", () => {
-        screenMessageContainer?.setAttribute("data-animation", "scrollInOutFromLeft");
+        screenMessageContainer?.setAttribute("data-animation", "scrollInOut");
     }, () => {
         screenMessageContainer?.removeAttribute("data-animation");
     });

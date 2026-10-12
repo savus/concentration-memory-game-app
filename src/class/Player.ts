@@ -50,8 +50,8 @@ export class Player {
       this.choices.firstChoice?.deselect();
       this.choices.secondChoice?.deselect();
     } else {
-      await displayGameScreenMessage("Match!", "You got 1 point!");
       userPointsDisplay.setAndAnimatePoints(1);
+      await displayGameScreenMessage("Match!", "You got 1 point!");
     }
     this.choices.firstChoice = null;
     this.choices.secondChoice = null;

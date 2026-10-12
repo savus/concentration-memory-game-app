@@ -10,7 +10,7 @@ import {
   SCREEN_MESSAGE_CONTAINER,
 } from "./constants.js";
 import type { TPokeAPI } from "./types.js";
-import { wait, waitForAnimation } from "./utility.js";
+import { displayGameScreenMessage } from "./utility.js";
 
 const root = document.documentElement;
 
@@ -34,6 +34,7 @@ export const computerPointsDisplay = new PointsDisplay(
   "computer",
 );
 
+console.log(userPointsDisplay, computerPointsDisplay);
 const allCards: Card[] = [];
 
 const cardFactory = new CardFactory();
@@ -65,5 +66,7 @@ await initializeGlobalSettings();
 document.addEventListener("keyup", async (e) => {
   e.preventDefault();
   if (e.key === "Enter") {
+    await displayGameScreenMessage("test", "testing");
+    console.log("pressed");
   }
 });

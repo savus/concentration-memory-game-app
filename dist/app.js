@@ -3,7 +3,7 @@ import { CardFactory } from "./class/CardFactory.js";
 import { Player } from "./class/Player.js";
 import PointsDisplay from "./class/PointsDisplay.js";
 import { ANIMATION_DURATION, GLOBAL_ANIMATION_DUR, POKEMON_NAMES, SCREEN_MESSAGE_CONTAINER, } from "./constants.js";
-import { wait, waitForAnimation } from "./utility.js";
+import { displayGameScreenMessage } from "./utility.js";
 const root = document.documentElement;
 let allPokemonData = [];
 export const screenMessageContainer = document.querySelector(SCREEN_MESSAGE_CONTAINER);
@@ -11,6 +11,7 @@ const playerPoints = document.querySelector('[data-player="user"] .points');
 const computerPoints = document.querySelector('[data-player="computer"] .points');
 export const userPointsDisplay = new PointsDisplay(playerPoints, "you");
 export const computerPointsDisplay = new PointsDisplay(computerPoints, "computer");
+console.log(userPointsDisplay, computerPointsDisplay);
 const allCards = [];
 const cardFactory = new CardFactory();
 const cardContainer = document.querySelector(".card-container");
@@ -34,6 +35,8 @@ await initializeGlobalSettings();
 document.addEventListener("keyup", async (e) => {
     e.preventDefault();
     if (e.key === "Enter") {
+        await displayGameScreenMessage("test", "testing");
+        console.log("pressed");
     }
 });
 //# sourceMappingURL=app.js.map

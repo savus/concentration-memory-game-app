@@ -35,8 +35,6 @@ export const waitForAnimation = async (
 export const displayGameScreenMessage = async (
   topText: string,
   bottomText: string,
-  pointsDisplay: PointsDisplay | null = null,
-  pointsToAdd: number = 0,
 ) => {
   const topMessage = screenMessageContainer?.querySelector(
     ".top-message",
@@ -55,10 +53,7 @@ export const displayGameScreenMessage = async (
     bottomContainer,
     "animation",
     () => {
-      screenMessageContainer?.setAttribute(
-        "data-animation",
-        "scrollInOutFromLeft",
-      );
+      screenMessageContainer?.setAttribute("data-animation", "scrollInOut");
     },
     () => {
       screenMessageContainer?.removeAttribute("data-animation");
