@@ -1,6 +1,7 @@
 import API_REQUESTS from "./api.js";
 import {
   ANIMATION_DURATION,
+  DATA_ANIMATION,
   GLOBAL_ANIMATION_DUR,
   POINTS_DELAY,
   POINTS_DELAY_MODIFIER,
@@ -10,8 +11,10 @@ import {
   allCards,
   allPokemonData,
   cardFactory,
+  computer,
   gameScreenUI,
   root,
+  user,
 } from "./global.js";
 
 export const wait = async (ms: number) => {
@@ -66,12 +69,12 @@ export const displayGameScreenMessage = async (
     "animation",
     () => {
       gameScreenUI.screenMessageContainer?.setAttribute(
-        "data-animation",
+        DATA_ANIMATION,
         "scrollInOut",
       );
     },
     () => {
-      gameScreenUI.screenMessageContainer?.removeAttribute("data-animation");
+      gameScreenUI.screenMessageContainer?.removeAttribute(DATA_ANIMATION);
     },
   );
 };

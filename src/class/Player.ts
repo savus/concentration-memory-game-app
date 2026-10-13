@@ -45,6 +45,7 @@ export class Player {
   };
 
   resetChoices = async () => {
+    console.log(this.type);
     if (!this.choicesMatched) {
       await displayGameScreenMessage("Oops!", "These two did not match!");
       this.choices.firstChoice?.deselect();
@@ -58,7 +59,7 @@ export class Player {
         gameMessage = "The computer got 1";
         computerPointsDisplay.setAndAnimatePoints(1);
       }
-      await displayGameScreenMessage("Match!", "You got 1 point!");
+      await displayGameScreenMessage("Match!", gameMessage);
     }
     this.choices.firstChoice = null;
     this.choices.secondChoice = null;

@@ -1,6 +1,6 @@
 import API_REQUESTS from "./api.js";
-import { ANIMATION_DURATION, GLOBAL_ANIMATION_DUR, POINTS_DELAY, POINTS_DELAY_MODIFIER, POKEMON_NAMES, } from "./constants.js";
-import { allCards, allPokemonData, cardFactory, gameScreenUI, root, } from "./global.js";
+import { ANIMATION_DURATION, DATA_ANIMATION, GLOBAL_ANIMATION_DUR, POINTS_DELAY, POINTS_DELAY_MODIFIER, POKEMON_NAMES, } from "./constants.js";
+import { allCards, allPokemonData, cardFactory, computer, gameScreenUI, root, user, } from "./global.js";
 export const wait = async (ms) => {
     return new Promise((resolve) => {
         return setTimeout(() => {
@@ -26,9 +26,9 @@ export const displayGameScreenMessage = async (topText, bottomText) => {
     topMessage.innerText = topText;
     bottomMessage.innerText = bottomText;
     await waitForAnimation(bottomContainer, "animation", () => {
-        gameScreenUI.screenMessageContainer?.setAttribute("data-animation", "scrollInOut");
+        gameScreenUI.screenMessageContainer?.setAttribute(DATA_ANIMATION, "scrollInOut");
     }, () => {
-        gameScreenUI.screenMessageContainer?.removeAttribute("data-animation");
+        gameScreenUI.screenMessageContainer?.removeAttribute(DATA_ANIMATION);
     });
 };
 export const initializeGlobalSettings = async () => {

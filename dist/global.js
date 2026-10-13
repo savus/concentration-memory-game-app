@@ -1,7 +1,7 @@
 import { CardFactory } from "./class/CardFactory.js";
 import { Player } from "./class/Player.js";
 import PointsDisplay from "./class/PointsDisplay.js";
-import { SCREEN_MESSAGE_CONTAINER } from "./constants.js";
+import { CARD_CONTAINER, SCREEN_MESSAGE_CONTAINER } from "./constants.js";
 export const root = document.documentElement;
 class GameScreenUI {
     screenMessageContainer;
@@ -12,7 +12,7 @@ class GameScreenUI {
         this.screenMessageContainer = document.querySelector(SCREEN_MESSAGE_CONTAINER);
         this.playerPoints = document.querySelector('[data-player="user"] .points');
         this.computerPoints = document.querySelector('[data-player="computer"] .points');
-        this.cardContainer = document.querySelector(".card-container");
+        this.cardContainer = document.querySelector(CARD_CONTAINER);
     }
 }
 export let allPokemonData = [];

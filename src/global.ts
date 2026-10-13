@@ -2,7 +2,7 @@ import type { Card } from "./class/Card.js";
 import { CardFactory } from "./class/CardFactory.js";
 import { Player } from "./class/Player.js";
 import PointsDisplay from "./class/PointsDisplay.js";
-import { SCREEN_MESSAGE_CONTAINER } from "./constants.js";
+import { CARD_CONTAINER, SCREEN_MESSAGE_CONTAINER } from "./constants.js";
 import type { TPokeAPI } from "./types.js";
 
 export const root = document.documentElement;
@@ -23,9 +23,7 @@ class GameScreenUI {
     this.computerPoints = document.querySelector(
       '[data-player="computer"] .points',
     )! as HTMLElement;
-    this.cardContainer = document.querySelector(
-      ".card-container",
-    )! as HTMLElement;
+    this.cardContainer = document.querySelector(CARD_CONTAINER)! as HTMLElement;
   }
 }
 
