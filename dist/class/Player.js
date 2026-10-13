@@ -1,5 +1,5 @@
-import { computerPointsDisplay, userPointsDisplay } from "../app.js";
 import { ANIMATION_DURATION } from "../constants.js";
+import { computerPointsDisplay, userPointsDisplay } from "../global.js";
 import { displayGameScreenMessage, wait } from "../utility.js";
 export class Player {
     choices = {

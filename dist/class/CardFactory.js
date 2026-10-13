@@ -1,4 +1,5 @@
 import { DATASET_FACE_POSITION } from "../constants.js";
+import { allCards } from "../global.js";
 import { Card } from "./Card.js";
 export class CardFactory {
     buildCardHTML = (data) => {
@@ -40,7 +41,7 @@ export class CardFactory {
         const card = new Card(cardTemplate, apiData, id);
         return card;
     };
-    createCardsAndAppend = (dataList, parentToAppend, arrayToPush) => {
+    createCardsAndAppend = (dataList, parentToAppend) => {
         let id = 0;
         dataList.forEach((item) => {
             const card1 = this.createCard(item, id);
@@ -48,8 +49,8 @@ export class CardFactory {
             id += 2;
             parentToAppend.append(card1.html);
             parentToAppend.append(card2.html);
-            arrayToPush.push(card1);
-            arrayToPush.push(card2);
+            allCards.push(card1);
+            allCards.push(card2);
         });
     };
 }

@@ -1,4 +1,3 @@
-import { allCards, computer, user } from "../app.js";
 import { waitForAnimation } from "../utility.js";
 import GameHandler from "../singleton/GameHandler.js";
 import { DATASET_FACE_POSITION } from "../constants.js";

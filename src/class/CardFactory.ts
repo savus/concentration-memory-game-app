@@ -1,4 +1,5 @@
 import { DATASET_FACE_POSITION } from "../constants.js";
+import { allCards } from "../global.js";
 import type { TPokeAPI } from "../types.js";
 import { Card } from "./Card.js";
 
@@ -49,7 +50,6 @@ export class CardFactory {
   createCardsAndAppend = (
     dataList: TPokeAPI[],
     parentToAppend: HTMLElement,
-    arrayToPush: Card[],
   ) => {
     let id = 0;
     dataList.forEach((item) => {
@@ -58,8 +58,8 @@ export class CardFactory {
       id += 2;
       parentToAppend.append(card1.html);
       parentToAppend.append(card2.html);
-      arrayToPush.push(card1);
-      arrayToPush.push(card2);
+      allCards.push(card1);
+      allCards.push(card2);
     });
   };
 }

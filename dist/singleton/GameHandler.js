@@ -1,35 +1,37 @@
-import { allCards, computer } from "../app.js";
 import { Player } from "../class/Player.js";
+import { allCards, computer } from "../global.js";
 import { wait } from "../utility.js";
 const state = {
     phase: "choose-card",
 };
-const handleUserChoice = async (choice, user, computer, cardsArray) => {
-    if (state.phase !== "choose-card")
-        return;
-    if (user.choices.firstChoice === null) {
-        user.setFirstChoice(choice);
-    }
-    else if (user.choices.secondChoice === null) {
+const handleUserChoice = async (choice, user) => {
+    if (state.phase === "choose-card") {
+        if (user.choices.firstChoice === null) {
+            user.setFirstChoice(choice);
+            return;
+        }
         state.phase = "busy";
         await user.setSecondChoice(choice);
         await wait(1000);
-        await handleComputerChoice(cardsArray, computer);
-        if (shouldGameEnd(cardsArray)) {
-            console.log("game end");
-            state.phase = "game-end";
-        }
-        else {
-            state.phase = "choose-card";
-        }
     }
+    else if (state.phase === "computer's-turn") {
+        await handleComputerChoice();
+    }
+    if (shouldGameEnd()) {
+        state.phase = "game-end";
+        return;
+    }
+    if (state.phase === "computer's-turn") {
+        state.phase = "choose-card";
+        return;
+    }
+    state.phase = "choose-card";
 };
-const handleComputerChoice = async (cardsArray, computer) => {
-    state.phase = "computer's-turn";
+const handleComputerChoice = async () => {
     const getRandomCard = () => {
         let randomCard = null;
         while (randomCard === null) {
-            let random = cardsArray[Math.floor(Math.random() * cardsArray.length)];
+            let random = allCards[Math.floor(Math.random() * allCards.length)];
             if (random && random?.state.facePosition !== "up")
                 randomCard = random;
         }
@@ -39,8 +41,8 @@ const handleComputerChoice = async (cardsArray, computer) => {
     await wait(3000);
     await computer.setSecondChoice(getRandomCard());
 };
-const areAllCardsUp = (cardsArray) => cardsArray.every((card) => card.state.facePosition === "up");
-const shouldGameEnd = (cardsArray) => areAllCardsUp(cardsArray);
+const areAllCardsUp = () => allCards.every((card) => card.state.facePosition === "up");
+const shouldGameEnd = () => areAllCardsUp();
 const GameHandler = {
     handleUserChoice,
 };

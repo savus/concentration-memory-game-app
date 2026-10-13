@@ -1,10 +1,2 @@
-import type { Card } from "./class/Card.js";
-import { Player } from "./class/Player.js";
-import PointsDisplay from "./class/PointsDisplay.js";
-export declare const screenMessageContainer: Element | null;
-export declare const userPointsDisplay: PointsDisplay;
-export declare const computerPointsDisplay: PointsDisplay;
-export declare const allCards: Card[];
-export declare const user: Player;
-export declare const computer: Player;
+export {};
 //# sourceMappingURL=app.d.ts.map

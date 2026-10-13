@@ -1,6 +1,6 @@
-import { allCards, computer } from "../app.js";
 import type { Card } from "../class/Card.js";
 import { Player } from "../class/Player.js";
+import { allCards, computer } from "../global.js";
 import { wait } from "../utility.js";
 
 type TState = {
@@ -11,12 +11,7 @@ const state: TState = {
   phase: "choose-card",
 };
 
-const handleUserChoice = async (
-  choice: Card,
-  user: Player,
-  computer: Player,
-  cardsArray: Card[],
-) => {
+const handleUserChoice = async (choice: Card, user: Player) => {
   if (state.phase === "choose-card") {
     if (user.choices.firstChoice === null) {
       user.setFirstChoice(choice);
@@ -26,9 +21,9 @@ const handleUserChoice = async (
     await user.setSecondChoice(choice);
     await wait(1000);
   } else if (state.phase === "computer's-turn") {
-    await handleComputerChoice(cardsArray, computer);
+    await handleComputerChoice();
   }
-  if (shouldGameEnd(cardsArray)) {
+  if (shouldGameEnd()) {
     state.phase = "game-end";
     return;
   }
@@ -39,11 +34,11 @@ const handleUserChoice = async (
   state.phase = "choose-card";
 };
 
-const handleComputerChoice = async (cardsArray: Card[], computer: Player) => {
+const handleComputerChoice = async () => {
   const getRandomCard = () => {
     let randomCard: Card | null = null;
     while (randomCard === null) {
-      let random = cardsArray[Math.floor(Math.random() * cardsArray.length)];
+      let random = allCards[Math.floor(Math.random() * allCards.length)];
       if (random && random?.state.facePosition !== "up") randomCard = random;
     }
     return randomCard;
@@ -54,10 +49,10 @@ const handleComputerChoice = async (cardsArray: Card[], computer: Player) => {
   await computer.setSecondChoice(getRandomCard());
 };
 
-const areAllCardsUp = (cardsArray: Card[]) =>
-  cardsArray.every((card) => card.state.facePosition === "up");
+const areAllCardsUp = () =>
+  allCards.every((card) => card.state.facePosition === "up");
 
-const shouldGameEnd = (cardsArray: Card[]) => areAllCardsUp(cardsArray);
+const shouldGameEnd = () => areAllCardsUp();
 
 const GameHandler = {
   handleUserChoice,

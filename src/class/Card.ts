@@ -1,4 +1,3 @@
-import { allCards, computer, user } from "../app.js";
 import type { TPokeAPI } from "../types.js";
 import { waitForAnimation } from "../utility.js";
 import GameHandler from "../singleton/GameHandler.js";

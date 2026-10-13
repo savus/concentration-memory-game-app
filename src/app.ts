@@ -1,67 +1,7 @@
-import API_REQUESTS from "./api.js";
-import type { Card } from "./class/Card.js";
-import { CardFactory } from "./class/CardFactory.js";
-import { Player } from "./class/Player.js";
-import PointsDisplay from "./class/PointsDisplay.js";
 import {
-  ANIMATION_DURATION,
-  GLOBAL_ANIMATION_DUR,
-  POINTS_DELAY,
-  POINTS_DELAY_MODIFIER,
-  POKEMON_NAMES,
-  SCREEN_MESSAGE_CONTAINER,
-} from "./constants.js";
-import type { TPokeAPI } from "./types.js";
-import { displayGameScreenMessage } from "./utility.js";
-
-const root = document.documentElement;
-
-let allPokemonData: TPokeAPI[] = [];
-
-export const screenMessageContainer = document.querySelector(
-  SCREEN_MESSAGE_CONTAINER,
-);
-
-const playerPoints = document.querySelector(
-  '[data-player="user"] .points',
-)! as HTMLElement;
-
-const computerPoints = document.querySelector(
-  '[data-player="computer"] .points',
-)! as HTMLElement;
-
-export const userPointsDisplay = new PointsDisplay(playerPoints, "you");
-export const computerPointsDisplay = new PointsDisplay(
-  computerPoints,
-  "computer",
-);
-
-export const allCards: Card[] = [];
-
-const cardFactory = new CardFactory();
-
-const cardContainer = document.querySelector(".card-container")! as HTMLElement;
-
-export const user = new Player("you", "user");
-export const computer = new Player("computer", "computer");
-
-const initializeGlobalSettings = async () => {
-  root.style.setProperty(GLOBAL_ANIMATION_DUR, `${ANIMATION_DURATION}ms`);
-  root.style.setProperty(POINTS_DELAY_MODIFIER, `${POINTS_DELAY}`);
-
-  await API_REQUESTS.fetchAndConvertAllPokemon(POKEMON_NAMES)
-    .then((data) => {
-      data.forEach((pokemon) => allPokemonData.push(pokemon));
-    })
-    .then(() => {
-      cardFactory.createCardsAndAppend(allPokemonData, cardContainer, allCards);
-    })
-    .finally(() => {
-      console.log(allCards);
-    });
-
-  return;
-};
+  displayGameScreenMessage,
+  initializeGlobalSettings,
+} from "./utility.js";
 
 await initializeGlobalSettings();
 
