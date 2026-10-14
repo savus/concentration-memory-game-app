@@ -23,4 +23,5 @@ export const computerPointsDisplay = new PointsDisplay(gameScreenUI.computerPoin
 export const cardFactory = new CardFactory();
 export const user = new Player("you", "user");
 export const computer = new Player("computer", "computer");
+export let computerCheatMode = true;
 //# sourceMappingURL=global.js.map

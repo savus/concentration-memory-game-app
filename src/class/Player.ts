@@ -61,6 +61,7 @@ export class Player {
       }
       await displayGameScreenMessage("Match!", gameMessage);
     }
+    await wait(500);
     this.choices.firstChoice = null;
     this.choices.secondChoice = null;
   };
