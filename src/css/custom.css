@@ -57,7 +57,7 @@
 .screen-message-container[data-animation="scrollInOut"] .top-message,
 .screen-message-container[data-animation="scrollInOut"] .top-container,
 .screen-message-container[data-animation="scrollInOut"] .bottom-message {
-  animation-duration: var(--anim-duration);
+  animation-duration: var(--screen-message-dur);
 }
 
 .screen-message-container[data-animation="scrollInOut"] .bottom-container,
@@ -67,8 +67,8 @@
 
 .screen-message-container[data-animation="scrollInOut"] .top-message,
 .screen-message-container[data-animation="scrollInOut"] .bottom-message {
-  animation-duration: calc(var(--anim-duration) / 2);
-  animation-delay: calc(var(--anim-duration) * 0.25);
+  animation-duration: calc(var(--screen-message-dur) / 2);
+  animation-delay: calc(var(--screen-message-dur) * 0.25);
 }
 
 .game-header {

@@ -1,12 +1,11 @@
 export declare const ANIMATION_DURATION = 500;
 export declare const POINTS_DELAY = 3;
-export declare const SCREEN_MESSAGE_DURATION = 2900;
+export declare const SCREEN_MESSAGE_DURATION = 1000;
 export declare const TICK_DOWN_PAUSE = 10;
+export declare const COMPUTER_CHOICE_PAUSE = 500;
 export declare const GLOBAL_ANIMATION_DUR = "--global-anim-dur";
 export declare const POINTS_DELAY_MODIFIER = "--points-delay-modifier";
 export declare const SCREEN_MESSAGE_PROP = "--screen-message-dur";
-export declare const ANIM_DURATION = "--anim-duration";
-export declare const ANIM_DURATION_VALUE = 2900;
 export declare const POINTS_DISPLAY_CONTAINER_CLASS = ".points-display-container";
 export declare const DATA_USER = "[data-player=\"user\"]";
 export declare const DATA_COMPUTER = "[data-player=\"computer\"]";

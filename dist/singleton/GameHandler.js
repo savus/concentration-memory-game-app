@@ -1,4 +1,5 @@
 import { Player } from "../class/Player.js";
+import { COMPUTER_CHOICE_PAUSE } from "../constants.js";
 import { allCards, computer, user } from "../global.js";
 import { displayGameScreenMessage, wait } from "../utility.js";
 const state = {
@@ -14,7 +15,6 @@ const handleUserChoice = async (choice) => {
         }
         state.phase = "busy";
         await user.setSecondChoice(choice);
-        await wait(1000);
         state.phase = "choose-card";
         determineNextPhase();
     }
@@ -30,7 +30,7 @@ const handleComputerChoice = async () => {
         return randomCard;
     };
     await computer.setFirstChoice(getRandomCard());
-    await wait(3000);
+    await wait(COMPUTER_CHOICE_PAUSE);
     await computer.setSecondChoice(getRandomCard());
     determineNextPhase();
 };

@@ -1,7 +1,5 @@
 import API_REQUESTS from "./api.js";
 import {
-  ANIM_DURATION,
-  ANIM_DURATION_VALUE,
   ANIMATION_DURATION,
   DATA_ANIMATION,
   GLOBAL_ANIMATION_DUR,
@@ -15,10 +13,8 @@ import {
   allCards,
   allPokemonData,
   cardFactory,
-  computer,
   gameScreenUI,
   root,
-  user,
 } from "./global.js";
 
 export const wait = async (ms: number) => {
@@ -87,7 +83,6 @@ export const initializeGlobalSettings = async () => {
   root.style.setProperty(GLOBAL_ANIMATION_DUR, `${ANIMATION_DURATION}ms`);
   root.style.setProperty(POINTS_DELAY_MODIFIER, `${POINTS_DELAY}`);
   root.style.setProperty(SCREEN_MESSAGE_PROP, `${SCREEN_MESSAGE_DURATION}ms`);
-  root.style.setProperty(ANIM_DURATION, `${ANIM_DURATION_VALUE}ms`);
 
   await API_REQUESTS.fetchAndConvertAllPokemon(POKEMON_NAMES)
     .then((data) => {
