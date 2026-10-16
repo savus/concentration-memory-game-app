@@ -11,9 +11,17 @@ declare class GameScreenUI {
     cardContainer: HTMLElement;
     constructor();
 }
+declare class GameConfig {
+    ANIMATION_DURATION: number;
+    SCREEN_MESSAGE_DURATION: number;
+    COMPUTER_CHOICE_PAUSE: number;
+    TICK_DOWN_PAUSE: number;
+    setGameSpeed: (speed: "slow" | "medium" | "fast") => void;
+}
 export declare let allPokemonData: TPokeAPI[];
 export declare const allCards: Card[];
 export declare const gameScreenUI: GameScreenUI;
+export declare const gameConfig: GameConfig;
 export declare const userPointsDisplay: PointsDisplay;
 export declare const computerPointsDisplay: PointsDisplay;
 export declare const cardFactory: CardFactory;

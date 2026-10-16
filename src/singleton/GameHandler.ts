@@ -1,9 +1,9 @@
 import type { Card } from "../class/Card.js";
-import { COMPUTER_CHOICE_PAUSE } from "../constants.js";
 import {
   allCards,
   computer,
   computerPointsDisplay,
+  gameConfig,
   user,
   userPointsDisplay,
 } from "../global.js";
@@ -45,7 +45,7 @@ const handleComputerChoice = async () => {
   };
 
   await computer.setFirstChoice(getRandomCard());
-  await wait(COMPUTER_CHOICE_PAUSE);
+  await wait(gameConfig.COMPUTER_CHOICE_PAUSE);
   await computer.setSecondChoice(getRandomCard());
 
   await determineNextPhase();

@@ -1,5 +1,4 @@
-import { ANIMATION_DURATION } from "../constants.js";
-import { computerPointsDisplay, userPointsDisplay } from "../global.js";
+import { computerPointsDisplay, gameConfig, userPointsDisplay, } from "../global.js";
 import { displayGameScreenMessage, wait } from "../utility.js";
 export class Player {
     choices = {
@@ -21,7 +20,7 @@ export class Player {
         this.choices.secondChoice = choice;
         choice.select();
         this.choicesMatched = this.doChoicesMatch();
-        await wait(ANIMATION_DURATION);
+        await wait(gameConfig.ANIMATION_DURATION);
         await this.resetChoices();
     };
     doChoicesMatch = () => {
@@ -48,7 +47,6 @@ export class Player {
             }
             await displayGameScreenMessage("Match!", gameMessage);
         }
-        await wait(500);
         this.choices.firstChoice = null;
         this.choices.secondChoice = null;
     };

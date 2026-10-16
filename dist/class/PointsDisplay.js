@@ -1,4 +1,5 @@
-import { ANIMATION_DURATION, DATA_ANIMATION, POINTS_DELAY, } from "../constants.js";
+import { DATA_ANIMATION } from "../constants.js";
+import { gameConfig } from "../global.js";
 import { wait, waitForAnimation } from "../utility.js";
 class PointsDisplay {
     html;
@@ -18,7 +19,7 @@ class PointsDisplay {
         this.currentPoints += pointsToAdd;
         await waitForAnimation(this.html, "animation", async () => {
             this.html.setAttribute(DATA_ANIMATION, "scale");
-            await wait(ANIMATION_DURATION * POINTS_DELAY);
+            await wait(600);
             this.overwritePointsDisplay(this.currentPoints);
         }, () => {
             this.html.removeAttribute(DATA_ANIMATION);

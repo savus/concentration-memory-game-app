@@ -1,5 +1,4 @@
-import { COMPUTER_CHOICE_PAUSE } from "../constants.js";
-import { allCards, computer, computerCheatMode, computerPointsDisplay, user, userPointsDisplay, } from "../global.js";
+import { allCards, computer, computerPointsDisplay, gameConfig, user, userPointsDisplay, } from "../global.js";
 import { displayGameScreenMessage, wait } from "../utility.js";
 const state = {
     phase: "choose-card",
@@ -25,7 +24,7 @@ const handleComputerChoice = async () => {
         return randomCard;
     };
     await computer.setFirstChoice(getRandomCard());
-    await wait(COMPUTER_CHOICE_PAUSE);
+    await wait(gameConfig.COMPUTER_CHOICE_PAUSE);
     await computer.setSecondChoice(getRandomCard());
     await determineNextPhase();
 };

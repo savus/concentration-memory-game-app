@@ -2,7 +2,7 @@
   --global-anim-dur: ;
   --points-delay-modifier: ;
   --screen-message-dur: ;
-  --anim-duration: ;
+  --points-anim-dur: 600ms;
   --size-8: 0.5rem;
   --size-12: 0.75rem;
   --size-14: 0.875rem;
@@ -55,8 +55,8 @@ body {
 }
 
 .points-display-container .points[data-animation="scale"] {
-  animation: scaleUpDown var(--global-anim-dur) ease-in-out
-    calc(var(--global-anim-dur) * var(--points-delay-modifier)) forwards normal;
+  animation: scaleUpDown var(--points-anim-dur) ease-in-out
+    var(--points-anim-dur) forwards normal;
 }
 
 @keyframes scaleUpDown {
