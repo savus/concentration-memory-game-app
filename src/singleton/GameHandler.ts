@@ -3,7 +3,6 @@ import { COMPUTER_CHOICE_PAUSE } from "../constants.js";
 import {
   allCards,
   computer,
-  computerCheatMode,
   computerPointsDisplay,
   user,
   userPointsDisplay,
@@ -20,11 +19,13 @@ const state: TState = {
 
 const handleUserChoice = async (choice: Card) => {
   if (state.phase === "game-end") return;
+
   if (state.phase === "choose-card") {
     if (user.choices.firstChoice === null) {
       user.setFirstChoice(choice);
       return;
     }
+
     state.phase = "busy";
     await user.setSecondChoice(choice);
     state.phase = "choose-card";
@@ -35,15 +36,11 @@ const handleUserChoice = async (choice: Card) => {
 
 const handleComputerChoice = async () => {
   const getRandomCard = () => {
-    let randomCard: Card | null = null;
-    if (computerCheatMode) {
-      randomCard = allCards.find((card) => card.state.facePosition === "down")!;
-    } else {
-      while (randomCard === null) {
-        let random = allCards[Math.floor(Math.random() * allCards.length)];
-        if (random && random?.state.facePosition !== "up") randomCard = random;
-      }
-    }
+    const faceDownCards = allCards.filter(
+      (card) => card.state.facePosition === "down",
+    );
+    let randomCard =
+      faceDownCards[Math.floor(Math.random() * faceDownCards.length)]!;
     return randomCard;
   };
 

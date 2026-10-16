@@ -20,17 +20,8 @@ const handleUserChoice = async (choice) => {
 };
 const handleComputerChoice = async () => {
     const getRandomCard = () => {
-        let randomCard = null;
-        if (computerCheatMode) {
-            randomCard = allCards.find((card) => card.state.facePosition === "down");
-        }
-        else {
-            while (randomCard === null) {
-                let random = allCards[Math.floor(Math.random() * allCards.length)];
-                if (random && random?.state.facePosition !== "up")
-                    randomCard = random;
-            }
-        }
+        const faceDownCards = allCards.filter((card) => card.state.facePosition === "down");
+        let randomCard = faceDownCards[Math.floor(Math.random() * faceDownCards.length)];
         return randomCard;
     };
     await computer.setFirstChoice(getRandomCard());
