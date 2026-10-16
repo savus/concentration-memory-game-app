@@ -1,5 +1,4 @@
 import { DATA_ANIMATION } from "../constants.js";
-import { gameConfig } from "../global.js";
 import { wait, waitForAnimation } from "../utility.js";
 class PointsDisplay {
     html;

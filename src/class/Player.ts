@@ -1,8 +1,5 @@
-import {
-  computerPointsDisplay,
-  gameConfig,
-  userPointsDisplay,
-} from "../global.js";
+import { computerPointsDisplay, userPointsDisplay } from "../global.js";
+import { GameConfig } from "../singleton/GameConfig.js";
 import { displayGameScreenMessage, wait } from "../utility.js";
 import type { Card } from "./Card.js";
 
@@ -37,7 +34,7 @@ export class Player {
     this.choices.secondChoice = choice;
     choice.select();
     this.choicesMatched = this.doChoicesMatch();
-    await wait(gameConfig.ANIMATION_DURATION);
+    await wait(500);
     await this.resetChoices();
   };
 
@@ -48,7 +45,6 @@ export class Player {
   };
 
   resetChoices = async () => {
-    console.log(this.type);
     if (!this.choicesMatched) {
       await displayGameScreenMessage("Oops!", "These two did not match!");
       this.choices.firstChoice?.deselect();
