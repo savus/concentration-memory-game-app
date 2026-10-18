@@ -10,6 +10,7 @@
   --size-18: 1.125rem;
   --size-20: 1.25rem;
   --size-24: 1.5rem;
+  --size-30: 1.875rem;
   --size-50: 3.125rem;
   --size-100: 6.25rem;
 
@@ -28,6 +29,11 @@ body {
   font-size: var(--size-16);
 }
 
+ul {
+  list-style: none;
+  padding: 0;
+}
+
 .container {
   --container-max-width: 1200px;
   max-width: var(--container-max-width);
@@ -38,12 +44,29 @@ body {
 }
 
 .screen {
+  --opacity: 0;
+  --visibility: hidden;
+  --scale: 0.2;
+  --transition-dur: 500ms;
   position: absolute;
   left: 0;
   right: 0;
   top: 0;
   border: 1px solid black;
   padding-bottom: var(--size-50);
+  opacity: var(--opacity);
+  visibility: var(--visibility);
+  transform: scale(var(--scale));
+  transition:
+    opacity var(--transition-dur) ease-in-out,
+    visibility var(--transition-dur) ease-in-out,
+    transform var(--transition-dur) ease-in-out;
+}
+
+.screen.active {
+  --opacity: 1;
+  --visibility: visible;
+  --scale: 1;
 }
 
 .points-display-container {

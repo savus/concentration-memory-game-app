@@ -7,7 +7,7 @@ export class Card {
     html;
     stats;
     state = {
-        facePosition: "up",
+        facePosition: "down",
         isClickable: true,
         isFlippable: true,
     };
