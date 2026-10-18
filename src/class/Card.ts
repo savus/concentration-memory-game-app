@@ -15,7 +15,7 @@ export class Card {
   html: HTMLElement;
   stats: TPokeAPI;
   state: TState = {
-    facePosition: "down",
+    facePosition: "up",
     isClickable: true,
     isFlippable: true,
   };

@@ -1,6 +1,7 @@
 import { DATASET_FACE_POSITION } from "../constants.js";
 import { allCards } from "../global.js";
 import type { TPokeAPI } from "../types.js";
+import { fisherYatesShuffle } from "../utility.js";
 import { Card } from "./Card.js";
 
 export class CardFactory {
@@ -56,10 +57,10 @@ export class CardFactory {
       const card1 = this.createCard(item, id);
       const card2 = this.createCard(item, id + 1);
       id += 2;
-      parentToAppend.append(card1.html);
-      parentToAppend.append(card2.html);
       allCards.push(card1);
       allCards.push(card2);
+      fisherYatesShuffle(allCards);
+      allCards.forEach((card) => parentToAppend.append(card.html));
     });
   };
 }
