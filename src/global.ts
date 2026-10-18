@@ -2,7 +2,7 @@ import type { Card } from "./class/Card.js";
 import { CardFactory } from "./class/CardFactory.js";
 import { Player } from "./class/Player.js";
 import PointsDisplay from "./class/PointsDisplay.js";
-import { GameScreenUI } from "./singleton/GameScreenUI.js";
+import GameScreenUI from "./singleton/GameScreenUI.js";
 import type { TPokeAPI } from "./types.js";
 
 export const root = document.documentElement;

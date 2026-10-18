@@ -9,6 +9,7 @@ export const DATASET_FACE_POSITION = "data-face-position";
 export const DATA_ANIMATION = "data-animation";
 export const SCREEN_MESSAGE_CONTAINER = "screen-message-container";
 export const CARD_CONTAINER = "card-container";
+export const ACTIVE = "active";
 export const POKEMON_NAMES = [
   "pikachu",
   "ditto",

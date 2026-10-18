@@ -1,5 +1,9 @@
 import { CARD_CONTAINER, SCREEN_MESSAGE_CONTAINER } from "../constants.js";
 
+const memoryGameScreen = document.querySelector(
+  ".memory-game.screen",
+)! as HTMLElement;
+
 const screenMessageContainer = document.querySelector(
   `.${SCREEN_MESSAGE_CONTAINER}`,
 )! as HTMLElement;
@@ -16,9 +20,12 @@ const cardContainer = document.querySelector(
   `.${CARD_CONTAINER}`,
 )! as HTMLElement;
 
-export const GameScreenUI = {
+const GameScreenUI = {
+  memoryGameScreen,
   screenMessageContainer,
   playerPoints,
   computerPoints,
   cardContainer,
 };
+
+export default GameScreenUI;

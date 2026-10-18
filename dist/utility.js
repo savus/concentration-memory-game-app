@@ -1,8 +1,8 @@
 import API_REQUESTS from "./api.js";
-import { DATA_ANIMATION, POKEMON_NAMES } from "./constants.js";
+import { ACTIVE, DATA_ANIMATION, POKEMON_NAMES } from "./constants.js";
 import { allCards, allPokemonData, cardFactory } from "./global.js";
 import { GameConfig } from "./singleton/GameConfig.js";
-import { GameScreenUI } from "./singleton/GameScreenUI.js";
+import GameScreenUI from "./singleton/GameScreenUI.js";
 export const wait = async (ms) => {
     return new Promise((resolve) => {
         return setTimeout(() => {
@@ -53,5 +53,19 @@ export const fisherYatesShuffle = (array) => {
         [array[i], array[j]] = [array[j], array[i]];
     }
     return array;
+};
+export const setActive = (newElem, selector) => {
+    const activeElement = document.querySelector(`${selector}.${ACTIVE}`);
+    if (activeElement)
+        activeElement.classList.remove(`${ACTIVE}`);
+    newElem.classList.add(ACTIVE);
+};
+export const swapScreens = async (currentScreen, nextScreen) => {
+    await waitForAnimation(currentScreen, "transition", () => {
+        currentScreen.classList.remove(ACTIVE);
+    }, async () => {
+        await wait(150);
+        nextScreen.classList.add(ACTIVE);
+    });
 };
 //# sourceMappingURL=utility.js.map
