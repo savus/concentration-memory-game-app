@@ -29,12 +29,13 @@ export const displayGameScreenMessage = async (topText, bottomText) => {
     bottomMessage.innerText = bottomText;
     await waitForAnimation(bottomContainer, "animation", () => {
         GameScreenUI.screenMessageContainer?.setAttribute(DATA_ANIMATION, "scrollInOut");
-    }, () => {
+    }, async () => {
         GameScreenUI.screenMessageContainer?.removeAttribute(DATA_ANIMATION);
+        await wait(500);
     });
 };
 export const initializeGlobalSettings = async () => {
-    GameConfig.setGameSpeed("fast");
+    GameConfig.setGameSpeed("slow");
     await API_REQUESTS.fetchAndConvertAllPokemon(POKEMON_NAMES)
         .then((data) => {
         data.forEach((pokemon) => allPokemonData.push(pokemon));

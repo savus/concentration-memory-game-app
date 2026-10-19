@@ -13,4 +13,7 @@ export function cardOnClickHandler(card) {
 export async function handleNewGameClick() {
     swapScreens(MainMenuUI.mainMenuScreen, GameScreenUI.memoryGameScreen);
 }
+export function quitApplication() {
+    window.close();
+}
 //# sourceMappingURL=clickEvents.js.map

@@ -30,7 +30,7 @@ const handleUserChoice = async (choice: Card) => {
     await user.setSecondChoice(choice);
     state.phase = "choose-card";
 
-    determineNextPhase();
+    await determineNextPhase();
   }
 };
 
@@ -82,16 +82,23 @@ const determineGameWinner = async () => {
   const userWon =
     userPointsDisplay.currentPoints > computerPointsDisplay.currentPoints;
 
+  console.log(
+    userPointsDisplay.currentPoints,
+    computerPointsDisplay.currentPoints,
+  );
+
   if (gameIsDraw) {
-    displayGameScreenMessage("Game", "Is a draw!");
+    await displayGameScreenMessage("Game", "Is a draw!");
     return;
   }
 
   if (userWon) {
-    displayGameScreenMessage("You", "Won!");
+    console.log("you won");
+    await displayGameScreenMessage("You", "Won!");
     return;
   } else {
-    displayGameScreenMessage("Computer", "Won!");
+    console.log("you lose");
+    await displayGameScreenMessage("Computer", "Won!");
     return;
   }
 };

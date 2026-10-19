@@ -60,14 +60,15 @@ export const displayGameScreenMessage = async (
         "scrollInOut",
       );
     },
-    () => {
+    async () => {
       GameScreenUI.screenMessageContainer?.removeAttribute(DATA_ANIMATION);
+      await wait(500);
     },
   );
 };
 
 export const initializeGlobalSettings = async () => {
-  GameConfig.setGameSpeed("fast");
+  GameConfig.setGameSpeed("slow");
 
   await API_REQUESTS.fetchAndConvertAllPokemon(POKEMON_NAMES)
     .then((data) => {

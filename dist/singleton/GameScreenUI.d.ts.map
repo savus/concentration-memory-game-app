@@ -1,1 +1,1 @@
-{"version":3,"file":"GameScreenUI.d.ts","sourceRoot":"","sources":["../../src/singleton/GameScreenUI.ts"],"names":[],"mappings":"AAsBA,QAAA,MAAM,YAAY;;;;;;CAMjB,CAAC;AAEF,eAAe,YAAY,CAAC"}
+{"version":3,"file":"GameScreenUI.d.ts","sourceRoot":"","sources":["../../src/singleton/GameScreenUI.ts"],"names":[],"mappings":"AAsBA,QAAA,MAAM,YAAY;;;;;;CAMjB,CAAC;eAEa,YAAY"}
