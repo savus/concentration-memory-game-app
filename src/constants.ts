@@ -16,6 +16,8 @@ export const POKEMON_NAMES = [
   "charmander",
   "mewtwo",
   "articuno",
+  "bulbasaur",
+  "meowth",
 ];
 export const POKEMON_NAMES_WRONG = [
   "pikachwu",
@@ -23,4 +25,6 @@ export const POKEMON_NAMES_WRONG = [
   "charmawnder",
   "mewtwow",
   "articunwo",
+  "bulbasawur",
+  "meowthw",
 ];

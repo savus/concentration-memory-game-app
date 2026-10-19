@@ -49,6 +49,7 @@ const handleComputerChoice = async () => {
   await computer.setSecondChoice(getRandomCard());
 
   await determineNextPhase();
+  await wait(500);
 };
 
 const areAllCardsUp = () =>
@@ -65,6 +66,7 @@ const determineNextPhase = async () => {
   if (shouldGameEnd()) {
     state.phase = "game-end";
     await determineGameWinner();
+    await wait(500);
     return;
   }
 

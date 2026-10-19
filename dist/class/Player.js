@@ -46,6 +46,7 @@ export class Player {
                 computerPointsDisplay.setAndAnimatePoints(1);
             }
             await displayGameScreenMessage("Match!", gameMessage);
+            await wait(500);
         }
         this.choices.firstChoice = null;
         this.choices.secondChoice = null;
