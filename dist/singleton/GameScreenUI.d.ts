@@ -1,5 +1,5 @@
 declare const GameScreenUI: {
-    memoryGameScreen: HTMLElement;
+    screen: HTMLElement;
     screenMessageContainer: HTMLElement;
     playerPoints: HTMLElement;
     computerPoints: HTMLElement;

@@ -3,6 +3,8 @@ import { ACTIVE, DATA_ANIMATION, POKEMON_NAMES } from "./constants.js";
 import { allCards, allPokemonData, cardFactory } from "./global.js";
 import { GameConfig } from "./singleton/GameConfig.js";
 import GameScreenUI from "./singleton/GameScreenUI.js";
+import MainMenuUI from "./singleton/MainMenuUI.js";
+import ScreenSwapper from "./singleton/ScreenSwapper.js";
 
 export const wait = async (ms: number) => {
   return new Promise((resolve) => {
@@ -100,21 +102,4 @@ export const setActive = (newElem: HTMLElement, selector: string) => {
   const activeElement = document.querySelector(`${selector}.${ACTIVE}`);
   if (activeElement) activeElement.classList.remove(`${ACTIVE}`);
   newElem.classList.add(ACTIVE);
-};
-
-export const swapScreens = async (
-  currentScreen: HTMLElement,
-  nextScreen: HTMLElement,
-) => {
-  await waitForAnimation(
-    currentScreen,
-    "transition",
-    () => {
-      currentScreen.classList.remove(ACTIVE);
-    },
-    async () => {
-      await wait(150);
-      nextScreen.classList.add(ACTIVE);
-    },
-  );
 };

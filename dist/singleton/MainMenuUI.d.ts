@@ -1,6 +1,7 @@
 declare const MainMenuUI: {
-    mainMenuScreen: HTMLElement;
+    screen: HTMLElement;
     newGameButton: HTMLElement | null;
+    settingsButton: HTMLElement | null;
 };
 export default MainMenuUI;
 //# sourceMappingURL=MainMenuUI.d.ts.map

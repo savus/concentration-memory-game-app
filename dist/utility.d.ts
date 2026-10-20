@@ -4,5 +4,4 @@ export declare const displayGameScreenMessage: (topText: string, bottomText: str
 export declare const initializeGlobalSettings: () => Promise<void>;
 export declare const fisherYatesShuffle: (array: any[]) => any[];
 export declare const setActive: (newElem: HTMLElement, selector: string) => void;
-export declare const swapScreens: (currentScreen: HTMLElement, nextScreen: HTMLElement) => Promise<void>;
 //# sourceMappingURL=utility.d.ts.map

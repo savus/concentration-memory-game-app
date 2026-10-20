@@ -1,8 +1,8 @@
-import { ACTIVE } from "./constants.js";
 import GameHandler from "./singleton/GameHandler.js";
 import GameScreenUI from "./singleton/GameScreenUI.js";
 import MainMenuUI from "./singleton/MainMenuUI.js";
-import { swapScreens, waitForAnimation } from "./utility.js";
+import ScreenSwapper from "./singleton/ScreenSwapper.js";
+import SettingsMenuUI from "./singleton/SettingsMenuUI.js";
 export function cardOnClickHandler(card) {
     if (!card.state.isClickable || GameHandler.state.phase !== "choose-card") {
         console.log("you may not click at this time");
@@ -11,7 +11,10 @@ export function cardOnClickHandler(card) {
     GameHandler.handleUserChoice(card);
 }
 export async function handleNewGameClick() {
-    swapScreens(MainMenuUI.mainMenuScreen, GameScreenUI.memoryGameScreen);
+    ScreenSwapper.swapScreens(GameScreenUI.screen);
+}
+export function handleSettingsClick() {
+    ScreenSwapper.swapScreens(SettingsMenuUI.screen);
 }
 export function quitApplication() {
     window.close();
