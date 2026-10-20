@@ -46,8 +46,7 @@ ul {
 .screen {
   --opacity: 0;
   --visibility: hidden;
-  --scale: 0.2;
-  --transition-dur: 500ms;
+  --transition-dur: 300ms;
   position: absolute;
   left: 0;
   right: 0;
@@ -56,17 +55,14 @@ ul {
   padding-bottom: var(--size-50);
   opacity: var(--opacity);
   visibility: var(--visibility);
-  transform: scale(var(--scale));
   transition:
     opacity var(--transition-dur) ease-in-out,
-    visibility var(--transition-dur) ease-in-out,
-    transform var(--transition-dur) ease-in-out;
+    visibility var(--transition-dur) ease-in-out;
 }
 
 .screen.active {
   --opacity: 1;
   --visibility: visible;
-  --scale: 1;
 }
 
 .points-display-container {
