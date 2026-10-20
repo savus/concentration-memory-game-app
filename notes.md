@@ -13,6 +13,10 @@ BUG: typescript refused to register that there was an overlap in comparisons bet
   }
   state.phase = "choose-card";`
 
-TASK: find a way to clean up this block of code to make it both functional and satisfy typescript
+(SOLUTION): Typescript was smarter than I was in organizing this phase process and carelessness had prevented me from seeing that I was inevitably programming myself into a loop wherein there were choices that would lead to no definite returns
 
-TASK: Fix bug that results in the incorrect message "You got 1 point!" instead of "Computer got 1 point!" when the computer guesses a correct matching pair
+TASK(COMPLETED): find a way to clean up this block of code to make it both functional and satisfy typescript
+
+TASK: (COMPLETED) Fix bug that results in the incorrect message "You got 1 point!" instead of "Computer got 1 point!" when the computer guesses a correct matching pair
+
+TASK: go through all the singleton Menu based objects and refactor the click event listeners for the UI elements to be delegated by the menu parent instead.

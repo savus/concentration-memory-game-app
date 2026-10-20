@@ -21,6 +21,10 @@ export function handleSettingsClick() {
   ScreenSwapper.swapScreens(SettingsMenuUI.screen);
 }
 
+export function onBackButtonClick() {
+  ScreenSwapper.swapScreens(MainMenuUI.screen);
+}
+
 export function quitApplication() {
   window.close();
 }

@@ -3,8 +3,7 @@ import { ACTIVE, DATA_ANIMATION, POKEMON_NAMES } from "./constants.js";
 import { allCards, allPokemonData, cardFactory } from "./global.js";
 import { GameConfig } from "./singleton/GameConfig.js";
 import GameScreenUI from "./singleton/GameScreenUI.js";
-import MainMenuUI from "./singleton/MainMenuUI.js";
-import ScreenSwapper from "./singleton/ScreenSwapper.js";
+import SettingsMenuUI from "./singleton/SettingsMenuUI.js";
 export const wait = async (ms) => {
     return new Promise((resolve) => {
         return setTimeout(() => {
@@ -38,6 +37,7 @@ export const displayGameScreenMessage = async (topText, bottomText) => {
 };
 export const initializeGlobalSettings = async () => {
     GameConfig.setGameSpeed("slow");
+    console.log(SettingsMenuUI.backButton);
     await API_REQUESTS.fetchAndConvertAllPokemon(POKEMON_NAMES)
         .then((data) => {
         data.forEach((pokemon) => allPokemonData.push(pokemon));
