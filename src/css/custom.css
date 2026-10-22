@@ -80,6 +80,72 @@
   --left: 20px;
 }
 
+.settings-menu .menu-container,
+.settings-menu .menu-items,
+.settings-menu .menu-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.settings-menu .menu-container,
+.settings-menu .menu-items {
+  align-items: center;
+}
+
+.settings-menu .menu-items {
+  gap: var(--size-18);
+}
+
+.settings-menu .menu-item {
+  gap: var(--size-8);
+}
+
+.settings-menu .left-arrow,
+.settings-menu .right-arrow {
+  --square-area: var(--size-30);
+  width: var(--square-area);
+  height: var(--square-area);
+  background-color: #fff;
+  position: relative;
+}
+
+.settings-menu .left-arrow::before,
+.settings-menu .right-arrow::before {
+  --arrow-size: calc(var(--square-area) * 0.5);
+  content: "";
+  position: absolute;
+  width: 0px;
+  height: 0px;
+  border-top: var(--arrow-size) solid transparent;
+  border-bottom: var(--arrow-size) solid transparent;
+  border-right: var(--arrow-size) solid transparent;
+  border-left: var(--arrow-size) solid transparent;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.settings-menu .left-arrow::before {
+  border-right: var(--arrow-size) solid red;
+  transform: translate(-90%, -50%);
+}
+
+.settings-menu .right-arrow::before {
+  border-left: var(--arrow-size) solid red;
+  transform: translate(-10%, -50%);
+}
+
+.settings-menu .setting-slider {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--size-18);
+}
+
+.settings-menu .setting-name {
+  font-size: var(--size-24);
+}
+
 @keyframes menu-rotate-clockwise {
   0% {
     transform: rotate(0deg);
