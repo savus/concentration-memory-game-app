@@ -1,4 +1,5 @@
 import type { Card } from "./class/Card.js";
+import { GameConfig } from "./singleton/GameConfig.js";
 import GameHandler from "./singleton/GameHandler.js";
 import GameScreenUI from "./singleton/GameScreenUI.js";
 import MainMenuUI from "./singleton/MainMenuUI.js";
@@ -27,4 +28,13 @@ export function onBackButtonClick() {
 
 export function quitApplication() {
   window.close();
+}
+
+export function handleSpeedSliderClick(e: MouseEvent) {
+  const isElement = e.target instanceof HTMLElement;
+  const isLeftArrow = isElement && e.target.matches(".left-arrow");
+  const isRightArrow = isElement && e.target.matches(".right-arrow");
+
+  if (isRightArrow) GameConfig.goToNewMode("next");
+  if (isLeftArrow) GameConfig.goToNewMode("prev");
 }

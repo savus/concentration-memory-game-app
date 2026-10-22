@@ -1,1 +1,1 @@
-{"version":3,"file":"SettingsMenuUI.d.ts","sourceRoot":"","sources":["../../src/singleton/SettingsMenuUI.ts"],"names":[],"mappings":"AAOA,QAAA,MAAM,cAAc;;;CAAyB,CAAC;AAE9C,eAAe,cAAc,CAAC"}
+{"version":3,"file":"SettingsMenuUI.d.ts","sourceRoot":"","sources":["../../src/singleton/SettingsMenuUI.ts"],"names":[],"mappings":"AAeA,QAAA,MAAM,cAAc;;;;;CAAmD,CAAC;eAEzD,cAAc"}

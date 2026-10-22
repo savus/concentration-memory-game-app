@@ -37,7 +37,7 @@ export const displayGameScreenMessage = async (topText, bottomText) => {
 };
 export const initializeGlobalSettings = async () => {
     GameConfig.setGameSpeed("slow");
-    console.log(SettingsMenuUI.backButton);
+    console.log(SettingsMenuUI.speedSlider);
     await API_REQUESTS.fetchAndConvertAllPokemon(POKEMON_NAMES)
         .then((data) => {
         data.forEach((pokemon) => allPokemonData.push(pokemon));

@@ -1,1 +1,1 @@
-{"version":3,"file":"MainMenuUI.d.ts","sourceRoot":"","sources":["../../src/singleton/MainMenuUI.ts"],"names":[],"mappings":"AAiBA,QAAA,MAAM,UAAU;;;;CAIf,CAAC;AAEF,eAAe,UAAU,CAAC"}
+{"version":3,"file":"MainMenuUI.d.ts","sourceRoot":"","sources":["../../src/singleton/MainMenuUI.ts"],"names":[],"mappings":"AAiBA,QAAA,MAAM,UAAU;;;;CAIf,CAAC;eAEa,UAAU"}

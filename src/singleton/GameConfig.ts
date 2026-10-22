@@ -1,10 +1,13 @@
 import { GLOBAL_ANIMATION_DUR, SCREEN_MESSAGE_PROP } from "../constants.js";
 import { root } from "../global.js";
+import SettingsMenuUI from "./SettingsMenuUI.js";
 let ANIMATION_DURATION = 2900;
 let SCREEN_MESSAGE_DURATION = 1500;
 let COMPUTER_CHOICE_PAUSE = 500;
 let TICK_DOWN_PAUSE = 10;
 let cssProps = buildCustomCSSProperties();
+const speedModes = ["slow", "medium", "fast"];
+let speedModeIndex = 1;
 
 function buildCustomCSSProperties() {
   const array = [
@@ -20,7 +23,7 @@ function buildCustomCSSProperties() {
   return array;
 }
 
-const setGameSpeed = (speed: "slow" | "medium" | "fast") => {
+const setGameSpeed = (speed: string) => {
   switch (speed) {
     case "slow":
       ANIMATION_DURATION = 3600;
@@ -48,10 +51,25 @@ const setGameSpeed = (speed: "slow" | "medium" | "fast") => {
   });
 };
 
+const goToNewMode = (newMode: "prev" | "next") => {
+  if (newMode === "prev") {
+    speedModeIndex =
+      speedModeIndex > 0 ? speedModeIndex - 1 : speedModes.length - 1;
+  } else {
+    speedModeIndex =
+      speedModeIndex < speedModes.length - 1 ? speedModeIndex + 1 : 0;
+  }
+  const newModeName = speedModes[speedModeIndex];
+  const modeCapitalized = `${newModeName?.substring(0, 1).toUpperCase()}${newModeName?.substring(1)}`;
+  SettingsMenuUI.settingName.innerText = modeCapitalized;
+  if (newModeName !== undefined) setGameSpeed(newModeName);
+};
+
 export const GameConfig = {
   ANIMATION_DURATION,
   SCREEN_MESSAGE_DURATION,
   COMPUTER_CHOICE_PAUSE,
   TICK_DOWN_PAUSE,
   setGameSpeed,
+  goToNewMode,
 };
