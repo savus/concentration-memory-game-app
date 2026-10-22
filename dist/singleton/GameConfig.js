@@ -47,7 +47,7 @@ const setGameSpeed = (speed) => {
         root.style.setProperty(propName, propValue);
     });
 };
-const goToNewMode = (newMode) => {
+const switchModes = (newMode) => {
     if (newMode === "prev") {
         speedModeIndex =
             speedModeIndex > 0 ? speedModeIndex - 1 : speedModes.length - 1;
@@ -56,18 +56,28 @@ const goToNewMode = (newMode) => {
         speedModeIndex =
             speedModeIndex < speedModes.length - 1 ? speedModeIndex + 1 : 0;
     }
-    const newModeName = speedModes[speedModeIndex];
+    updateModeUI();
+};
+const updateModeUI = () => {
+    const newModeName = getCurrentMode();
     const modeCapitalized = `${newModeName?.substring(0, 1).toUpperCase()}${newModeName?.substring(1)}`;
     SettingsMenuUI.settingName.innerText = modeCapitalized;
     if (newModeName !== undefined)
         setGameSpeed(newModeName);
 };
+const setGameSpeedMode = (mode) => {
+    speedModeIndex = speedModes.indexOf(mode);
+    updateModeUI();
+};
+const getCurrentMode = () => speedModes[speedModeIndex];
 export const GameConfig = {
     ANIMATION_DURATION,
     SCREEN_MESSAGE_DURATION,
     COMPUTER_CHOICE_PAUSE,
     TICK_DOWN_PAUSE,
     setGameSpeed,
-    goToNewMode,
+    switchModes,
+    getCurrentMode,
+    setGameSpeedMode,
 };
 //# sourceMappingURL=GameConfig.js.map

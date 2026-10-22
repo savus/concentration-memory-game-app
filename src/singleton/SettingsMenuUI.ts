@@ -1,4 +1,5 @@
 import { handleSpeedSliderClick, onBackButtonClick } from "../clickEvents.js";
+import { GameConfig } from "./GameConfig.js";
 
 const screen = document.querySelector(".settings-menu.screen")! as HTMLElement;
 
@@ -12,6 +13,10 @@ const speedSlider = document.querySelector(
 speedSlider.addEventListener("click", handleSpeedSliderClick);
 
 const settingName = speedSlider.querySelector(".setting-name")! as HTMLElement;
+
+const init = () => {
+  settingName.innerText = GameConfig.getCurrentMode() || "";
+};
 
 const SettingsMenuUI = { screen, backButton, speedSlider, settingName };
 

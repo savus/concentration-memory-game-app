@@ -1,1 +1,1 @@
-{"version":3,"file":"GameConfig.d.ts","sourceRoot":"","sources":["../../src/singleton/GameConfig.ts"],"names":[],"mappings":"AAyBA,QAAA,MAAM,YAAY,UAAW,MAAM,SA0BlC,CAAC;AAEF,QAAA,MAAM,WAAW,YAAa,MAAM,GAAG,MAAM,SAY5C,CAAC;AAEF,eAAO,MAAM,UAAU;;;;;;;CAOtB,CAAC"}
+{"version":3,"file":"GameConfig.d.ts","sourceRoot":"","sources":["../../src/singleton/GameConfig.ts"],"names":[],"mappings":"AAGA,KAAK,WAAW,GAAG,MAAM,GAAG,QAAQ,GAAG,MAAM,CAAC;AA4E9C,eAAO,MAAM,UAAU;;;;;0BArDM,MAAM;2BA4BL,MAAM,GAAG,MAAM;;6BAkBb,WAAW;CAgB1C,CAAC"}

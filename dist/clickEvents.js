@@ -28,8 +28,8 @@ export function handleSpeedSliderClick(e) {
     const isLeftArrow = isElement && e.target.matches(".left-arrow");
     const isRightArrow = isElement && e.target.matches(".right-arrow");
     if (isRightArrow)
-        GameConfig.goToNewMode("next");
+        GameConfig.switchModes("next");
     if (isLeftArrow)
-        GameConfig.goToNewMode("prev");
+        GameConfig.switchModes("prev");
 }
 //# sourceMappingURL=clickEvents.js.map
