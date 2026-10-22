@@ -9,6 +9,7 @@ let TICK_DOWN_PAUSE = 10;
 let cssProps = buildCustomCSSProperties();
 const speedModes = ["slow", "medium", "fast"];
 let speedModeIndex = 1;
+const difficultyModes = ["easy", "medium", "hard", "cheating"];
 
 function buildCustomCSSProperties() {
   const array = [
@@ -52,7 +53,7 @@ const setGameSpeed = (speed: string) => {
   });
 };
 
-const switchModes = (newMode: "prev" | "next") => {
+const slideToSpeedMode = (newMode: "prev" | "next") => {
   if (newMode === "prev") {
     speedModeIndex =
       speedModeIndex > 0 ? speedModeIndex - 1 : speedModes.length - 1;
@@ -83,7 +84,7 @@ export const GameConfig = {
   COMPUTER_CHOICE_PAUSE,
   TICK_DOWN_PAUSE,
   setGameSpeed,
-  switchModes,
+  slideToSpeedMode,
   getCurrentMode,
   setGameSpeedMode,
 };

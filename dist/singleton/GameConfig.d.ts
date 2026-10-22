@@ -5,7 +5,7 @@ export declare const GameConfig: {
     COMPUTER_CHOICE_PAUSE: number;
     TICK_DOWN_PAUSE: number;
     setGameSpeed: (speed: string) => void;
-    switchModes: (newMode: "prev" | "next") => void;
+    slideToSpeedMode: (newMode: "prev" | "next") => void;
     getCurrentMode: () => string | undefined;
     setGameSpeedMode: (mode: TSpeedModes) => void;
 };
