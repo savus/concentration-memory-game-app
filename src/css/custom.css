@@ -80,10 +80,6 @@
   --left: 20px;
 }
 
-.settings-menu {
-  user-select: none;
-}
-
 .settings-menu .menu-container,
 .settings-menu .menu-items,
 .settings-menu .menu-item {

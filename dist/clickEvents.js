@@ -1,7 +1,7 @@
+import { mainMenuUI } from "./global.js";
 import { GameConfig } from "./singleton/GameConfig.js";
 import GameHandler from "./singleton/GameHandler.js";
 import GameScreenUI from "./singleton/GameScreenUI.js";
-import MainMenuUI from "./singleton/MainMenuUI.js";
 import ScreenSwapper from "./singleton/ScreenSwapper.js";
 import SettingsMenuUI from "./singleton/SettingsMenuUI.js";
 export function cardOnClickHandler(card) {
@@ -11,17 +11,28 @@ export function cardOnClickHandler(card) {
     }
     GameHandler.handleUserChoice(card);
 }
-export async function handleNewGameClick() {
+export function mainMenuOnClickDelegation(ui, e) {
+    const newGamePressed = e.target === ui.newGame;
+    const settingsPressed = e.target === ui.settings;
+    const quitPressed = e.target === ui.quit;
+    if (newGamePressed)
+        handleNewGameClick();
+    if (settingsPressed)
+        handleSettingsClick();
+    if (quitPressed)
+        quitApplication();
+}
+export function handleNewGameClick() {
     ScreenSwapper.swapScreens(GameScreenUI.screen);
 }
 export function handleSettingsClick() {
     ScreenSwapper.swapScreens(SettingsMenuUI.screen);
 }
 export function onBackButtonClick() {
-    ScreenSwapper.swapScreens(MainMenuUI.screen);
+    ScreenSwapper.swapScreens(mainMenuUI.menu);
 }
 export function quitApplication() {
-    window.close();
+    document.body.innerText = "";
 }
 export function handleSpeedSliderClick(e) {
     const isElement = e.target instanceof HTMLElement;

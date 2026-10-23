@@ -1,16 +1,14 @@
 import { ACTIVE } from "../constants.js";
 import { wait, waitForAnimation } from "../utility.js";
 import GameScreenUI from "./GameScreenUI.js";
-import MainMenuUI from "./MainMenuUI.js";
 
-const mainMenuScreen = MainMenuUI.screen;
 const memoryGameScreen = GameScreenUI.screen;
 
 let prevScreen: HTMLElement | null = null;
-let currentScreen: HTMLElement = mainMenuScreen;
+let currentScreen: HTMLElement | null = null;
 let nextScreen: HTMLElement | null = null;
 
-const screenHistory: HTMLElement[] = [mainMenuScreen];
+const screenHistory: HTMLElement[] = [];
 let screenHistoryIndex = screenHistory.length - 1;
 
 const screenTransitionPause = 150;
@@ -25,24 +23,30 @@ const addToScreenHistory = (screen: HTMLElement) => {
 };
 
 const swapScreens = async (nextScreen: HTMLElement) => {
-  await waitForAnimation(
-    currentScreen,
-    "transition",
-    () => {
-      currentScreen.classList.remove(ACTIVE);
+  if (currentScreen) {
+    await waitForAnimation(
+      currentScreen,
+      "transition",
+      () => {
+        if (currentScreen) currentScreen.classList.remove(ACTIVE);
 
-      prevScreen = currentScreen;
-      currentScreen = nextScreen;
+        prevScreen = currentScreen;
+        currentScreen = nextScreen;
 
-      addToScreenHistory(currentScreen);
-    },
-    async () => {
-      await wait(screenTransitionPause);
-      currentScreen.classList.add(ACTIVE);
-    },
-  );
+        addToScreenHistory(currentScreen);
+      },
+      async () => {
+        await wait(screenTransitionPause);
+        if (currentScreen) currentScreen.classList.add(ACTIVE);
+      },
+    );
+  }
 };
 
-const ScreenSwapper = { swapScreens };
+const init = (screen: HTMLElement) => {
+  currentScreen = screen;
+};
+
+const ScreenSwapper = { swapScreens, init };
 
 export default ScreenSwapper;

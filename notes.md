@@ -20,3 +20,5 @@ TASK(COMPLETED): find a way to clean up this block of code to make it both funct
 TASK: (COMPLETED) Fix bug that results in the incorrect message "You got 1 point!" instead of "Computer got 1 point!" when the computer guesses a correct matching pair
 
 TASK: go through all the singleton Menu based objects and refactor the click event listeners for the UI elements to be delegated by the menu parent instead.
+
+TASK: instantiate GameScreenUI and SettingsMenuUI as UIMap objects

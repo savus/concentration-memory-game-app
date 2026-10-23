@@ -58,6 +58,7 @@ ul {
   transition:
     opacity var(--transition-dur) ease-in-out,
     visibility var(--transition-dur) ease-in-out;
+  user-select: none;
 }
 
 .screen.active {

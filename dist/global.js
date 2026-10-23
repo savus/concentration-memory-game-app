@@ -1,8 +1,11 @@
 import { CardFactory } from "./class/CardFactory.js";
 import { Player } from "./class/Player.js";
 import PointsDisplay from "./class/PointsDisplay.js";
+import { UIMap } from "./class/UIMap.js";
+import { mainMenuOnClickDelegation } from "./clickEvents.js";
 import GameScreenUI from "./singleton/GameScreenUI.js";
 export const root = document.documentElement;
+export const mainMenuUI = new UIMap(document.querySelector(".main-menu.screen"), ["new-game", "settings", "quit"], mainMenuOnClickDelegation);
 export let allPokemonData = [];
 export const allCards = [];
 export const userPointsDisplay = new PointsDisplay(GameScreenUI.playerPoints, "you");

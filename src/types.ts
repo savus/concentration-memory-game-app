@@ -10,3 +10,5 @@ export type TPokeAPI = {
   speed: number;
   isDummyData: boolean;
 };
+
+export type TMenuUI = Record<string, HTMLElement | null>;

@@ -1,4 +1,3 @@
-declare const init: () => void;
 declare const SettingsMenuUI: {
     screen: HTMLElement;
     backButton: Element | null;
@@ -6,7 +5,7 @@ declare const SettingsMenuUI: {
     speedSliderName: HTMLElement;
     difficultySlider: HTMLElement;
     difficultySliderName: HTMLElement;
-    init: typeof init;
+    init: () => void;
 };
 export default SettingsMenuUI;
 //# sourceMappingURL=SettingsMenuUI.d.ts.map
