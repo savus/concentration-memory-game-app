@@ -15,6 +15,7 @@ export declare const GameConfig: {
     COMPUTER_CHOICE_PAUSE: number;
     TICK_DOWN_PAUSE: number;
     speed: GameMode;
+    difficulty: GameMode;
 };
 export {};
 //# sourceMappingURL=GameConfig.d.ts.map

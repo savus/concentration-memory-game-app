@@ -38,3 +38,12 @@ export function handleSpeedSliderClick(e: MouseEvent) {
   if (isRightArrow) GameConfig.speed.slideToNewMode("next");
   if (isLeftArrow) GameConfig.speed.slideToNewMode("prev");
 }
+
+export function handleDifficultySliderClick(e: MouseEvent) {
+  const isElement = e.target instanceof HTMLElement;
+  const isLeftArrow = isElement && e.target.matches(".left-arrow");
+  const isRightArrow = isElement && e.target.matches(".right-arrow");
+
+  if (isRightArrow) GameConfig.difficulty.slideToNewMode("next");
+  if (isLeftArrow) GameConfig.difficulty.slideToNewMode("prev");
+}

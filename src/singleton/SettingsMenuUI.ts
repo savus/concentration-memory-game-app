@@ -1,4 +1,8 @@
-import { handleSpeedSliderClick, onBackButtonClick } from "../clickEvents.js";
+import {
+  handleDifficultySliderClick,
+  handleSpeedSliderClick,
+  onBackButtonClick,
+} from "../clickEvents.js";
 import { GameConfig } from "./GameConfig.js";
 
 const screen = document.querySelector(".settings-menu.screen")! as HTMLElement;
@@ -12,12 +16,33 @@ const speedSlider = document.querySelector(
 
 speedSlider.addEventListener("click", handleSpeedSliderClick);
 
-const settingName = speedSlider.querySelector(".setting-name")! as HTMLElement;
+const speedSliderName = speedSlider.querySelector(
+  ".setting-name",
+)! as HTMLElement;
+
+const difficultySlider = document.querySelector(
+  ".menu-item .difficulty-slider",
+)! as HTMLElement;
+
+difficultySlider.addEventListener("click", handleDifficultySliderClick);
+
+const difficultySliderName = difficultySlider.querySelector(
+  ".setting-name",
+)! as HTMLElement;
 
 const init = () => {
-  settingName.innerText = GameConfig.speed.getCurrentMode() || "";
+  GameConfig.speed.updateModeUI();
+  GameConfig.difficulty.updateModeUI();
 };
 
-const SettingsMenuUI = { screen, backButton, speedSlider, settingName };
+const SettingsMenuUI = {
+  screen,
+  backButton,
+  speedSlider,
+  speedSliderName,
+  difficultySlider,
+  difficultySliderName,
+  init,
+};
 
 export default SettingsMenuUI;

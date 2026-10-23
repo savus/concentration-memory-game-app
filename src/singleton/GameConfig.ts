@@ -89,6 +89,16 @@ const setGameSpeed = (speed: string) => {
   });
 };
 
+const setGameDifficulty = (difficulty: string) => {
+  switch (difficulty) {
+    case "easy":
+      console.log("game is now easy");
+      break;
+    case "hard":
+      console.log("game is now hard");
+  }
+};
+
 const speedModes = ["slow", "medium", "fast"];
 let speedModeIndex = 1;
 
@@ -96,12 +106,20 @@ const speed = new GameMode(
   speedModes,
   speedModeIndex,
   "speed",
-  SettingsMenuUI.settingName,
+  SettingsMenuUI.speedSliderName,
   setGameSpeed,
 );
 
 const difficultyModes = ["easy", "medium", "hard", "cheating"];
 let difficultyModeIndex = 1;
+
+const difficulty = new GameMode(
+  difficultyModes,
+  difficultyModeIndex,
+  "difficulty",
+  SettingsMenuUI.difficultySliderName,
+  setGameDifficulty,
+);
 
 // const setGameSpeedMode = (mode: TSpeedModes) => {
 //   speedModeIndex = speedModes.indexOf(mode);
@@ -117,4 +135,5 @@ export const GameConfig = {
   COMPUTER_CHOICE_PAUSE,
   TICK_DOWN_PAUSE,
   speed,
+  difficulty,
 };

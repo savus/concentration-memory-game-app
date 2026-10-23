@@ -5,4 +5,5 @@ export declare function handleSettingsClick(): void;
 export declare function onBackButtonClick(): void;
 export declare function quitApplication(): void;
 export declare function handleSpeedSliderClick(e: MouseEvent): void;
+export declare function handleDifficultySliderClick(e: MouseEvent): void;
 //# sourceMappingURL=clickEvents.d.ts.map
