@@ -7,11 +7,9 @@ export class UIMap {
 
   constructor(
     menu: HTMLElement,
-    datasetsToCache: string[],
     onClick: (ui: TMenuUI, e: MouseEvent) => void,
   ) {
     this.menu = menu;
-    this.cachedDatasets = datasetsToCache;
     this.cacheDatasets();
     this.menu.addEventListener("click", (e: MouseEvent) => {
       onClick(this.ui, e);
@@ -19,12 +17,19 @@ export class UIMap {
   }
 
   cacheDatasets = () => {
-    this.cachedDatasets.forEach((datasetName) => {
-      const propName = datasetName.replace(
-        /-([a-z])/g,
-        (g) => g[1]?.toUpperCase() ?? "",
-      );
-      this.ui[propName] = document.querySelector(`[data-ui="${datasetName}"]`);
+    const elements: NodeListOf<HTMLElement> =
+      this.menu.querySelectorAll(`[data-ui]`);
+    elements.forEach((element) => {
+      const datasetName = element.dataset.ui;
+      if (datasetName) {
+        const propName = datasetName.replace(
+          /-([a-z])/g,
+          (g) => g[1]?.toUpperCase() ?? "",
+        );
+        this.ui[propName] = document.querySelector(
+          `[data-ui="${datasetName}"]`,
+        );
+      }
     });
   };
 }

@@ -11,7 +11,6 @@ export const root = document.documentElement;
 
 export const mainMenuUI = new UIMap(
   document.querySelector(".main-menu.screen")! as HTMLElement,
-  ["new-game", "settings", "quit"],
   mainMenuOnClickDelegation,
 );
 
