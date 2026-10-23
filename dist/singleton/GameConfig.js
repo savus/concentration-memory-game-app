@@ -6,9 +6,34 @@ let SCREEN_MESSAGE_DURATION = 1500;
 let COMPUTER_CHOICE_PAUSE = 500;
 let TICK_DOWN_PAUSE = 10;
 let cssProps = buildCustomCSSProperties();
-const speedModes = ["slow", "medium", "fast"];
-let speedModeIndex = 1;
-const difficultyModes = ["easy", "medium", "hard", "cheating"];
+class GameMode {
+    modes;
+    index = 0;
+    category;
+    textElement;
+    executeSettings;
+    constructor(modes, startIndex, category, element, executeSettings) {
+        this.modes = modes;
+        this.index = startIndex;
+        this.category = category;
+        this.textElement = element;
+        this.executeSettings = executeSettings;
+    }
+    getCurrentMode = () => this.modes[this.index];
+    slideToNewMode = (modeDirection) => {
+        const nextMode = this.index < this.modes.length - 1 ? this.index + 1 : 0;
+        const prevMode = this.index > 0 ? this.index - 1 : this.modes.length - 1;
+        this.index = modeDirection === "prev" ? prevMode : nextMode;
+        this.updateModeUI();
+    };
+    updateModeUI = () => {
+        const newModeName = this.getCurrentMode();
+        const modeCapitalized = `${newModeName?.substring(0, 1).toUpperCase()}${newModeName?.substring(1)}`;
+        this.textElement.innerText = modeCapitalized;
+        if (newModeName !== undefined)
+            this.executeSettings(newModeName);
+    };
+}
 function buildCustomCSSProperties() {
     const array = [
         {
@@ -48,37 +73,23 @@ const setGameSpeed = (speed) => {
         root.style.setProperty(propName, propValue);
     });
 };
-const slideToSpeedMode = (newMode) => {
-    if (newMode === "prev") {
-        speedModeIndex =
-            speedModeIndex > 0 ? speedModeIndex - 1 : speedModes.length - 1;
-    }
-    else {
-        speedModeIndex =
-            speedModeIndex < speedModes.length - 1 ? speedModeIndex + 1 : 0;
-    }
-    updateModeUI();
-};
-const updateModeUI = () => {
-    const newModeName = getCurrentMode();
-    const modeCapitalized = `${newModeName?.substring(0, 1).toUpperCase()}${newModeName?.substring(1)}`;
-    SettingsMenuUI.settingName.innerText = modeCapitalized;
-    if (newModeName !== undefined)
-        setGameSpeed(newModeName);
-};
-const setGameSpeedMode = (mode) => {
-    speedModeIndex = speedModes.indexOf(mode);
-    updateModeUI();
-};
-const getCurrentMode = () => speedModes[speedModeIndex];
+const speedModes = ["slow", "medium", "fast"];
+let speedModeIndex = 1;
+const speed = new GameMode(speedModes, speedModeIndex, "speed", SettingsMenuUI.settingName, setGameSpeed);
+const difficultyModes = ["easy", "medium", "hard", "cheating"];
+let difficultyModeIndex = 1;
+// const setGameSpeedMode = (mode: TSpeedModes) => {
+//   speedModeIndex = speedModes.indexOf(mode);
+//   const newModeName = getCurrentMode();
+//   const modeCapitalized = `${newModeName?.substring(0, 1).toUpperCase()}${newModeName?.substring(1)}`;
+//   SettingsMenuUI.settingName.innerText = modeCapitalized;
+//   if (newModeName !== undefined) setGameSpeed(newModeName);
+// };
 export const GameConfig = {
     ANIMATION_DURATION,
     SCREEN_MESSAGE_DURATION,
     COMPUTER_CHOICE_PAUSE,
     TICK_DOWN_PAUSE,
-    setGameSpeed,
-    slideToSpeedMode,
-    getCurrentMode,
-    setGameSpeedMode,
+    speed,
 };
 //# sourceMappingURL=GameConfig.js.map

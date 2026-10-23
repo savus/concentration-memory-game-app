@@ -1,5 +1,6 @@
+declare const swapScreens: (nextScreen: HTMLElement) => Promise<void>;
 declare const ScreenSwapper: {
-    swapScreens: (nextScreen: HTMLElement) => Promise<void>;
+    swapScreens: typeof swapScreens;
 };
 export default ScreenSwapper;
 //# sourceMappingURL=ScreenSwapper.d.ts.map

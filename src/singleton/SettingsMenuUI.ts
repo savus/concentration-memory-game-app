@@ -15,7 +15,7 @@ speedSlider.addEventListener("click", handleSpeedSliderClick);
 const settingName = speedSlider.querySelector(".setting-name")! as HTMLElement;
 
 const init = () => {
-  settingName.innerText = GameConfig.getCurrentMode() || "";
+  settingName.innerText = GameConfig.speed.getCurrentMode() || "";
 };
 
 const SettingsMenuUI = { screen, backButton, speedSlider, settingName };

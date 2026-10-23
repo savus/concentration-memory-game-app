@@ -36,7 +36,7 @@ export const displayGameScreenMessage = async (topText, bottomText) => {
     });
 };
 export const initializeGlobalSettings = async () => {
-    GameConfig.setGameSpeedMode("medium");
+    GameConfig.speed.updateModeUI();
     await API_REQUESTS.fetchAndConvertAllPokemon(POKEMON_NAMES)
         .then((data) => {
         data.forEach((pokemon) => allPokemonData.push(pokemon));

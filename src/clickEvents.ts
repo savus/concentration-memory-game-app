@@ -35,6 +35,6 @@ export function handleSpeedSliderClick(e: MouseEvent) {
   const isLeftArrow = isElement && e.target.matches(".left-arrow");
   const isRightArrow = isElement && e.target.matches(".right-arrow");
 
-  if (isRightArrow) GameConfig.slideToSpeedMode("next");
-  if (isLeftArrow) GameConfig.slideToSpeedMode("prev");
+  if (isRightArrow) GameConfig.speed.slideToNewMode("next");
+  if (isLeftArrow) GameConfig.speed.slideToNewMode("prev");
 }
