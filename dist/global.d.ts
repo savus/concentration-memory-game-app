@@ -6,6 +6,7 @@ import { UIMap } from "./class/UIMap.js";
 import type { TPokeAPI } from "./types.js";
 export declare const root: HTMLElement;
 export declare const mainMenuUI: UIMap;
+export declare const settingsMenuUI: UIMap;
 export declare let allPokemonData: TPokeAPI[];
 export declare const allCards: Card[];
 export declare const userPointsDisplay: PointsDisplay;

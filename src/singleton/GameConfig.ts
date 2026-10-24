@@ -1,15 +1,8 @@
 import { GameMode } from "../class/GameMode.js";
 import { GLOBAL_ANIMATION_DUR, SCREEN_MESSAGE_PROP } from "../constants.js";
 import { root } from "../global.js";
-type TSpeedModes = "slow" | "medium" | "fast";
-type TCategory = "speed" | "difficulty";
-let ANIMATION_DURATION = 2900;
-let SCREEN_MESSAGE_DURATION = 1500;
-let COMPUTER_CHOICE_PAUSE = 500;
-let TICK_DOWN_PAUSE = 10;
-let cssProps = buildCustomCSSProperties();
 
-function buildCustomCSSProperties() {
+const buildCustomCSSProperties = () => {
   const array = [
     {
       propName: GLOBAL_ANIMATION_DUR,
@@ -21,29 +14,31 @@ function buildCustomCSSProperties() {
     },
   ];
   return array;
-}
+};
 
 export const setGameSpeed = (speed: string) => {
-  switch (speed) {
-    case "slow":
+  const modeActions: Record<string, () => void> = {
+    slow: () => {
       ANIMATION_DURATION = 3600;
       SCREEN_MESSAGE_DURATION = 2000;
       COMPUTER_CHOICE_PAUSE = 1000;
       cssProps = buildCustomCSSProperties();
-      break;
-    case "medium":
+    },
+    medium: () => {
       ANIMATION_DURATION = 2900;
       SCREEN_MESSAGE_DURATION = 1500;
       COMPUTER_CHOICE_PAUSE = 500;
       cssProps = buildCustomCSSProperties();
-      break;
-    case "fast":
+    },
+    fast: () => {
       ANIMATION_DURATION = 500;
       SCREEN_MESSAGE_DURATION = 800;
       COMPUTER_CHOICE_PAUSE = 300;
       cssProps = buildCustomCSSProperties();
-      break;
-  }
+    },
+  };
+
+  if (modeActions[speed]) modeActions[speed]();
 
   cssProps.forEach((property) => {
     const { propName, propValue } = property;
@@ -52,39 +47,54 @@ export const setGameSpeed = (speed: string) => {
 };
 
 const setGameDifficulty = (difficulty: string) => {
-  switch (difficulty) {
-    case "easy":
+  const modeActions: Record<string, () => void> = {
+    easy: () => {
       console.log("game is now easy");
-      break;
-    case "hard":
-      console.log("game is now hard");
-  }
+    },
+    medium: () => {
+      console.log("game is now medium");
+    },
+    hard: () => {
+      console.log("game is now Hard");
+    },
+    cheating: () => {
+      console.log("you filthy cheater");
+    },
+  };
+
+  if (modeActions[difficulty]) modeActions[difficulty]();
 };
 
+let ANIMATION_DURATION = 2900;
+let SCREEN_MESSAGE_DURATION = 1500;
+let COMPUTER_CHOICE_PAUSE = 500;
+let TICK_DOWN_PAUSE = 10;
+let cssProps = buildCustomCSSProperties();
+const speedModes = ["slow", "medium", "fast"];
+
+const speed = new GameMode(
+  speedModes,
+  1,
+  "speed",
+  document.querySelector(".speed-slider .setting-name")! as HTMLElement,
+  setGameSpeed,
+);
+
 const difficultyModes = ["easy", "medium", "hard", "cheating"];
-let difficultyModeIndex = 1;
 
-// const difficulty = new GameMode(
-//   difficultyModes,
-//   difficultyModeIndex,
-//   "difficulty",
-//   SettingsMenuUI.difficultySliderName,
-//   setGameDifficulty,
-// );
-
-// const setGameSpeedMode = (mode: TSpeedModes) => {
-//   speedModeIndex = speedModes.indexOf(mode);
-//   const newModeName = getCurrentMode();
-//   const modeCapitalized = `${newModeName?.substring(0, 1).toUpperCase()}${newModeName?.substring(1)}`;
-//   SettingsMenuUI.settingName.innerText = modeCapitalized;
-//   if (newModeName !== undefined) setGameSpeed(newModeName);
-// };
+const difficulty = new GameMode(
+  difficultyModes,
+  1,
+  "difficulty",
+  document.querySelector(".difficulty-slider .setting-name")! as HTMLElement,
+  setGameDifficulty,
+);
 
 export const GameConfig = {
   ANIMATION_DURATION,
   SCREEN_MESSAGE_DURATION,
   COMPUTER_CHOICE_PAUSE,
   TICK_DOWN_PAUSE,
-  // speed,
-  // difficulty,
+  speed,
+  difficulty,
 };

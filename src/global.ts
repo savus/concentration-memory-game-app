@@ -9,7 +9,7 @@ import {
   handleSettingsClick,
   quitApplication,
 } from "./clickEvents.js";
-import { setGameSpeed } from "./singleton/GameConfig.js";
+import { GameConfig, setGameSpeed } from "./singleton/GameConfig.js";
 import GameScreenUI from "./singleton/GameScreenUI.js";
 import type { TPokeAPI } from "./types.js";
 
@@ -26,30 +26,18 @@ export const mainMenuUI = new UIMap(
   mainMenuActionMap,
 );
 
-const speedModes = ["slow", "medium", "fast"];
-
-const speed = new GameMode(
-  speedModes,
-  1,
-  "speed",
-  document.querySelector(".speed-slider .setting-name")! as HTMLElement,
-  setGameSpeed,
-);
-
 const settingsMenuActionMap = {
-  speedLeftArrow: () => speed.slideToNewMode("prev"),
-  speedRightArrow: () => speed.slideToNewMode("next"),
-  settingsName: () => console.log("this is the behavior of the settings name"),
-  difficultyLeftArrow: () =>
-    console.log("this is the behavior of the difficulty left arrow"),
+  speedLeftArrow: () => GameConfig.speed.slideToNewMode("prev"),
+  speedRightArrow: () => GameConfig.speed.slideToNewMode("next"),
+  difficultyLeftArrow: () => GameConfig.difficulty.slideToNewMode("prev"),
+  difficultyRightArrow: () => GameConfig.difficulty.slideToNewMode("next"),
 };
 
-const settingsMenuUI = new UIMap(
+export const settingsMenuUI = new UIMap(
   document.querySelector(".settings-menu.screen")! as HTMLElement,
   settingsMenuActionMap,
 );
 
-console.log(speed.textElement);
 export let allPokemonData: TPokeAPI[] = [];
 export const allCards: Card[] = [];
 export const userPointsDisplay = new PointsDisplay(

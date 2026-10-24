@@ -1,6 +1,13 @@
 import API_REQUESTS from "./api.js";
 import { ACTIVE, DATA_ANIMATION, POKEMON_NAMES } from "./constants.js";
-import { allCards, allPokemonData, cardFactory, mainMenuUI } from "./global.js";
+import {
+  allCards,
+  allPokemonData,
+  cardFactory,
+  mainMenuUI,
+  settingsMenuUI,
+} from "./global.js";
+import { GameConfig } from "./singleton/GameConfig.js";
 import GameScreenUI from "./singleton/GameScreenUI.js";
 import ScreenSwapper from "./singleton/ScreenSwapper.js";
 
@@ -67,8 +74,13 @@ export const displayGameScreenMessage = async (
 };
 
 export const initializeGlobalSettings = async () => {
+  const { speedSettingName } = settingsMenuUI.ui;
   // SettingsMenuUI.init();
+
   ScreenSwapper.init(mainMenuUI.menu);
+  if (speedSettingName)
+    speedSettingName.innerText = GameConfig.speed.getCurrentMode() ?? "";
+
   await API_REQUESTS.fetchAndConvertAllPokemon(POKEMON_NAMES)
     .then((data) => {
       data.forEach((pokemon) => allPokemonData.push(pokemon));

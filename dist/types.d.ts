@@ -14,4 +14,5 @@ export type TMenuUI = Record<string, HTMLElement | null>;
 export type TCommandRegistry = {
     [commandName: string]: (...args: any[]) => any;
 };
+export type TSpeedModes = "slow" | "medium" | "fast";
 //# sourceMappingURL=types.d.ts.map
