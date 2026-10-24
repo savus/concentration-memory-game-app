@@ -11,4 +11,7 @@ export type TPokeAPI = {
     isDummyData: boolean;
 };
 export type TMenuUI = Record<string, HTMLElement | null>;
+export type TCommandRegistry = {
+    [commandName: string]: (...args: any[]) => any;
+};
 //# sourceMappingURL=types.d.ts.map

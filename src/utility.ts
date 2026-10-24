@@ -3,7 +3,6 @@ import { ACTIVE, DATA_ANIMATION, POKEMON_NAMES } from "./constants.js";
 import { allCards, allPokemonData, cardFactory, mainMenuUI } from "./global.js";
 import GameScreenUI from "./singleton/GameScreenUI.js";
 import ScreenSwapper from "./singleton/ScreenSwapper.js";
-import SettingsMenuUI from "./singleton/SettingsMenuUI.js";
 
 export const wait = async (ms: number) => {
   return new Promise((resolve) => {
@@ -68,7 +67,7 @@ export const displayGameScreenMessage = async (
 };
 
 export const initializeGlobalSettings = async () => {
-  SettingsMenuUI.init();
+  // SettingsMenuUI.init();
   ScreenSwapper.init(mainMenuUI.menu);
   await API_REQUESTS.fetchAndConvertAllPokemon(POKEMON_NAMES)
     .then((data) => {

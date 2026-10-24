@@ -1,11 +1,28 @@
 import { CardFactory } from "./class/CardFactory.js";
+import { GameMode } from "./class/GameMode.js";
 import { Player } from "./class/Player.js";
 import PointsDisplay from "./class/PointsDisplay.js";
 import { UIMap } from "./class/UIMap.js";
-import { mainMenuOnClickDelegation } from "./clickEvents.js";
+import { handleNewGameClick, handleSettingsClick, quitApplication, } from "./clickEvents.js";
+import { setGameSpeed } from "./singleton/GameConfig.js";
 import GameScreenUI from "./singleton/GameScreenUI.js";
 export const root = document.documentElement;
-export const mainMenuUI = new UIMap(document.querySelector(".main-menu.screen"), mainMenuOnClickDelegation);
+const mainMenuActionMap = {
+    newGame: () => handleNewGameClick(),
+    settings: () => handleSettingsClick(),
+    quit: () => quitApplication(),
+};
+export const mainMenuUI = new UIMap(document.querySelector(".main-menu.screen"), mainMenuActionMap);
+const speedModes = ["slow", "medium", "fast"];
+const speed = new GameMode(speedModes, 1, "speed", document.querySelector(".speed-slider .setting-name"), setGameSpeed);
+const settingsMenuActionMap = {
+    speedLeftArrow: () => speed.slideToNewMode("prev"),
+    speedRightArrow: () => speed.slideToNewMode("next"),
+    settingsName: () => console.log("this is the behavior of the settings name"),
+    difficultyLeftArrow: () => console.log("this is the behavior of the difficulty left arrow"),
+};
+const settingsMenuUI = new UIMap(document.querySelector(".settings-menu.screen"), settingsMenuActionMap);
+console.log(speed.textElement);
 export let allPokemonData = [];
 export const allCards = [];
 export const userPointsDisplay = new PointsDisplay(GameScreenUI.playerPoints, "you");

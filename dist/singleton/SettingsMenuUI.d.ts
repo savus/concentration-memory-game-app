@@ -1,11 +1,2 @@
-declare const SettingsMenuUI: {
-    screen: HTMLElement;
-    backButton: Element | null;
-    speedSlider: HTMLElement;
-    speedSliderName: HTMLElement;
-    difficultySlider: HTMLElement;
-    difficultySliderName: HTMLElement;
-    init: () => void;
-};
-export default SettingsMenuUI;
+export {};
 //# sourceMappingURL=SettingsMenuUI.d.ts.map

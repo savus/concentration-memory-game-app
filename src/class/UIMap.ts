@@ -1,22 +1,21 @@
-import type { TMenuUI } from "../types.js";
+import { menuOnClickDelegation } from "../clickEvents.js";
+import type { TCommandRegistry, TMenuUI } from "../types.js";
 
 export class UIMap {
   menu: HTMLElement;
   ui: TMenuUI = {};
-  cachedDatasets: string[] = [];
+  actionMap: TCommandRegistry;
 
-  constructor(
-    menu: HTMLElement,
-    onClick: (ui: TMenuUI, e: MouseEvent) => void,
-  ) {
+  constructor(menu: HTMLElement, actionMap: TCommandRegistry) {
     this.menu = menu;
-    this.cacheDatasets();
+    this.cacheElements();
+    this.actionMap = actionMap;
     this.menu.addEventListener("click", (e: MouseEvent) => {
-      onClick(this.ui, e);
+      menuOnClickDelegation(this.ui, e, this.actionMap);
     });
   }
 
-  cacheDatasets = () => {
+  cacheElements = () => {
     const elements: NodeListOf<HTMLElement> =
       this.menu.querySelectorAll(`[data-ui]`);
     elements.forEach((element) => {

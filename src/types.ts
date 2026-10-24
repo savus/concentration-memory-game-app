@@ -12,3 +12,7 @@ export type TPokeAPI = {
 };
 
 export type TMenuUI = Record<string, HTMLElement | null>;
+
+export type TCommandRegistry = {
+  [commandName: string]: (...args: any[]) => any;
+};

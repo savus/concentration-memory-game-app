@@ -1,15 +1,17 @@
+import { menuOnClickDelegation } from "../clickEvents.js";
 export class UIMap {
     menu;
     ui = {};
-    cachedDatasets = [];
-    constructor(menu, onClick) {
+    actionMap;
+    constructor(menu, actionMap) {
         this.menu = menu;
-        this.cacheDatasets();
+        this.cacheElements();
+        this.actionMap = actionMap;
         this.menu.addEventListener("click", (e) => {
-            onClick(this.ui, e);
+            menuOnClickDelegation(this.ui, e, this.actionMap);
         });
     }
-    cacheDatasets = () => {
+    cacheElements = () => {
         const elements = this.menu.querySelectorAll(`[data-ui]`);
         elements.forEach((element) => {
             const datasetName = element.dataset.ui;
