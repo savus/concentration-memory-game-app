@@ -30,8 +30,8 @@ export class GameMode {
 
   updateModeUI = () => {
     const newModeName = this.getCurrentMode();
-    const modeCapitalized = `${newModeName?.substring(0, 1).toUpperCase()}${newModeName?.substring(1)}`;
-    this.textElement.innerText = modeCapitalized;
+    const modeNameCapitalized = `${newModeName?.substring(0, 1).toUpperCase()}${newModeName?.substring(1)}`;
+    this.textElement.innerText = modeNameCapitalized;
     if (newModeName !== undefined) this.settingsAction(newModeName);
   };
 }

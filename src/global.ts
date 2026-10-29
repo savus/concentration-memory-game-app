@@ -5,8 +5,8 @@ import { Player } from "./class/Player.js";
 import PointsDisplay from "./class/PointsDisplay.js";
 import { UIMap } from "./class/UIMap.js";
 import {
-  handleNewGameClick,
-  handleSettingsClick,
+  startNewGame,
+  goToSettingsMenu,
   quitApplication,
 } from "./clickEvents.js";
 import { GameConfig, setGameSpeed } from "./singleton/GameConfig.js";
@@ -16,8 +16,8 @@ import type { TPokeAPI } from "./types.js";
 export const root = document.documentElement;
 
 const mainMenuActionMap = {
-  newGame: () => handleNewGameClick(),
-  settings: () => handleSettingsClick(),
+  newGame: () => startNewGame(),
+  settings: () => goToSettingsMenu(),
   quit: () => quitApplication(),
 };
 

@@ -1,4 +1,5 @@
 import type { Card } from "./class/Card.js";
+import type { GameMode } from "./class/GameMode.js";
 import { mainMenuUI } from "./global.js";
 import { GameConfig } from "./singleton/GameConfig.js";
 import GameHandler from "./singleton/GameHandler.js";
@@ -28,11 +29,11 @@ export function menuOnClickDelegation(
   }
 }
 
-export function handleNewGameClick() {
+export function startNewGame() {
   ScreenSwapper.swapScreens(GameScreenUI.screen);
 }
 
-export function handleSettingsClick() {
+export function goToSettingsMenu() {
   // ScreenSwapper.swapScreens(SettingsMenuUI.menu);
 }
 
@@ -44,12 +45,12 @@ export function quitApplication() {
   document.body.innerText = "";
 }
 
-export function handleSpeedSliderClick(e: MouseEvent) {
-  // const isElement = e.target instanceof HTMLElement;
-  // const isLeftArrow = isElement && e.target.matches(".left-arrow");
-  // const isRightArrow = isElement && e.target.matches(".right-arrow");
-  // if (isRightArrow) GameConfig.speed.slideToNewMode("next");
-  // if (isLeftArrow) GameConfig.speed.slideToNewMode("prev");
+export function handleSliderClick(e: MouseEvent, gameMode: GameMode) {
+  const isElement = e.target instanceof HTMLElement;
+  const isLeftArrow = isElement && e.target.matches(".left-arrow");
+  const isRightArrow = isElement && e.target.matches(".right-arrow");
+  if (isRightArrow) gameMode.slideToNewMode("next");
+  if (isLeftArrow) gameMode.slideToNewMode("prev");
 }
 
 export function handleDifficultySliderClick(e: MouseEvent) {
