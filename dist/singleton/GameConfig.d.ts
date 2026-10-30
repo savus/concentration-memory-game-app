@@ -1,6 +1,5 @@
 import { GameMode } from "../class/GameMode.js";
 import type { TCommandRegistry } from "../types.js";
-declare const syncSettingsToCSS: (mode: string, actionMap: TCommandRegistry) => void;
 export declare const GameConfig: {
     settings: {
         animationDur: number;
@@ -8,9 +7,8 @@ export declare const GameConfig: {
         computerChoicePause: number;
         tickDownPause: number;
     };
-    syncSettingsToCSS: typeof syncSettingsToCSS;
+    syncSettingsToCSS: (mode: string, actionMap: TCommandRegistry) => void;
     speed: GameMode;
     difficulty: GameMode;
 };
-export {};
 //# sourceMappingURL=GameConfig.d.ts.map

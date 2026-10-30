@@ -9,6 +9,17 @@ const settings = {
   tickDownPause: 10,
 };
 
+const syncSettingsToCSS = (mode: string, actionMap: TCommandRegistry) => {
+  if (actionMap[mode]) actionMap[mode]();
+
+  for (const [key, value] of Object.entries(settings)) {
+    const camelToCss = key.replace(/[A-Z]/g, (g) => `-${g.toLowerCase()}`);
+    root.style.setProperty(`--${camelToCss}`, `${value}ms`);
+  }
+};
+
+const speedModes = ["slow", "medium", "fast"];
+
 const speedCommands: TCommandRegistry = {
   slow: () => {
     settings.animationDur = 3600;
@@ -27,45 +38,6 @@ const speedCommands: TCommandRegistry = {
   },
 };
 
-const syncSettingsToCSS = (mode: string, actionMap: TCommandRegistry) => {
-  if (actionMap[mode]) actionMap[mode]();
-
-  for (const [key, value] of Object.entries(settings)) {
-    const camelToCss = key.replace(/[A-Z]/g, (g) => `-${g.toLowerCase()}`);
-    root.style.setProperty(`--${camelToCss}`, `${value}ms`);
-  }
-
-  console.log(
-    "--animation-dur: ",
-    window.getComputedStyle(root).getPropertyValue("--animation-dur"),
-  );
-  console.log(
-    "--screen-message-dur:",
-    window.getComputedStyle(root).getPropertyValue("--screen-message-dur"),
-  );
-  console.log(
-    "--computer-choice-pause:",
-    window.getComputedStyle(root).getPropertyValue("--computer-choice-pause"),
-  );
-};
-
-const difficultyCommands: TCommandRegistry = {
-  easy: () => {
-    console.log("game is now easy");
-  },
-  medium: () => {
-    console.log("game is now medium");
-  },
-  hard: () => {
-    console.log("game is now Hard");
-  },
-  cheating: () => {
-    console.log("you filthy cheater");
-  },
-};
-
-const speedModes = ["slow", "medium", "fast"];
-
 const speed = new GameMode(
   speedModes,
   1,
@@ -75,6 +47,8 @@ const speed = new GameMode(
 );
 
 const difficultyModes = ["easy", "medium", "hard", "cheating"];
+
+const difficultyCommands: TCommandRegistry = {};
 
 const difficulty = new GameMode(
   difficultyModes,

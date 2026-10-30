@@ -30,24 +30,8 @@ const syncSettingsToCSS = (mode, actionMap) => {
         const camelToCss = key.replace(/[A-Z]/g, (g) => `-${g.toLowerCase()}`);
         root.style.setProperty(`--${camelToCss}`, `${value}ms`);
     }
-    console.log("--animation-dur: ", window.getComputedStyle(root).getPropertyValue("--animation-dur"));
-    console.log("--screen-message-dur:", window.getComputedStyle(root).getPropertyValue("--screen-message-dur"));
-    console.log("--computer-choice-pause:", window.getComputedStyle(root).getPropertyValue("--computer-choice-pause"));
 };
-const difficultyCommands = {
-    easy: () => {
-        console.log("game is now easy");
-    },
-    medium: () => {
-        console.log("game is now medium");
-    },
-    hard: () => {
-        console.log("game is now Hard");
-    },
-    cheating: () => {
-        console.log("you filthy cheater");
-    },
-};
+const difficultyCommands = {};
 const speedModes = ["slow", "medium", "fast"];
 const speed = new GameMode(speedModes, 1, document.querySelector(".speed-slider .setting-name"), speedCommands, syncSettingsToCSS);
 const difficultyModes = ["easy", "medium", "hard", "cheating"];

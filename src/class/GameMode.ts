@@ -5,20 +5,20 @@ export class GameMode {
   index: number = 0;
   textElement: HTMLElement;
   actionMap: TCommandRegistry;
-  invokeAction: (mode: string, actionMap: TCommandRegistry) => void;
+  syncSettingsToCSS: (mode: string, actionMap: TCommandRegistry) => void;
 
   constructor(
     modes: string[],
     startIndex: number,
     element: HTMLElement,
     actionMap: TCommandRegistry,
-    invokeAction: (mode: string, actionMap: TCommandRegistry) => void,
+    syncSettingsToCSS: (mode: string, actionMap: TCommandRegistry) => void,
   ) {
     this.modes = modes;
     this.index = startIndex;
     this.textElement = element;
     this.actionMap = actionMap;
-    this.invokeAction = invokeAction;
+    this.syncSettingsToCSS = syncSettingsToCSS;
   }
 
   getCurrentMode = () => this.modes[this.index];
@@ -39,7 +39,9 @@ export class GameMode {
     const newModeName = this.getCurrentMode();
     const modeNameCapitalized = `${newModeName?.substring(0, 1).toUpperCase()}${newModeName?.substring(1)}`;
     this.textElement.innerText = modeNameCapitalized;
-    if (newModeName !== undefined)
-      this.invokeAction(newModeName, this.actionMap);
+    if (newModeName !== undefined) {
+      this.syncSettingsToCSS(newModeName, this.actionMap);
+      console.log(newModeName);
+    }
   };
 }
