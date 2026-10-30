@@ -25,7 +25,7 @@ const handleComputerChoice = async () => {
         return randomCard;
     };
     await computer.setFirstChoice(getRandomCard());
-    await wait(GameConfig.COMPUTER_CHOICE_PAUSE);
+    await wait(GameConfig.settings.computerChoicePause);
     await computer.setSecondChoice(getRandomCard());
     await determineNextPhase();
     await wait(500);

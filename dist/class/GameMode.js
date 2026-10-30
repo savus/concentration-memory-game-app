@@ -1,15 +1,15 @@
 export class GameMode {
     modes;
     index = 0;
-    category;
     textElement;
-    settingsAction;
-    constructor(modes, startIndex, category, element, settingsAction) {
+    actionMap;
+    invokeAction;
+    constructor(modes, startIndex, element, actionMap, invokeAction) {
         this.modes = modes;
         this.index = startIndex;
-        this.category = category;
         this.textElement = element;
-        this.settingsAction = settingsAction;
+        this.actionMap = actionMap;
+        this.invokeAction = invokeAction;
     }
     getCurrentMode = () => this.modes[this.index];
     slideToNewMode = (modeDirection) => {
@@ -18,12 +18,16 @@ export class GameMode {
         this.index = modeDirection === "prev" ? prevMode : nextMode;
         this.updateModeUI();
     };
+    goToNewMode = (modeName) => {
+        this.index = this.modes.indexOf(modeName);
+        this.updateModeUI();
+    };
     updateModeUI = () => {
         const newModeName = this.getCurrentMode();
-        const modeCapitalized = `${newModeName?.substring(0, 1).toUpperCase()}${newModeName?.substring(1)}`;
-        this.textElement.innerText = modeCapitalized;
+        const modeNameCapitalized = `${newModeName?.substring(0, 1).toUpperCase()}${newModeName?.substring(1)}`;
+        this.textElement.innerText = modeNameCapitalized;
         if (newModeName !== undefined)
-            this.settingsAction(newModeName);
+            this.invokeAction(newModeName, this.actionMap);
     };
 }
 //# sourceMappingURL=GameMode.js.map

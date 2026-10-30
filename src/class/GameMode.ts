@@ -1,22 +1,24 @@
+import type { TCommandRegistry } from "../types.js";
+
 export class GameMode {
   modes: string[];
   index: number = 0;
-  category: string;
   textElement: HTMLElement;
-  settingsAction: (modeName: string) => void;
+  actionMap: TCommandRegistry;
+  invokeAction: (mode: string, actionMap: TCommandRegistry) => void;
 
   constructor(
     modes: string[],
     startIndex: number,
-    category: string,
     element: HTMLElement,
-    settingsAction: (modeName: string) => void,
+    actionMap: TCommandRegistry,
+    invokeAction: (mode: string, actionMap: TCommandRegistry) => void,
   ) {
     this.modes = modes;
     this.index = startIndex;
-    this.category = category;
     this.textElement = element;
-    this.settingsAction = settingsAction;
+    this.actionMap = actionMap;
+    this.invokeAction = invokeAction;
   }
 
   getCurrentMode = () => this.modes[this.index];
@@ -28,10 +30,16 @@ export class GameMode {
     this.updateModeUI();
   };
 
+  goToNewMode = (modeName: string) => {
+    this.index = this.modes.indexOf(modeName);
+    this.updateModeUI();
+  };
+
   updateModeUI = () => {
     const newModeName = this.getCurrentMode();
     const modeNameCapitalized = `${newModeName?.substring(0, 1).toUpperCase()}${newModeName?.substring(1)}`;
     this.textElement.innerText = modeNameCapitalized;
-    if (newModeName !== undefined) this.settingsAction(newModeName);
+    if (newModeName !== undefined)
+      this.invokeAction(newModeName, this.actionMap);
   };
 }

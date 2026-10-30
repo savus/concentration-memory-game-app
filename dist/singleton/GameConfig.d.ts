@@ -1,11 +1,16 @@
 import { GameMode } from "../class/GameMode.js";
-export declare const setGameSpeed: (speed: string) => void;
+import type { TCommandRegistry } from "../types.js";
+declare const syncSettingsToCSS: (mode: string, actionMap: TCommandRegistry) => void;
 export declare const GameConfig: {
-    ANIMATION_DURATION: number;
-    SCREEN_MESSAGE_DURATION: number;
-    COMPUTER_CHOICE_PAUSE: number;
-    TICK_DOWN_PAUSE: number;
+    settings: {
+        animationDur: number;
+        screenMessageDur: number;
+        computerChoicePause: number;
+        tickDownPause: number;
+    };
+    syncSettingsToCSS: typeof syncSettingsToCSS;
     speed: GameMode;
     difficulty: GameMode;
 };
+export {};
 //# sourceMappingURL=GameConfig.d.ts.map

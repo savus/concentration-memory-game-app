@@ -1,83 +1,77 @@
 import { GameMode } from "../class/GameMode.js";
-import { GLOBAL_ANIMATION_DUR, SCREEN_MESSAGE_PROP } from "../constants.js";
 import { root } from "../global.js";
+import type { TCommandRegistry } from "../types.js";
 
-const buildCustomCSSProperties = () => {
-  const array = [
-    {
-      propName: GLOBAL_ANIMATION_DUR,
-      propValue: `${ANIMATION_DURATION}ms`,
-    },
-    {
-      propName: SCREEN_MESSAGE_PROP,
-      propValue: `${SCREEN_MESSAGE_DURATION}ms`,
-    },
-  ];
-  return array;
+const settings = {
+  animationDur: 2900,
+  screenMessageDur: 1500,
+  computerChoicePause: 500,
+  tickDownPause: 10,
 };
 
-export const setGameSpeed = (speed: string) => {
-  const modeActions: Record<string, () => void> = {
-    slow: () => {
-      ANIMATION_DURATION = 3600;
-      SCREEN_MESSAGE_DURATION = 2000;
-      COMPUTER_CHOICE_PAUSE = 1000;
-      cssProps = buildCustomCSSProperties();
-    },
-    medium: () => {
-      ANIMATION_DURATION = 2900;
-      SCREEN_MESSAGE_DURATION = 1500;
-      COMPUTER_CHOICE_PAUSE = 500;
-      cssProps = buildCustomCSSProperties();
-    },
-    fast: () => {
-      ANIMATION_DURATION = 500;
-      SCREEN_MESSAGE_DURATION = 800;
-      COMPUTER_CHOICE_PAUSE = 300;
-      cssProps = buildCustomCSSProperties();
-    },
-  };
-
-  if (modeActions[speed]) modeActions[speed]();
-
-  cssProps.forEach((property) => {
-    const { propName, propValue } = property;
-    root.style.setProperty(propName, propValue);
-  });
+const speedCommands: TCommandRegistry = {
+  slow: () => {
+    settings.animationDur = 3600;
+    settings.screenMessageDur = 2000;
+    settings.computerChoicePause = 1000;
+  },
+  medium: () => {
+    settings.animationDur = 2900;
+    settings.screenMessageDur = 1500;
+    settings.computerChoicePause = 500;
+  },
+  fast: () => {
+    settings.animationDur = 500;
+    settings.screenMessageDur = 800;
+    settings.computerChoicePause = 300;
+  },
 };
 
-const setGameDifficulty = (difficulty: string) => {
-  const modeActions: Record<string, () => void> = {
-    easy: () => {
-      console.log("game is now easy");
-    },
-    medium: () => {
-      console.log("game is now medium");
-    },
-    hard: () => {
-      console.log("game is now Hard");
-    },
-    cheating: () => {
-      console.log("you filthy cheater");
-    },
-  };
+const syncSettingsToCSS = (mode: string, actionMap: TCommandRegistry) => {
+  if (actionMap[mode]) actionMap[mode]();
 
-  if (modeActions[difficulty]) modeActions[difficulty]();
+  for (const [key, value] of Object.entries(settings)) {
+    const camelToCss = key.replace(/[A-Z]/g, (g) => `-${g.toLowerCase()}`);
+    root.style.setProperty(`--${camelToCss}`, `${value}ms`);
+  }
+
+  console.log(
+    "--animation-dur: ",
+    window.getComputedStyle(root).getPropertyValue("--animation-dur"),
+  );
+  console.log(
+    "--screen-message-dur:",
+    window.getComputedStyle(root).getPropertyValue("--screen-message-dur"),
+  );
+  console.log(
+    "--computer-choice-pause:",
+    window.getComputedStyle(root).getPropertyValue("--computer-choice-pause"),
+  );
 };
 
-let ANIMATION_DURATION = 2900;
-let SCREEN_MESSAGE_DURATION = 1500;
-let COMPUTER_CHOICE_PAUSE = 500;
-let TICK_DOWN_PAUSE = 10;
-let cssProps = buildCustomCSSProperties();
+const difficultyCommands: TCommandRegistry = {
+  easy: () => {
+    console.log("game is now easy");
+  },
+  medium: () => {
+    console.log("game is now medium");
+  },
+  hard: () => {
+    console.log("game is now Hard");
+  },
+  cheating: () => {
+    console.log("you filthy cheater");
+  },
+};
+
 const speedModes = ["slow", "medium", "fast"];
 
 const speed = new GameMode(
   speedModes,
   1,
-  "speed",
   document.querySelector(".speed-slider .setting-name")! as HTMLElement,
-  setGameSpeed,
+  speedCommands,
+  syncSettingsToCSS,
 );
 
 const difficultyModes = ["easy", "medium", "hard", "cheating"];
@@ -85,16 +79,14 @@ const difficultyModes = ["easy", "medium", "hard", "cheating"];
 const difficulty = new GameMode(
   difficultyModes,
   1,
-  "difficulty",
   document.querySelector(".difficulty-slider .setting-name")! as HTMLElement,
-  setGameDifficulty,
+  difficultyCommands,
+  syncSettingsToCSS,
 );
 
 export const GameConfig = {
-  ANIMATION_DURATION,
-  SCREEN_MESSAGE_DURATION,
-  COMPUTER_CHOICE_PAUSE,
-  TICK_DOWN_PAUSE,
+  settings,
+  syncSettingsToCSS,
   speed,
   difficulty,
 };

@@ -1,8 +1,11 @@
 :root {
   --global-anim-dur: ;
   --points-delay-modifier: ;
-  --screen-message-dur: ;
+  --screen-message-dur-default: 1500ms;
+  --screen-message-dur: var(--screen-message-dur-default);
+
   --points-anim-dur: 600ms;
+
   --size-8: 0.5rem;
   --size-12: 0.75rem;
   --size-14: 0.875rem;

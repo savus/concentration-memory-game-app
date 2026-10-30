@@ -1,6 +1,5 @@
 import type { Card } from "./class/Card.js";
 import { CardFactory } from "./class/CardFactory.js";
-import { GameMode } from "./class/GameMode.js";
 import { Player } from "./class/Player.js";
 import PointsDisplay from "./class/PointsDisplay.js";
 import { UIMap } from "./class/UIMap.js";
@@ -9,7 +8,7 @@ import {
   goToSettingsMenu,
   quitApplication,
 } from "./clickEvents.js";
-import { GameConfig, setGameSpeed } from "./singleton/GameConfig.js";
+import { GameConfig } from "./singleton/GameConfig.js";
 import GameScreenUI from "./singleton/GameScreenUI.js";
 import type { TPokeAPI } from "./types.js";
 

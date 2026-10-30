@@ -35,11 +35,9 @@ export const displayGameScreenMessage = async (topText, bottomText) => {
     });
 };
 export const initializeGlobalSettings = async () => {
-    const { speedSettingName } = settingsMenuUI.ui;
-    // SettingsMenuUI.init();
+    GameConfig.speed.goToNewMode("medium");
+    GameConfig.difficulty.goToNewMode("medium");
     ScreenSwapper.init(mainMenuUI.menu);
-    if (speedSettingName)
-        speedSettingName.innerText = GameConfig.speed.getCurrentMode() ?? "";
     await API_REQUESTS.fetchAndConvertAllPokemon(POKEMON_NAMES)
         .then((data) => {
         data.forEach((pokemon) => allPokemonData.push(pokemon));
