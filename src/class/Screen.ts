@@ -2,33 +2,39 @@ import type { TCommandRegistry, TUIRegistry } from "../types.js";
 
 class Screen {
   screenTag: HTMLElement;
-  elementRegistry: TUIRegistry = {};
-  actionMap: TCommandRegistry;
+  ui: TUIRegistry = {};
 
   constructor(screen: HTMLElement, actionMap: TCommandRegistry) {
     this.screenTag = screen;
-    this.actionMap = actionMap;
-    this.cacheElements();
+    this.cacheElements(this.screenTag, this.ui);
     this.screenTag.addEventListener("click", (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      for (const key of Object.keys(this.elementRegistry)) {
-        if (target && target === this.elementRegistry[key]) {
-          if (this.actionMap[key]) this.actionMap[key]();
-        }
-      }
+      this.onclickMenuDelegation(e, this.ui, actionMap);
     });
   }
 
-  cacheElements = () => {
+  onclickMenuDelegation = (
+    e: MouseEvent,
+    elementRegistry: TUIRegistry,
+    actionMap: TCommandRegistry,
+  ) => {
+    const target = e.target as HTMLElement;
+    for (const key of Object.keys(elementRegistry)) {
+      if (target && target === elementRegistry[key]) {
+        if (actionMap[key]) actionMap[key]();
+      }
+    }
+  };
+
+  cacheElements = (screenTag: HTMLElement, elementRegistry: TUIRegistry) => {
     const uiElements: NodeListOf<HTMLElement> =
-      this.screenTag.querySelectorAll("[data-ui]");
+      screenTag.querySelectorAll("[data-ui]");
     uiElements.forEach((element) => {
       const uiDataset = element.dataset.ui;
       const camelCase = uiDataset?.replace(
         /-([a-z])/g,
         (g) => g[1]?.toUpperCase() ?? "",
       );
-      if (camelCase) this.elementRegistry[camelCase] = element;
+      if (camelCase) elementRegistry[camelCase] = element;
     });
   };
 }

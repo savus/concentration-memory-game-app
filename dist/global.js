@@ -6,7 +6,8 @@ import GameScreenUI from "./singleton/GameScreenUI.js";
 export const root = document.documentElement;
 export const mainMenuUI = new Screen(document.querySelector(".screen.main-menu"), {
     newGame: () => console.log("You clicked new game"),
-    settings: () => console.log("you cliked settings"),
+    settings: () => console.log("you clicked settings"),
+    quit: () => console.log("you quit"),
 });
 export let allPokemonData = [];
 export const allCards = [];

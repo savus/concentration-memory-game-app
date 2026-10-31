@@ -12,7 +12,8 @@ export const mainMenuUI = new Screen(
   document.querySelector(".screen.main-menu")! as HTMLElement,
   {
     newGame: () => console.log("You clicked new game"),
-    settings: () => console.log("you cliked settings"),
+    settings: () => console.log("you clicked settings"),
+    quit: () => console.log("you quit"),
   },
 );
 
