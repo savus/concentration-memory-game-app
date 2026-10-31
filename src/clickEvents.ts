@@ -23,7 +23,6 @@ export function menuOnClickDelegation(
   for (const key of Object.keys(ui)) {
     const target = e.target as HTMLElement;
     if (target && target === ui[key]) {
-      console.log(target.dataset.ui);
       if (actionMap[key]) actionMap[key]();
     }
   }

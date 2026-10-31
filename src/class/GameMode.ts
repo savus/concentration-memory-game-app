@@ -41,7 +41,6 @@ export class GameMode {
     this.textElement.innerText = modeNameCapitalized;
     if (newModeName !== undefined) {
       this.syncSettingsToCSS(newModeName, this.actionMap);
-      console.log(newModeName);
     }
   };
 }

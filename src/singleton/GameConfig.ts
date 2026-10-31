@@ -58,9 +58,29 @@ const difficulty = new GameMode(
   syncSettingsToCSS,
 );
 
+const colorThemes = ["light", "dark"];
+
+const themeCommands: TCommandRegistry = {
+  colorThemeLeftArrow: () => {
+    console.log("left arrow pressed");
+  },
+  colorThemeRightArrow: () => {
+    console.log("right arrow pressed");
+  },
+};
+
+const colorTheme = new GameMode(
+  colorThemes,
+  1,
+  document.querySelector(".color-theme-slider .setting-name")! as HTMLElement,
+  themeCommands,
+  syncSettingsToCSS,
+);
+
 export const GameConfig = {
   settings,
   syncSettingsToCSS,
   speed,
   difficulty,
+  colorTheme,
 };

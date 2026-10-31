@@ -76,6 +76,7 @@ export const displayGameScreenMessage = async (
 export const initializeGlobalSettings = async () => {
   GameConfig.speed.goToNewMode("medium");
   GameConfig.difficulty.goToNewMode("medium");
+  GameConfig.colorTheme.goToNewMode("dark");
 
   ScreenSwapper.init(mainMenuUI.menu);
 

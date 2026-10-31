@@ -37,6 +37,7 @@ export const displayGameScreenMessage = async (topText, bottomText) => {
 export const initializeGlobalSettings = async () => {
     GameConfig.speed.goToNewMode("medium");
     GameConfig.difficulty.goToNewMode("medium");
+    GameConfig.colorTheme.goToNewMode("dark");
     ScreenSwapper.init(mainMenuUI.menu);
     await API_REQUESTS.fetchAndConvertAllPokemon(POKEMON_NAMES)
         .then((data) => {
