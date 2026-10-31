@@ -1,0 +1,1 @@
+{"version":3,"file":"Screen.d.ts","sourceRoot":"","sources":["../../src/class/Screen.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,gBAAgB,EAAE,WAAW,EAAE,MAAM,aAAa,CAAC;AAEjE,cAAM,MAAM;IACV,SAAS,EAAE,WAAW,CAAC;IACvB,eAAe,EAAE,WAAW,CAAM;IAClC,SAAS,EAAE,gBAAgB,CAAC;IAE5B,YAAY,MAAM,EAAE,WAAW,EAAE,SAAS,EAAE,gBAAgB,EAY3D;IAED,aAAa,aAWX;CACH;eAEc,MAAM"}

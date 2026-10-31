@@ -1,6 +1,6 @@
 import API_REQUESTS from "./api.js";
 import { ACTIVE, DATA_ANIMATION, POKEMON_NAMES } from "./constants.js";
-import { allCards, allPokemonData, cardFactory } from "./global.js";
+import { allCards, allPokemonData, cardFactory, mainMenuUI } from "./global.js";
 import GameScreenUI from "./singleton/GameScreenUI.js";
 import ScreenSwapper from "./singleton/ScreenSwapper.js";
 
@@ -67,7 +67,7 @@ export const displayGameScreenMessage = async (
 };
 
 export const initializeGlobalSettings = async () => {
-  ScreenSwapper.init(document.querySelector(".screen.main-menu"));
+  ScreenSwapper.init(mainMenuUI.screenTag);
   await API_REQUESTS.fetchAndConvertAllPokemon(POKEMON_NAMES)
     .then((data) => {
       data.forEach((pokemon) => allPokemonData.push(pokemon));

@@ -10,3 +10,8 @@ export type TPokeAPI = {
   speed: number;
   isDummyData: boolean;
 };
+
+export type TUIRegistry = Record<string, HTMLElement | null>;
+export type TCommandRegistry = {
+  [commandName: string]: (...args: any[]) => any;
+};
