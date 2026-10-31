@@ -1,6 +1,6 @@
 import { allCards, computer, computerPointsDisplay, user, userPointsDisplay, } from "../global.js";
 import { displayGameScreenMessage, wait } from "../utility.js";
-import { GameConfig } from "./GameConfig.js";
+import GameConfig from "./GameConfig.js";
 const state = {
     phase: "choose-card",
 };

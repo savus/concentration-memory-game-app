@@ -10,11 +10,3 @@ export type TPokeAPI = {
   speed: number;
   isDummyData: boolean;
 };
-
-export type TMenuUI = Record<string, HTMLElement | null>;
-
-export type TCommandRegistry = {
-  [commandName: string]: (...args: any[]) => any;
-};
-
-export type TSpeedModes = "slow" | "medium" | "fast";

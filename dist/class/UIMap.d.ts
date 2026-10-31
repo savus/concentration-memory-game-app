@@ -1,9 +1,2 @@
-import type { TCommandRegistry, TMenuUI } from "../types.js";
-export declare class UIMap {
-    menu: HTMLElement;
-    ui: TMenuUI;
-    actionMap: TCommandRegistry;
-    constructor(menu: HTMLElement, actionMap: TCommandRegistry);
-    cacheElements: () => void;
-}
+export {};
 //# sourceMappingURL=UIMap.d.ts.map

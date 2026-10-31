@@ -1,1 +1,1 @@
-{"version":3,"file":"UIMap.d.ts","sourceRoot":"","sources":["../../src/class/UIMap.ts"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,gBAAgB,EAAE,OAAO,EAAE,MAAM,aAAa,CAAC;AAE7D,qBAAa,KAAK;IAChB,IAAI,EAAE,WAAW,CAAC;IAClB,EAAE,EAAE,OAAO,CAAM;IACjB,SAAS,EAAE,gBAAgB,CAAC;IAE5B,YAAY,IAAI,EAAE,WAAW,EAAE,SAAS,EAAE,gBAAgB,EAOzD;IAED,aAAa,aAeX;CACH"}
+{"version":3,"file":"UIMap.d.ts","sourceRoot":"","sources":["../../src/class/UIMap.ts"],"names":[],"mappings":""}

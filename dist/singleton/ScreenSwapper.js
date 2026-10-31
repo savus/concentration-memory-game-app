@@ -1,7 +1,5 @@
 import { ACTIVE } from "../constants.js";
 import { wait, waitForAnimation } from "../utility.js";
-import GameScreenUI from "./GameScreenUI.js";
-const memoryGameScreen = GameScreenUI.screen;
 let prevScreen = null;
 let currentScreen = null;
 let nextScreen = null;
@@ -33,6 +31,7 @@ const swapScreens = async (nextScreen) => {
 };
 const init = (screen) => {
     currentScreen = screen;
+    currentScreen.classList.add(ACTIVE);
 };
 const ScreenSwapper = { swapScreens, init };
 export default ScreenSwapper;

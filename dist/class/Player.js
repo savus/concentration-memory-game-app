@@ -1,5 +1,4 @@
 import { computerPointsDisplay, userPointsDisplay } from "../global.js";
-import { GameConfig } from "../singleton/GameConfig.js";
 import { displayGameScreenMessage, wait } from "../utility.js";
 export class Player {
     choices = {
