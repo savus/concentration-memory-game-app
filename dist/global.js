@@ -8,8 +8,8 @@ export const memoryGameScreen = new Screen(document.querySelector(".screen.memor
 export const settingsScreen = new Screen(document.querySelector(".screen.settings-menu"));
 export let allPokemonData = [];
 export const allCards = [];
-export const userPointsDisplay = new PointsDisplay(memoryGameScreen.ui.playerPoints, "you");
-export const computerPointsDisplay = new PointsDisplay(memoryGameScreen.ui.computerPoints, "computer");
+export const userPointsDisplay = new PointsDisplay(document.querySelector('[data-player="user"] .points'), "you");
+export const computerPointsDisplay = new PointsDisplay(document.querySelector('[data-player="computer"] .points'), "computer");
 export const cardFactory = new CardFactory();
 export const user = new Player("you", "user");
 export const computer = new Player("computer", "computer");

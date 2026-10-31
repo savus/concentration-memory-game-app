@@ -23,12 +23,12 @@ export let allPokemonData: TPokeAPI[] = [];
 export const allCards: Card[] = [];
 
 export const userPointsDisplay = new PointsDisplay(
-  memoryGameScreen.ui.playerPoints!,
+  document.querySelector('[data-player="user"] .points')! as HTMLElement,
   "you",
 );
 
 export const computerPointsDisplay = new PointsDisplay(
-  memoryGameScreen.ui.computerPoints!,
+  document.querySelector('[data-player="computer"] .points')! as HTMLElement,
   "computer",
 );
 

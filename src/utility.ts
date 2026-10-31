@@ -5,6 +5,7 @@ import {
   allPokemonData,
   cardFactory,
   mainMenuScreen,
+  memoryGameScreen,
   settingsScreen,
 } from "./global.js";
 import GameScreenUI from "./singleton/GameScreenUI.js";
@@ -76,7 +77,11 @@ export const displayGameScreenMessage = async (
 export const initializeGlobalSettings = async () => {
   ScreenSwapper.init(mainMenuScreen.screenTag);
 
-  // mainMenuScreen.init();
+  mainMenuScreen.init({
+    newGame: () => ScreenSwapper.swapScreens(memoryGameScreen.screenTag),
+    settings: () => ScreenSwapper.swapScreens(settingsScreen.screenTag),
+    quit: () => console.log("you quit"),
+  });
   // memoryGameScreen.init();
   // settingsScreen.init();
 

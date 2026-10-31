@@ -1,8 +1,6 @@
 declare const GameScreenUI: {
     screen: HTMLElement;
     screenMessageContainer: HTMLElement;
-    playerPoints: HTMLElement;
-    computerPoints: HTMLElement;
     cardContainer: HTMLElement;
 };
 export default GameScreenUI;

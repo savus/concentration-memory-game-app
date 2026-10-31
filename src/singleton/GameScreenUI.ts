@@ -6,14 +6,6 @@ const screenMessageContainer = document.querySelector(
   `.${SCREEN_MESSAGE_CONTAINER}`,
 )! as HTMLElement;
 
-const playerPoints = document.querySelector(
-  '[data-player="user"] .points',
-)! as HTMLElement;
-
-const computerPoints = document.querySelector(
-  '[data-player="computer"] .points',
-)! as HTMLElement;
-
 const cardContainer = document.querySelector(
   `.${CARD_CONTAINER}`,
 )! as HTMLElement;
@@ -21,8 +13,6 @@ const cardContainer = document.querySelector(
 const GameScreenUI = {
   screen,
   screenMessageContainer,
-  playerPoints,
-  computerPoints,
   cardContainer,
 };
 
