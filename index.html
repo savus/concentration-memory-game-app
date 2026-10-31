@@ -43,7 +43,10 @@
         </div>
       </div>
       <div class="screen memory-game">
-        <div class="screen-message-container">
+        <div
+          class="screen-message-container"
+          data-ui="screen-message-container"
+        >
           <div class="top-container">
             <div class="top-message">Top Message</div>
           </div>
@@ -60,18 +63,26 @@
           </div>
         </div>
         <div class="game-ui">
-          <div class="points-display-container" data-player="user">
+          <div
+            class="points-display-container"
+            data-player="user"
+            data-ui="user-points"
+          >
             <div class="points-display">
               You: <span class="points"> 0 </span> points
             </div>
           </div>
-          <div class="points-display-container" data-player="computer">
+          <div
+            class="points-display-container"
+            data-player="computer"
+            data-ui="computer-points"
+          >
             <div class="points-display">
               Computer: <span class="points">0</span> points
             </div>
           </div>
         </div>
-        <div class="card-container">
+        <div class="card-container" data-ui="card-container">
           <!-- <div class="card is-dummy">
             <div class="card-front">
               <div class="card-header">

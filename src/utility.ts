@@ -1,6 +1,12 @@
 import API_REQUESTS from "./api.js";
 import { ACTIVE, DATA_ANIMATION, POKEMON_NAMES } from "./constants.js";
-import { allCards, allPokemonData, cardFactory, mainMenuUI } from "./global.js";
+import {
+  allCards,
+  allPokemonData,
+  cardFactory,
+  mainMenuScreen,
+  settingsScreen,
+} from "./global.js";
 import GameScreenUI from "./singleton/GameScreenUI.js";
 import ScreenSwapper from "./singleton/ScreenSwapper.js";
 
@@ -13,7 +19,7 @@ export const wait = async (ms: number) => {
 };
 
 export const waitForAnimation = async (
-  element: HTMLElement,
+  element: HTMLElement | null,
   transitionOrAnimation: "transition" | "animation",
   beginAnimation: () => void = () => {},
   endAnimation: () => void = () => {},
@@ -25,11 +31,12 @@ export const waitForAnimation = async (
     }
 
     beginAnimation();
-    element.addEventListener(
-      `${transitionOrAnimation}end`,
-      handleTransitionEnd,
-      { once: true },
-    );
+    if (element)
+      element.addEventListener(
+        `${transitionOrAnimation}end`,
+        handleTransitionEnd,
+        { once: true },
+      );
   });
 };
 
@@ -67,7 +74,12 @@ export const displayGameScreenMessage = async (
 };
 
 export const initializeGlobalSettings = async () => {
-  ScreenSwapper.init(mainMenuUI.screenTag);
+  ScreenSwapper.init(mainMenuScreen.screenTag);
+
+  // mainMenuScreen.init();
+  // memoryGameScreen.init();
+  // settingsScreen.init();
+
   await API_REQUESTS.fetchAndConvertAllPokemon(POKEMON_NAMES)
     .then((data) => {
       data.forEach((pokemon) => allPokemonData.push(pokemon));

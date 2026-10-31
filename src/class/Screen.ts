@@ -4,13 +4,16 @@ class Screen {
   screenTag: HTMLElement;
   ui: TUIRegistry = {};
 
-  constructor(screen: HTMLElement, actionMap: TCommandRegistry) {
+  constructor(screen: HTMLElement) {
     this.screenTag = screen;
     this.cacheElements(this.screenTag, this.ui);
+  }
+
+  init = (actionMap: TCommandRegistry) => {
     this.screenTag.addEventListener("click", (e: MouseEvent) => {
       this.onclickMenuDelegation(e, this.ui, actionMap);
     });
-  }
+  };
 
   onclickMenuDelegation = (
     e: MouseEvent,

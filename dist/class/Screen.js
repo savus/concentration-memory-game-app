@@ -1,13 +1,15 @@
 class Screen {
     screenTag;
     ui = {};
-    constructor(screen, actionMap) {
+    constructor(screen) {
         this.screenTag = screen;
         this.cacheElements(this.screenTag, this.ui);
+    }
+    init = (actionMap) => {
         this.screenTag.addEventListener("click", (e) => {
             this.onclickMenuDelegation(e, this.ui, actionMap);
         });
-    }
+    };
     onclickMenuDelegation = (e, elementRegistry, actionMap) => {
         const target = e.target;
         for (const key of Object.keys(elementRegistry)) {

@@ -2,7 +2,7 @@ import { DATA_ANIMATION } from "../constants.js";
 import { wait, waitForAnimation } from "../utility.js";
 
 class PointsDisplay {
-  html: HTMLElement;
+  html: HTMLElement | null;
   name: string;
   currentPoints: number = 0;
   isBusy = false;
@@ -15,21 +15,21 @@ class PointsDisplay {
 
   overwritePointsDisplay = (points: number) => {
     this.currentPoints = points;
-    this.html.innerText = `${this.currentPoints}`;
+    if (this.html) this.html.innerText = `${this.currentPoints}`;
   };
 
   setAndAnimatePoints = async (pointsToAdd: number) => {
     this.currentPoints += pointsToAdd;
     await waitForAnimation(
-      this.html,
+      this.html || null,
       "animation",
       async () => {
-        this.html.setAttribute(DATA_ANIMATION, "scale");
+        if (this.html) this.html.setAttribute(DATA_ANIMATION, "scale");
         await wait(600);
         this.overwritePointsDisplay(this.currentPoints);
       },
       () => {
-        this.html.removeAttribute(DATA_ANIMATION);
+        if (this.html) this.html.removeAttribute(DATA_ANIMATION);
       },
     );
   };

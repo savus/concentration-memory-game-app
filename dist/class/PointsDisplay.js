@@ -12,16 +12,19 @@ class PointsDisplay {
     }
     overwritePointsDisplay = (points) => {
         this.currentPoints = points;
-        this.html.innerText = `${this.currentPoints}`;
+        if (this.html)
+            this.html.innerText = `${this.currentPoints}`;
     };
     setAndAnimatePoints = async (pointsToAdd) => {
         this.currentPoints += pointsToAdd;
-        await waitForAnimation(this.html, "animation", async () => {
-            this.html.setAttribute(DATA_ANIMATION, "scale");
+        await waitForAnimation(this.html || null, "animation", async () => {
+            if (this.html)
+                this.html.setAttribute(DATA_ANIMATION, "scale");
             await wait(600);
             this.overwritePointsDisplay(this.currentPoints);
         }, () => {
-            this.html.removeAttribute(DATA_ANIMATION);
+            if (this.html)
+                this.html.removeAttribute(DATA_ANIMATION);
         });
     };
 }

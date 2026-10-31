@@ -2,7 +2,8 @@ import type { TCommandRegistry, TUIRegistry } from "../types.js";
 declare class Screen {
     screenTag: HTMLElement;
     ui: TUIRegistry;
-    constructor(screen: HTMLElement, actionMap: TCommandRegistry);
+    constructor(screen: HTMLElement);
+    init: (actionMap: TCommandRegistry) => void;
     onclickMenuDelegation: (e: MouseEvent, elementRegistry: TUIRegistry, actionMap: TCommandRegistry) => void;
     cacheElements: (screenTag: HTMLElement, elementRegistry: TUIRegistry) => void;
 }

@@ -1,5 +1,5 @@
 declare class PointsDisplay {
-    html: HTMLElement;
+    html: HTMLElement | null;
     name: string;
     currentPoints: number;
     isBusy: boolean;
