@@ -7,7 +7,6 @@ import type { TPokeAPI } from "./types.js";
 export declare const root: HTMLElement;
 export declare const mainMenuScreen: Screen;
 export declare const memoryGameScreen: MemoryGameScreen;
-export declare const settingsScreen: Screen;
 export declare let allPokemonData: TPokeAPI[];
 export declare const allCards: Card[];
 export declare const cardFactory: CardFactory;

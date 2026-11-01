@@ -9,6 +9,7 @@ import MemoryGameScreen from "./class/MemoryGameScreen.js";
 import { Player } from "./class/Player.js";
 import Screen from "./class/Screen.js";
 import type { TPointsDisplayData, TPokeAPI } from "./types.js";
+import SettingsScreen from "./class/SettingsScreen.js";
 
 export const root = document.documentElement;
 
@@ -34,10 +35,6 @@ export const memoryGameScreen = new MemoryGameScreen(
   document.querySelector(".screen.memory-game")! as HTMLElement,
   userPointsDisplay,
   computerPointsDisplay,
-);
-
-export const settingsScreen = new Screen(
-  document.querySelector(".screen.settings-menu")! as HTMLElement,
 );
 
 export let allPokemonData: TPokeAPI[] = [];

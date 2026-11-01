@@ -3,6 +3,7 @@ import { CardFactory } from "./class/CardFactory.js";
 import MemoryGameScreen from "./class/MemoryGameScreen.js";
 import { Player } from "./class/Player.js";
 import Screen from "./class/Screen.js";
+import SettingsScreen from "./class/SettingsScreen.js";
 export const root = document.documentElement;
 export const mainMenuScreen = new Screen(document.querySelector(".screen.main-menu"));
 const userPointsDisplay = {
@@ -14,7 +15,6 @@ const computerPointsDisplay = {
     name: "computer",
 };
 export const memoryGameScreen = new MemoryGameScreen(document.querySelector(".screen.memory-game"), userPointsDisplay, computerPointsDisplay);
-export const settingsScreen = new Screen(document.querySelector(".screen.settings-menu"));
 export let allPokemonData = [];
 export const allCards = [];
 export const cardFactory = new CardFactory();

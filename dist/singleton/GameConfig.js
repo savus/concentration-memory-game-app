@@ -1,3 +1,4 @@
+import SettingsScreen from "../class/SettingsScreen.js";
 const settings = {
     animationDur: 2900,
     screenMessageDur: 1500,
@@ -21,8 +22,10 @@ const settings = {
 //     settings.computerChoicePause = 300;
 //   },
 // };
+const settingsScreen = new SettingsScreen(document.querySelector(".screen.settings-menu"));
 const GameConfig = {
     settings,
+    settingsScreen,
 };
 export default GameConfig;
 //# sourceMappingURL=GameConfig.js.map

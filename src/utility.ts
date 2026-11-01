@@ -5,7 +5,6 @@ import {
   cardFactory,
   mainMenuScreen,
   memoryGameScreen,
-  settingsScreen,
 } from "./app.js";
 import {
   mainMenuActions,
@@ -13,6 +12,7 @@ import {
   settingScreenActions,
 } from "./commandRegistries.js";
 import { ACTIVE, DATA_ANIMATION, POKEMON_NAMES } from "./constants.js";
+import GameConfig from "./singleton/GameConfig.js";
 
 import ScreenSwapper from "./singleton/ScreenSwapper.js";
 
@@ -84,11 +84,11 @@ export const displayGameScreenMessage = async (
 };
 
 export const initializeGlobalSettings = async () => {
-  ScreenSwapper.init(mainMenuScreen.screenTag);
+  ScreenSwapper.init(GameConfig.settingsScreen.screenTag);
 
   mainMenuScreen.init(mainMenuActions);
   memoryGameScreen.init(memoryGameActions);
-  settingsScreen.init(settingScreenActions);
+  GameConfig.settingsScreen.init(settingScreenActions);
 
   await API_REQUESTS.fetchAndConvertAllPokemon(POKEMON_NAMES)
     .then((data) => {

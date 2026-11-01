@@ -1,1 +1,1 @@
-{"version":3,"file":"ScreenSwapper.d.ts","sourceRoot":"","sources":["../../src/singleton/ScreenSwapper.ts"],"names":[],"mappings":"AAqBA,QAAA,MAAM,WAAW,eAAsB,WAAW,kBAmBjD,CAAC;AAEF,QAAA,MAAM,IAAI,WAAY,WAAW,SAGhC,CAAC;AAEF,QAAA,MAAM,aAAa;;;CAAwB,CAAC;eAE7B,aAAa"}
+{"version":3,"file":"ScreenSwapper.d.ts","sourceRoot":"","sources":["../../src/singleton/ScreenSwapper.ts"],"names":[],"mappings":"AA+CA,QAAA,MAAM,aAAa;8BA1BoB,WAAW;mBAqB5B,WAAW;CAKU,CAAC;AAE5C,eAAe,aAAa,CAAC"}

@@ -1,3 +1,5 @@
+import SettingsScreen from "../class/SettingsScreen.js";
+
 const settings = {
   animationDur: 2900,
   screenMessageDur: 1500,
@@ -23,8 +25,13 @@ const settings = {
 //   },
 // };
 
+const settingsScreen = new SettingsScreen(
+  document.querySelector(".screen.settings-menu")! as HTMLElement,
+);
+
 const GameConfig = {
   settings,
+  settingsScreen,
 };
 
 export default GameConfig;
