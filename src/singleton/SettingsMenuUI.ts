@@ -1,3 +1,11 @@
+import Screen from "../class/Screen.js";
+
+class SettingsScreen extends Screen {
+  constructor(screen: HTMLElement) {
+    super(screen);
+  }
+}
+
 // const backButton = screen.querySelector(".back-button");
 // backButton?.addEventListener("click", onBackButtonClick);
 
