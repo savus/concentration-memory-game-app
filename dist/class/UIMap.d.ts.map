@@ -1,1 +1,0 @@
-{"version":3,"file":"UIMap.d.ts","sourceRoot":"","sources":["../../src/class/UIMap.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,gBAAgB,EAAE,WAAW,EAAE,MAAM,aAAa,CAAC;AAEjE,cAAM,KAAK;IACT,eAAe,EAAE,WAAW,CAAC;IAC7B,SAAS,EAAE,gBAAgB,CAAC;gBAEhB,EAAE,EAAE,WAAW,EAAE,OAAO,EAAE,gBAAgB;CAIvD;AAED,eAAe,KAAK,CAAC"}

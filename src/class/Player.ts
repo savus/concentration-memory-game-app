@@ -1,4 +1,4 @@
-import { computerPointsDisplay, userPointsDisplay } from "../global.js";
+import { memoryGameScreen } from "../global.js";
 import { displayGameScreenMessage, wait } from "../utility.js";
 import type { Card } from "./Card.js";
 
@@ -52,10 +52,10 @@ export class Player {
       let gameMessage;
       if (this.type === "user") {
         gameMessage = "You got 1 point!";
-        userPointsDisplay.setAndAnimatePoints(1);
+        memoryGameScreen.userPointsDisplay.setAndAnimatePoints(1);
       } else {
         gameMessage = "The computer got 1";
-        computerPointsDisplay.setAndAnimatePoints(1);
+        memoryGameScreen.computerPointsDisplay.setAndAnimatePoints(1);
       }
       await displayGameScreenMessage("Match!", gameMessage);
       await wait(500);

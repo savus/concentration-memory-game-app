@@ -6,4 +6,13 @@ export function cardOnClickHandler(card) {
     }
     GameHandler.handleUserChoice(card);
 }
+export function onclickMenuDelegation(e, elementRegistry, actionMap) {
+    const target = e.target;
+    for (const key of Object.keys(elementRegistry)) {
+        if (target && target === elementRegistry[key]) {
+            if (actionMap[key])
+                actionMap[key]();
+        }
+    }
+}
 //# sourceMappingURL=clickEvents.js.map

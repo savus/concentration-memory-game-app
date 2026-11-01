@@ -4,7 +4,6 @@ declare class Screen {
     ui: TUIRegistry;
     constructor(screen: HTMLElement);
     init: (actionMap: TCommandRegistry) => void;
-    onclickMenuDelegation: (e: MouseEvent, elementRegistry: TUIRegistry, actionMap: TCommandRegistry) => void;
     cacheElements: (screenTag: HTMLElement, elementRegistry: TUIRegistry) => void;
 }
 export default Screen;

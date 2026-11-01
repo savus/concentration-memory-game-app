@@ -14,4 +14,8 @@ export type TUIRegistry = Record<string, HTMLElement | null>;
 export type TCommandRegistry = {
     [commandName: string]: (...args: any[]) => any;
 };
+export type TPointsDisplayData = {
+    element: HTMLElement;
+    name: string;
+};
 //# sourceMappingURL=types.d.ts.map

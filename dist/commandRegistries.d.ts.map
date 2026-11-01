@@ -1,1 +1,1 @@
-{"version":3,"file":"commandRegistries.d.ts","sourceRoot":"","sources":["../src/commandRegistries.ts"],"names":[],"mappings":"AAGA,eAAO,MAAM,eAAe;;;;CAQ3B,CAAC;AAEF,eAAO,MAAM,iBAAiB,IAAK,CAAC;AAEpC,eAAO,MAAM,oBAAoB,IAAK,CAAC"}
+{"version":3,"file":"commandRegistries.d.ts","sourceRoot":"","sources":["../src/commandRegistries.ts"],"names":[],"mappings":"AAGA,eAAO,MAAM,eAAe;IAC1B,OAAO;IAGP,QAAQ;IAGR,IAAI;CACL,CAAC;AAEF,eAAO,MAAM,iBAAiB,IAAK,CAAC;AAEpC,eAAO,MAAM,oBAAoB,IAAK,CAAC"}

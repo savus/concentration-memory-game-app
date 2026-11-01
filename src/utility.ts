@@ -8,7 +8,6 @@ import {
   memoryGameScreen,
   settingsScreen,
 } from "./global.js";
-import GameScreenUI from "./singleton/GameScreenUI.js";
 import ScreenSwapper from "./singleton/ScreenSwapper.js";
 
 export const wait = async (ms: number) => {
@@ -45,15 +44,17 @@ export const displayGameScreenMessage = async (
   topText: string,
   bottomText: string,
 ) => {
-  const topMessage = GameScreenUI.screenMessageContainer?.querySelector(
+  const topMessage = memoryGameScreen.ui.screenMessageContainer?.querySelector(
     ".top-message",
   )! as HTMLElement;
-  const bottomMessage = GameScreenUI.screenMessageContainer?.querySelector(
-    ".bottom-message",
-  )! as HTMLElement;
-  const bottomContainer = GameScreenUI.screenMessageContainer?.querySelector(
-    ".bottom-container",
-  )! as HTMLElement;
+  const bottomMessage =
+    memoryGameScreen.ui.screenMessageContainer?.querySelector(
+      ".bottom-message",
+    )! as HTMLElement;
+  const bottomContainer =
+    memoryGameScreen.ui.screenMessageContainer?.querySelector(
+      ".bottom-container",
+    )! as HTMLElement;
 
   topMessage.innerText = topText;
   bottomMessage.innerText = bottomText;
@@ -62,13 +63,15 @@ export const displayGameScreenMessage = async (
     bottomContainer,
     "animation",
     () => {
-      GameScreenUI.screenMessageContainer?.setAttribute(
+      memoryGameScreen.ui.screenMessageContainer?.setAttribute(
         DATA_ANIMATION,
         "scrollInOut",
       );
     },
     async () => {
-      GameScreenUI.screenMessageContainer?.removeAttribute(DATA_ANIMATION);
+      memoryGameScreen.ui.screenMessageContainer?.removeAttribute(
+        DATA_ANIMATION,
+      );
       await wait(500);
     },
   );
@@ -92,7 +95,7 @@ export const initializeGlobalSettings = async () => {
     .then(() => {
       cardFactory.createCardsAndAppend(
         allPokemonData,
-        GameScreenUI.cardContainer,
+        memoryGameScreen.ui.cardContainer!,
       );
     })
     .finally(() => {

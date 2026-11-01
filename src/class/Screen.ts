@@ -1,3 +1,4 @@
+import { onclickMenuDelegation } from "../clickEvents.js";
 import type { TCommandRegistry, TUIRegistry } from "../types.js";
 
 class Screen {
@@ -11,21 +12,8 @@ class Screen {
 
   init = (actionMap: TCommandRegistry) => {
     this.screenTag.addEventListener("click", (e: MouseEvent) => {
-      this.onclickMenuDelegation(e, this.ui, actionMap);
+      onclickMenuDelegation(e, this.ui, actionMap);
     });
-  };
-
-  onclickMenuDelegation = (
-    e: MouseEvent,
-    elementRegistry: TUIRegistry,
-    actionMap: TCommandRegistry,
-  ) => {
-    const target = e.target as HTMLElement;
-    for (const key of Object.keys(elementRegistry)) {
-      if (target && target === elementRegistry[key]) {
-        if (actionMap[key]) actionMap[key]();
-      }
-    }
   };
 
   cacheElements = (screenTag: HTMLElement, elementRegistry: TUIRegistry) => {

@@ -1,3 +1,4 @@
+import { onclickMenuDelegation } from "../clickEvents.js";
 class Screen {
     screenTag;
     ui = {};
@@ -7,17 +8,8 @@ class Screen {
     }
     init = (actionMap) => {
         this.screenTag.addEventListener("click", (e) => {
-            this.onclickMenuDelegation(e, this.ui, actionMap);
+            onclickMenuDelegation(e, this.ui, actionMap);
         });
-    };
-    onclickMenuDelegation = (e, elementRegistry, actionMap) => {
-        const target = e.target;
-        for (const key of Object.keys(elementRegistry)) {
-            if (target && target === elementRegistry[key]) {
-                if (actionMap[key])
-                    actionMap[key]();
-            }
-        }
     };
     cacheElements = (screenTag, elementRegistry) => {
         const uiElements = screenTag.querySelectorAll("[data-ui]");

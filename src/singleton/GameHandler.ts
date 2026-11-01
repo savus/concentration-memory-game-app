@@ -1,11 +1,5 @@
 import type { Card } from "../class/Card.js";
-import {
-  allCards,
-  computer,
-  computerPointsDisplay,
-  user,
-  userPointsDisplay,
-} from "../global.js";
+import { allCards, computer, memoryGameScreen, user } from "../global.js";
 import { displayGameScreenMessage, wait } from "../utility.js";
 import GameConfig from "./GameConfig.js";
 
@@ -79,6 +73,7 @@ const determineNextPhase = async () => {
 };
 
 const determineGameWinner = async () => {
+  const { userPointsDisplay, computerPointsDisplay } = memoryGameScreen;
   const gameIsDraw =
     userPointsDisplay.currentPoints === computerPointsDisplay.currentPoints;
   const userWon =

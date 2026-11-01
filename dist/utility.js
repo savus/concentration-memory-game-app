@@ -1,7 +1,6 @@
 import API_REQUESTS from "./api.js";
 import { ACTIVE, DATA_ANIMATION, POKEMON_NAMES } from "./constants.js";
 import { allCards, allPokemonData, cardFactory, mainMenuScreen, memoryGameScreen, settingsScreen, } from "./global.js";
-import GameScreenUI from "./singleton/GameScreenUI.js";
 import ScreenSwapper from "./singleton/ScreenSwapper.js";
 export const wait = async (ms) => {
     return new Promise((resolve) => {
@@ -22,15 +21,15 @@ export const waitForAnimation = async (element, transitionOrAnimation, beginAnim
     });
 };
 export const displayGameScreenMessage = async (topText, bottomText) => {
-    const topMessage = GameScreenUI.screenMessageContainer?.querySelector(".top-message");
-    const bottomMessage = GameScreenUI.screenMessageContainer?.querySelector(".bottom-message");
-    const bottomContainer = GameScreenUI.screenMessageContainer?.querySelector(".bottom-container");
+    const topMessage = memoryGameScreen.ui.screenMessageContainer?.querySelector(".top-message");
+    const bottomMessage = memoryGameScreen.ui.screenMessageContainer?.querySelector(".bottom-message");
+    const bottomContainer = memoryGameScreen.ui.screenMessageContainer?.querySelector(".bottom-container");
     topMessage.innerText = topText;
     bottomMessage.innerText = bottomText;
     await waitForAnimation(bottomContainer, "animation", () => {
-        GameScreenUI.screenMessageContainer?.setAttribute(DATA_ANIMATION, "scrollInOut");
+        memoryGameScreen.ui.screenMessageContainer?.setAttribute(DATA_ANIMATION, "scrollInOut");
     }, async () => {
-        GameScreenUI.screenMessageContainer?.removeAttribute(DATA_ANIMATION);
+        memoryGameScreen.ui.screenMessageContainer?.removeAttribute(DATA_ANIMATION);
         await wait(500);
     });
 };
@@ -48,7 +47,7 @@ export const initializeGlobalSettings = async () => {
         data.forEach((pokemon) => allPokemonData.push(pokemon));
     })
         .then(() => {
-        cardFactory.createCardsAndAppend(allPokemonData, GameScreenUI.cardContainer);
+        cardFactory.createCardsAndAppend(allPokemonData, memoryGameScreen.ui.cardContainer);
     })
         .finally(() => {
         console.log(allCards);
