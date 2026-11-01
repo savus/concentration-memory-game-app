@@ -1,4 +1,4 @@
-import { memoryGameScreen } from "../global.js";
+import { memoryGameScreen } from "../app.js";
 import { displayGameScreenMessage, wait } from "../utility.js";
 import type { Card } from "./Card.js";
 

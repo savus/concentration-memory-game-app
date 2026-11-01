@@ -1,4 +1,4 @@
-import { allCards, computer, memoryGameScreen, user } from "../global.js";
+import { allCards, computer, memoryGameScreen, user } from "../app.js";
 import { displayGameScreenMessage, wait } from "../utility.js";
 import GameConfig from "./GameConfig.js";
 const state = {

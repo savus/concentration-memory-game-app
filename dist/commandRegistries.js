@@ -1,4 +1,4 @@
-import { memoryGameScreen, settingsScreen } from "./global.js";
+import { memoryGameScreen, settingsScreen } from "./app.js";
 import ScreenSwapper from "./singleton/ScreenSwapper.js";
 export const mainMenuActions = {
     newGame: () => {

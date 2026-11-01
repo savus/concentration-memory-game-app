@@ -1,5 +1,5 @@
+import { allCards } from "../app.js";
 import { DATASET_FACE_POSITION } from "../constants.js";
-import { allCards } from "../global.js";
 import { fisherYatesShuffle } from "../utility.js";
 import { Card } from "./Card.js";
 export class CardFactory {

@@ -1,5 +1,5 @@
+import { allCards, computer, memoryGameScreen, user } from "../app.js";
 import type { Card } from "../class/Card.js";
-import { allCards, computer, memoryGameScreen, user } from "../global.js";
 import { displayGameScreenMessage, wait } from "../utility.js";
 import GameConfig from "./GameConfig.js";
 

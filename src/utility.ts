@@ -1,5 +1,4 @@
 import API_REQUESTS from "./api.js";
-import { ACTIVE, DATA_ANIMATION, POKEMON_NAMES } from "./constants.js";
 import {
   allCards,
   allPokemonData,
@@ -7,7 +6,14 @@ import {
   mainMenuScreen,
   memoryGameScreen,
   settingsScreen,
-} from "./global.js";
+} from "./app.js";
+import {
+  mainMenuActions,
+  memoryGameActions,
+  settingScreenActions,
+} from "./commandRegistries.js";
+import { ACTIVE, DATA_ANIMATION, POKEMON_NAMES } from "./constants.js";
+
 import ScreenSwapper from "./singleton/ScreenSwapper.js";
 
 export const wait = async (ms: number) => {
@@ -80,13 +86,9 @@ export const displayGameScreenMessage = async (
 export const initializeGlobalSettings = async () => {
   ScreenSwapper.init(mainMenuScreen.screenTag);
 
-  mainMenuScreen.init({
-    newGame: () => ScreenSwapper.swapScreens(memoryGameScreen.screenTag),
-    settings: () => ScreenSwapper.swapScreens(settingsScreen.screenTag),
-    quit: () => console.log("you quit"),
-  });
-  // memoryGameScreen.init();
-  // settingsScreen.init();
+  mainMenuScreen.init(mainMenuActions);
+  memoryGameScreen.init(memoryGameActions);
+  settingsScreen.init(settingScreenActions);
 
   await API_REQUESTS.fetchAndConvertAllPokemon(POKEMON_NAMES)
     .then((data) => {
