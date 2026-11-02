@@ -23,4 +23,4 @@ TASK: (COMPLETED) go through all the singleton Menu based objects and refactor t
 
 TASK: (COMPLETED) instantiate GameScreenUI and SettingsMenuUI as UIMap objects
 
-TASK: Build out handleSpeedSliderClick and handleDifficultySliderClick functions (need to DRY out the shared code between the two of them)
+TASK: (COMPLETED) Build out handleSpeedSliderClick and handleDifficultySliderClick functions (need to DRY out the shared code between the two of them)

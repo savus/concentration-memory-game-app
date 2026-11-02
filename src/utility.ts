@@ -138,3 +138,45 @@ export const cacheElements = (
     if (camelCase) elementRegistry[camelCase] = element;
   });
 };
+
+export const camelToKebab = (str: string) =>
+  str.replace(/([a-z0-9])([A-Z])/g, `$1-$2`).toLowerCase();
+
+// export const getAllCustomProperties = () => {
+//   const customProps = [];
+
+//   // Loop through all stylesheets on the page
+//   Array.from(document.styleSheets).forEach((sheet) => {
+//     try {
+//       // Loop through all CSS rules within the stylesheet
+//       Array.from(sheet.cssRules || sheet.rules).forEach((rule) => {
+//         // Ensure the rule contains style declarations (rule type 1 / CSSStyleRule)
+//         if (rule.style) {
+//           Array.from(rule.style).forEach((prop) => {
+//             // Check if the property starts with '--' and avoid duplicates
+//             if (prop.startsWith("--") && !customProps.includes(prop)) {
+//               customProps.push(prop);
+//             }
+//           });
+//         }
+//       });
+//     } catch (e) {
+//       console.warn(
+//         `Could not read stylesheet from ${sheet.href}: Security restrictions (CORS) may apply.`,
+//       );
+//     }
+//   });
+
+//   return customProps;
+// };
+
+// export const getComputedValues = () => {
+//   const element = document.documentElement; // or your specific element
+//   const computedStyles = window.getComputedStyle(element);
+
+//   const variablesWithValues = getAllCustomProperties().reduce((acc, prop) => {
+//     acc[prop] = computedStyles.getPropertyValue(prop).trim();
+//     return acc;
+//   }, {});
+//   console.log(variablesWithValues);
+// };

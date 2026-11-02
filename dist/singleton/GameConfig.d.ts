@@ -1,4 +1,5 @@
 import type { TCommandRegistry } from "../types.js";
+declare const syncSettingsToCSSCustomProps: () => void;
 declare const GameConfig: {
     settings: {
         animationDur: number;
@@ -8,6 +9,7 @@ declare const GameConfig: {
     };
     speedCommands: TCommandRegistry;
     difficultyCommands: TCommandRegistry;
+    syncSettingsToCSSCustomProps: typeof syncSettingsToCSSCustomProps;
 };
 export default GameConfig;
 //# sourceMappingURL=GameConfig.d.ts.map

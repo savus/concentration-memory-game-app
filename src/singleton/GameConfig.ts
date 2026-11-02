@@ -1,5 +1,6 @@
-import SettingsScreen from "../class/SettingsScreen.js";
+import { root } from "../app.js";
 import type { TCommandRegistry } from "../types.js";
+import { camelToKebab } from "../utility.js";
 
 const settings = {
   animationDur: 2900,
@@ -21,19 +22,19 @@ const speedCommands: TCommandRegistry = {
     settings.animationDur = 3600;
     settings.screenMessageDur = 2000;
     settings.computerChoicePause = 1000;
-    logSettings();
+    syncSettingsToCSSCustomProps();
   },
   medium: () => {
     settings.animationDur = 2900;
     settings.screenMessageDur = 1500;
     settings.computerChoicePause = 500;
-    logSettings();
+    syncSettingsToCSSCustomProps();
   },
   fast: () => {
     settings.animationDur = 500;
     settings.screenMessageDur = 800;
     settings.computerChoicePause = 300;
-    logSettings();
+    syncSettingsToCSSCustomProps();
   },
 };
 
@@ -49,10 +50,19 @@ const difficultyCommands: TCommandRegistry = {
   },
 };
 
+const syncSettingsToCSSCustomProps = () => {
+  for (const [key, value] of Object.entries(settings)) {
+    const kebabCase = camelToKebab(key);
+    const customCssPropertyFormat = `--${kebabCase}`;
+    root.style.setProperty(customCssPropertyFormat, `${value}ms`);
+  }
+};
+
 const GameConfig = {
   settings,
   speedCommands,
   difficultyCommands,
+  syncSettingsToCSSCustomProps,
 };
 
 export default GameConfig;

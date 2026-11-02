@@ -1,0 +1,58 @@
+import type { TUIRegistry } from "../types.js";
+import { cacheElements } from "../utility.js";
+
+class OptionsCarousel {
+  htmlTag;
+  ui: TUIRegistry = {};
+  carouselOptions;
+  settingIndex: number;
+
+  constructor(
+    htmlTag: HTMLElement,
+    carouselOptions: string[],
+    startingIndex: number,
+  ) {
+    this.htmlTag = htmlTag;
+    cacheElements(this.htmlTag, this.ui);
+    this.carouselOptions = carouselOptions;
+
+    this.settingIndex = startingIndex;
+    console.log(this.ui);
+    this.updateModeUI();
+
+    this.htmlTag.addEventListener("click", (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (target.matches(".left-arrow")) this.handleCarouselChange("next");
+      if (target.matches(".right-arrow")) this.handleCarouselChange("prev");
+    });
+  }
+
+  getCurrentOption = () => this.carouselOptions[this.settingIndex];
+
+  updateModeUI = () => {
+    if (this.ui.settingName)
+      this.ui.settingName.innerText = `${this.getCurrentOption()}`;
+  };
+
+  goToNewOption = (option: string) => {
+    this.settingIndex = this.carouselOptions.indexOf(option);
+    this.updateModeUI();
+  };
+
+  handleCarouselChange(direction: "next" | "prev" = "next") {
+    if (direction === "next") {
+      this.settingIndex =
+        this.settingIndex < this.carouselOptions.length - 1
+          ? this.settingIndex + 1
+          : 0;
+    } else if (direction === "prev") {
+      this.settingIndex =
+        this.settingIndex > 0
+          ? this.settingIndex - 1
+          : this.carouselOptions.length - 1;
+    }
+    this.updateModeUI();
+  }
+}
+
+export default OptionsCarousel;
