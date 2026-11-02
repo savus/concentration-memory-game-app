@@ -1,1 +1,1 @@
-{"version":3,"file":"GameConfig.d.ts","sourceRoot":"","sources":["../../src/singleton/GameConfig.ts"],"names":[],"mappings":"AA4BA,QAAA,MAAM,UAAU;;;;;;;CAEf,CAAC;eAEa,UAAU"}
+{"version":3,"file":"GameConfig.d.ts","sourceRoot":"","sources":["../../src/singleton/GameConfig.ts"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,gBAAgB,EAAE,MAAM,aAAa,CAAC;AAkDpD,QAAA,MAAM,UAAU;;;;;;;;;CAIf,CAAC;eAEa,UAAU"}

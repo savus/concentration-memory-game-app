@@ -3,7 +3,7 @@ import { CardFactory } from "./class/CardFactory.js";
 import MemoryGameScreen from "./class/MemoryGameScreen.js";
 import { Player } from "./class/Player.js";
 import Screen from "./class/Screen.js";
-import type { TPokeAPI, TUIRegistry } from "./types.js";
+import type { TCommandRegistry, TPokeAPI, TUIRegistry } from "./types.js";
 import SettingsScreen from "./class/SettingsScreen.js";
 export declare const root: HTMLElement;
 export declare const mainMenuScreen: Screen;
@@ -24,9 +24,14 @@ export declare class OptionCarousel {
     getCurrentOption: () => string | undefined;
     updateModeUI: () => void;
     goToNewOption: (option: string) => void;
-    handleCarouselChange: (direction?: "next" | "prev") => void;
+    handleCarouselChange(direction?: "next" | "prev"): void;
 }
-export declare const speedCarousel: OptionCarousel;
-export declare const difficultyCarousel: OptionCarousel;
+export declare class SettingsCarousel extends OptionCarousel {
+    optionCommands: TCommandRegistry;
+    constructor(htmlTag: HTMLElement, carouselOptions: string[], startingIndex: number, optionCommands: TCommandRegistry);
+    handleCarouselChange(direction?: "next" | "prev"): void;
+}
+export declare const speedCarousel: SettingsCarousel;
+export declare const difficultyCarousel: SettingsCarousel;
 export declare const colorThemeCarousel: OptionCarousel;
 //# sourceMappingURL=app.d.ts.map

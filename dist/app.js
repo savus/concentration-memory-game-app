@@ -4,6 +4,7 @@ import MemoryGameScreen from "./class/MemoryGameScreen.js";
 import { Player } from "./class/Player.js";
 import Screen from "./class/Screen.js";
 import SettingsScreen from "./class/SettingsScreen.js";
+import GameConfig from "./singleton/GameConfig.js";
 export const root = document.documentElement;
 export const mainMenuScreen = new Screen(document.querySelector(".screen.main-menu"));
 export const memoryGameScreen = new MemoryGameScreen(document.querySelector(".screen.memory-game"), {
@@ -49,7 +50,7 @@ export class OptionCarousel {
         this.settingIndex = this.carouselOptions.indexOf(option);
         this.updateModeUI();
     };
-    handleCarouselChange = (direction = "next") => {
+    handleCarouselChange(direction = "next") {
         if (direction === "next") {
             this.settingIndex =
                 this.settingIndex < this.carouselOptions.length - 1
@@ -63,10 +64,23 @@ export class OptionCarousel {
                     : this.carouselOptions.length - 1;
         }
         this.updateModeUI();
-    };
+    }
 }
-export const speedCarousel = new OptionCarousel(document.querySelector(".speed-carousel"), ["slow", "medium", "fast"], 1);
-export const difficultyCarousel = new OptionCarousel(document.querySelector(".difficulty-carousel"), ["easy", "medium", "hard"], 1);
+export class SettingsCarousel extends OptionCarousel {
+    optionCommands = {};
+    constructor(htmlTag, carouselOptions, startingIndex, optionCommands) {
+        super(htmlTag, carouselOptions, startingIndex);
+        this.optionCommands = optionCommands;
+    }
+    handleCarouselChange(direction = "next") {
+        super.handleCarouselChange(direction);
+        const commandOption = this.optionCommands[`${this.getCurrentOption()}`];
+        if (commandOption)
+            commandOption();
+    }
+}
+export const speedCarousel = new SettingsCarousel(document.querySelector(".speed-carousel"), ["slow", "medium", "fast"], 1, GameConfig.speedCommands);
+export const difficultyCarousel = new SettingsCarousel(document.querySelector(".difficulty-carousel"), ["easy", "medium", "hard"], 1, GameConfig.difficultyCommands);
 export const colorThemeCarousel = new OptionCarousel(document.querySelector(".color-theme-carousel"), ["light", "dark"], 0);
 await initializeGlobalSettings();
 document.addEventListener("keyup", async (e) => {
