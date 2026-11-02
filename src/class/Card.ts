@@ -1,6 +1,5 @@
 import type { TPokeAPI } from "../types.js";
 import { waitForAnimation } from "../utility.js";
-import GameHandler from "../singleton/GameHandler.js";
 import { DATASET_FACE_POSITION } from "../constants.js";
 import { cardOnClickHandler } from "../clickEvents.js";
 

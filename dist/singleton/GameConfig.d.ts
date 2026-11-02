@@ -1,4 +1,3 @@
-import SettingsScreen from "../class/SettingsScreen.js";
 declare const GameConfig: {
     settings: {
         animationDur: number;
@@ -6,7 +5,6 @@ declare const GameConfig: {
         computerChoicePause: number;
         tickDownPause: number;
     };
-    settingsScreen: SettingsScreen;
 };
 export default GameConfig;
 //# sourceMappingURL=GameConfig.d.ts.map

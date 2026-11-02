@@ -1,8 +1,7 @@
 import API_REQUESTS from "./api.js";
-import { allCards, allPokemonData, cardFactory, mainMenuScreen, memoryGameScreen, } from "./app.js";
+import { allCards, allPokemonData, cardFactory, mainMenuScreen, memoryGameScreen, settingsScreen, } from "./app.js";
 import { mainMenuActions, memoryGameActions, settingScreenActions, } from "./commandRegistries.js";
 import { ACTIVE, DATA_ANIMATION, POKEMON_NAMES } from "./constants.js";
-import GameConfig from "./singleton/GameConfig.js";
 import ScreenSwapper from "./singleton/ScreenSwapper.js";
 export const wait = async (ms) => {
     return new Promise((resolve) => {
@@ -36,10 +35,10 @@ export const displayGameScreenMessage = async (topText, bottomText) => {
     });
 };
 export const initializeGlobalSettings = async () => {
-    ScreenSwapper.init(GameConfig.settingsScreen.screenTag);
+    ScreenSwapper.init(mainMenuScreen.screenTag);
     mainMenuScreen.init(mainMenuActions);
     memoryGameScreen.init(memoryGameActions);
-    GameConfig.settingsScreen.init(settingScreenActions);
+    settingsScreen.init(settingScreenActions);
     await API_REQUESTS.fetchAndConvertAllPokemon(POKEMON_NAMES)
         .then((data) => {
         data.forEach((pokemon) => allPokemonData.push(pokemon));
@@ -64,5 +63,14 @@ export const setActive = (newElem, selector) => {
     if (activeElement)
         activeElement.classList.remove(`${ACTIVE}`);
     newElem.classList.add(ACTIVE);
+};
+export const cacheElements = (screenTag, elementRegistry) => {
+    const uiElements = screenTag.querySelectorAll("[data-ui]");
+    uiElements.forEach((element) => {
+        const uiDataset = element.dataset.ui;
+        const camelCase = uiDataset?.replace(/-([a-z])/g, (g) => g[1]?.toUpperCase() ?? "");
+        if (camelCase)
+            elementRegistry[camelCase] = element;
+    });
 };
 //# sourceMappingURL=utility.js.map

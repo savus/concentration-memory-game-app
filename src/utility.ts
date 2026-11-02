@@ -5,6 +5,7 @@ import {
   cardFactory,
   mainMenuScreen,
   memoryGameScreen,
+  settingsScreen,
 } from "./app.js";
 import {
   mainMenuActions,
@@ -12,9 +13,9 @@ import {
   settingScreenActions,
 } from "./commandRegistries.js";
 import { ACTIVE, DATA_ANIMATION, POKEMON_NAMES } from "./constants.js";
-import GameConfig from "./singleton/GameConfig.js";
 
 import ScreenSwapper from "./singleton/ScreenSwapper.js";
+import type { TUIRegistry } from "./types.js";
 
 export const wait = async (ms: number) => {
   return new Promise((resolve) => {
@@ -84,11 +85,11 @@ export const displayGameScreenMessage = async (
 };
 
 export const initializeGlobalSettings = async () => {
-  ScreenSwapper.init(GameConfig.settingsScreen.screenTag);
+  ScreenSwapper.init(mainMenuScreen.screenTag);
 
   mainMenuScreen.init(mainMenuActions);
   memoryGameScreen.init(memoryGameActions);
-  GameConfig.settingsScreen.init(settingScreenActions);
+  settingsScreen.init(settingScreenActions);
 
   await API_REQUESTS.fetchAndConvertAllPokemon(POKEMON_NAMES)
     .then((data) => {
@@ -120,4 +121,20 @@ export const setActive = (newElem: HTMLElement, selector: string) => {
   const activeElement = document.querySelector(`${selector}.${ACTIVE}`);
   if (activeElement) activeElement.classList.remove(`${ACTIVE}`);
   newElem.classList.add(ACTIVE);
+};
+
+export const cacheElements = (
+  screenTag: HTMLElement,
+  elementRegistry: TUIRegistry,
+) => {
+  const uiElements: NodeListOf<HTMLElement> =
+    screenTag.querySelectorAll("[data-ui]");
+  uiElements.forEach((element) => {
+    const uiDataset = element.dataset.ui;
+    const camelCase = uiDataset?.replace(
+      /-([a-z])/g,
+      (g) => g[1]?.toUpperCase() ?? "",
+    );
+    if (camelCase) elementRegistry[camelCase] = element;
+  });
 };

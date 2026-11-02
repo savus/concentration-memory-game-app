@@ -135,7 +135,7 @@
   transform: translate(-10%, -50%);
 }
 
-.settings-menu .setting-slider {
+.settings-menu .setting-carousel {
   display: flex;
   justify-content: center;
   align-items: center;
