@@ -1,5 +1,5 @@
 import { memoryGameScreen } from "../app.js";
-import { displayGameScreenMessage, wait } from "../utility.js";
+import { wait } from "../utility.js";
 import type { Card } from "./Card.js";
 
 type TChoices = {
@@ -45,7 +45,10 @@ export class Player {
 
   resetChoices = async () => {
     if (!this.choicesMatched) {
-      await displayGameScreenMessage("Oops!", "These two did not match!");
+      await memoryGameScreen.displayGameScreenMessage(
+        "Oops!",
+        "These two did not match!",
+      );
       this.choices.firstChoice?.deselect();
       this.choices.secondChoice?.deselect();
     } else {
@@ -57,7 +60,7 @@ export class Player {
         gameMessage = "The computer got 1";
         memoryGameScreen.computerPointsDisplay.setAndAnimatePoints(1);
       }
-      await displayGameScreenMessage("Match!", gameMessage);
+      await memoryGameScreen.displayGameScreenMessage("Match!", gameMessage);
       await wait(500);
     }
     this.choices.firstChoice = null;

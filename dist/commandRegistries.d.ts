@@ -4,5 +4,7 @@ export declare const mainMenuActions: {
     quit: () => void;
 };
 export declare const memoryGameActions: {};
-export declare const settingScreenActions: {};
+export declare const settingScreenActions: {
+    backButton: () => void;
+};
 //# sourceMappingURL=commandRegistries.d.ts.map

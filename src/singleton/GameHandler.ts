@@ -1,6 +1,6 @@
 import { allCards, computer, memoryGameScreen, user } from "../app.js";
 import type { Card } from "../class/Card.js";
-import { displayGameScreenMessage, wait } from "../utility.js";
+import { wait } from "../utility.js";
 import GameConfig from "./GameConfig.js";
 
 type TState = {
@@ -85,17 +85,17 @@ const determineGameWinner = async () => {
   );
 
   if (gameIsDraw) {
-    await displayGameScreenMessage("Game", "Is a draw!");
+    await memoryGameScreen.displayGameScreenMessage("Game", "Is a draw!");
     return;
   }
 
   if (userWon) {
     console.log("you won");
-    await displayGameScreenMessage("You", "Won!");
+    await memoryGameScreen.displayGameScreenMessage("You", "Won!");
     return;
   } else {
     console.log("you lose");
-    await displayGameScreenMessage("Computer", "Won!");
+    await memoryGameScreen.displayGameScreenMessage("Computer", "Won!");
     return;
   }
 };

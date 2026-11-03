@@ -2,21 +2,26 @@ import type { TCommandRegistry } from "../types.js";
 import OptionsCarousel from "./OptionsCarousel.js";
 
 class SettingsCarousel extends OptionsCarousel {
-  optionCommands: TCommandRegistry = {};
+  optionCommand: TCommandRegistry | ((...args: any[]) => void);
   constructor(
     htmlTag: HTMLElement,
     carouselOptions: string[],
     startingIndex: number,
-    optionCommands: TCommandRegistry,
+    optionCommand: TCommandRegistry | ((...args: any[]) => void),
   ) {
     super(htmlTag, carouselOptions, startingIndex);
-    this.optionCommands = optionCommands;
+    this.optionCommand = optionCommand;
   }
 
   handleCarouselChange(direction: "next" | "prev" = "next") {
     super.handleCarouselChange(direction);
-    const commandOption = this.optionCommands[`${this.getCurrentOption()}`];
-    if (commandOption) commandOption();
+    if (this.optionCommand) {
+      if (typeof this.optionCommand === "object") {
+        this.optionCommand[`${this.getCurrentOption()}`]?.();
+      } else if (typeof this.optionCommand === "function") {
+        this.optionCommand(this.getCurrentOption());
+      }
+    }
   }
 }
 

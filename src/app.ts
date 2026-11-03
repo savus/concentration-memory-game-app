@@ -1,7 +1,4 @@
-import {
-  displayGameScreenMessage,
-  initializeGlobalSettings,
-} from "./utility.js";
+import { initializeGlobalSettings } from "./utility.js";
 
 import type { Card } from "./class/Card.js";
 import { CardFactory } from "./class/CardFactory.js";
@@ -14,7 +11,7 @@ import GameConfig from "./singleton/GameConfig.js";
 import SettingsCarousel from "./class/SettingsCarousel.js";
 import OptionsCarousel from "./class/OptionsCarousel.js";
 
-export const root = document.documentElement;
+export const root = document.documentElement! as HTMLHtmlElement;
 
 export const mainMenuScreen = new Screen(
   document.querySelector(".screen.main-menu")! as HTMLElement,
@@ -50,22 +47,23 @@ export let computerCheatMode = true;
 
 export const speedCarousel = new SettingsCarousel(
   document.querySelector(".speed-carousel")!,
-  ["slow", "medium", "fast"],
+  GameConfig.speedModes,
   1,
   GameConfig.speedCommands,
 );
 
 export const difficultyCarousel = new SettingsCarousel(
   document.querySelector(".difficulty-carousel")!,
-  ["easy", "medium", "hard"],
+  GameConfig.difficultyModes,
   1,
-  GameConfig.difficultyCommands,
+  GameConfig.difficultyCommand,
 );
 
-export const colorThemeCarousel = new OptionsCarousel(
+export const colorThemeCarousel = new SettingsCarousel(
   document.querySelector(".color-theme-carousel")!,
-  ["light", "dark"],
-  0,
+  GameConfig.themeModes,
+  1,
+  GameConfig.themeCommands,
 );
 
 await initializeGlobalSettings();
@@ -73,7 +71,7 @@ await initializeGlobalSettings();
 document.addEventListener("keyup", async (e) => {
   e.preventDefault();
   if (e.key === "Enter") {
-    await displayGameScreenMessage("test", "testing");
+    await memoryGameScreen.displayGameScreenMessage("test", "testing");
     console.log("pressed");
   }
 });

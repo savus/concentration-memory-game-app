@@ -17,13 +17,12 @@ class OptionsCarousel {
     this.carouselOptions = carouselOptions;
 
     this.settingIndex = startingIndex;
-    console.log(this.ui);
     this.updateModeUI();
 
     this.htmlTag.addEventListener("click", (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      if (target.matches(".left-arrow")) this.handleCarouselChange("next");
-      if (target.matches(".right-arrow")) this.handleCarouselChange("prev");
+      if (target.matches(".left-arrow")) this.handleCarouselChange("prev");
+      if (target.matches(".right-arrow")) this.handleCarouselChange("next");
     });
   }
 

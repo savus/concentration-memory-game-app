@@ -1,5 +1,6 @@
-import { memoryGameScreen, settingsScreen } from "./app.js";
+import { mainMenuScreen, memoryGameScreen, settingsScreen } from "./app.js";
 import ScreenSwapper from "./singleton/ScreenSwapper.js";
+import { quitApplication } from "./utility.js";
 
 export const mainMenuActions = {
   newGame: () => {
@@ -8,9 +9,13 @@ export const mainMenuActions = {
   settings: () => {
     ScreenSwapper.swapScreens(settingsScreen.screenTag);
   },
-  quit: () => console.log("you quit"),
+  quit: () => quitApplication(),
 };
 
 export const memoryGameActions = {};
 
-export const settingScreenActions = {};
+export const settingScreenActions = {
+  backButton: () => {
+    ScreenSwapper.swapScreens(mainMenuScreen.screenTag);
+  },
+};

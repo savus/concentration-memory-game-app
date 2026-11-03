@@ -5,6 +5,7 @@ import {
   cardFactory,
   mainMenuScreen,
   memoryGameScreen,
+  root,
   settingsScreen,
 } from "./app.js";
 import {
@@ -45,43 +46,6 @@ export const waitForAnimation = async (
         { once: true },
       );
   });
-};
-
-export const displayGameScreenMessage = async (
-  topText: string,
-  bottomText: string,
-) => {
-  const topMessage = memoryGameScreen.ui.screenMessageContainer?.querySelector(
-    ".top-message",
-  )! as HTMLElement;
-  const bottomMessage =
-    memoryGameScreen.ui.screenMessageContainer?.querySelector(
-      ".bottom-message",
-    )! as HTMLElement;
-  const bottomContainer =
-    memoryGameScreen.ui.screenMessageContainer?.querySelector(
-      ".bottom-container",
-    )! as HTMLElement;
-
-  topMessage.innerText = topText;
-  bottomMessage.innerText = bottomText;
-
-  await waitForAnimation(
-    bottomContainer,
-    "animation",
-    () => {
-      memoryGameScreen.ui.screenMessageContainer?.setAttribute(
-        DATA_ANIMATION,
-        "scrollInOut",
-      );
-    },
-    async () => {
-      memoryGameScreen.ui.screenMessageContainer?.removeAttribute(
-        DATA_ANIMATION,
-      );
-      await wait(500);
-    },
-  );
 };
 
 export const initializeGlobalSettings = async () => {
@@ -141,6 +105,15 @@ export const cacheElements = (
 
 export const camelToKebab = (str: string) =>
   str.replace(/([a-z0-9])([A-Z])/g, `$1-$2`).toLowerCase();
+
+export const quitApplication = () => {
+  document.body.innerText = "";
+};
+
+export const changeTheme = (theme: string) => {
+  root.setAttribute("data-theme", theme);
+  console.log(root.dataset.theme);
+};
 
 // export const getAllCustomProperties = () => {
 //   const customProps = [];

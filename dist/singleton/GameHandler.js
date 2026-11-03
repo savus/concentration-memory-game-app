@@ -1,5 +1,5 @@
 import { allCards, computer, memoryGameScreen, user } from "../app.js";
-import { displayGameScreenMessage, wait } from "../utility.js";
+import { wait } from "../utility.js";
 import GameConfig from "./GameConfig.js";
 const state = {
     phase: "choose-card",
@@ -58,17 +58,17 @@ const determineGameWinner = async () => {
     const userWon = userPointsDisplay.currentPoints > computerPointsDisplay.currentPoints;
     console.log(userPointsDisplay.currentPoints, computerPointsDisplay.currentPoints);
     if (gameIsDraw) {
-        await displayGameScreenMessage("Game", "Is a draw!");
+        await memoryGameScreen.displayGameScreenMessage("Game", "Is a draw!");
         return;
     }
     if (userWon) {
         console.log("you won");
-        await displayGameScreenMessage("You", "Won!");
+        await memoryGameScreen.displayGameScreenMessage("You", "Won!");
         return;
     }
     else {
         console.log("you lose");
-        await displayGameScreenMessage("Computer", "Won!");
+        await memoryGameScreen.displayGameScreenMessage("Computer", "Won!");
         return;
     }
 };

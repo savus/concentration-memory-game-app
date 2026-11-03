@@ -21,6 +21,11 @@
   --theme-light: #fff;
 }
 
+[data-theme="dark"] {
+  --theme-dark: #fff;
+  --theme-light: #000;
+}
+
 *,
 *::after,
 *::before {

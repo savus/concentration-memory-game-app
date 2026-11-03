@@ -1,57 +1,67 @@
 import { root } from "../app.js";
 import type { TCommandRegistry } from "../types.js";
-import { camelToKebab } from "../utility.js";
+import { camelToKebab, changeTheme } from "../utility.js";
 
 const settings = {
-  animationDur: 2900,
-  screenMessageDur: 1500,
+  cssProps: {
+    animationDur: 2900,
+    screenMessageDur: 1500,
+  },
   computerChoicePause: 500,
   tickDownPause: 10,
+  gameDifficulty: "medium",
 };
 
 const logSettings = () => {
   console.log(
-    settings.animationDur,
-    settings.screenMessageDur,
+    settings.cssProps.animationDur,
+    settings.cssProps.screenMessageDur,
     settings.computerChoicePause,
   );
 };
 
+const speedModes = ["slow", "medium", "fast"];
+
 const speedCommands: TCommandRegistry = {
   slow: () => {
-    settings.animationDur = 3600;
-    settings.screenMessageDur = 2000;
-    settings.computerChoicePause = 1000;
+    settings.cssProps.animationDur = 4000;
+    settings.cssProps.screenMessageDur = 3000;
+    settings.computerChoicePause = 2000;
     syncSettingsToCSSCustomProps();
   },
   medium: () => {
-    settings.animationDur = 2900;
-    settings.screenMessageDur = 1500;
+    settings.cssProps.animationDur = 2900;
+    settings.cssProps.screenMessageDur = 1500;
     settings.computerChoicePause = 500;
     syncSettingsToCSSCustomProps();
   },
   fast: () => {
-    settings.animationDur = 500;
-    settings.screenMessageDur = 800;
+    settings.cssProps.animationDur = 500;
+    settings.cssProps.screenMessageDur = 800;
     settings.computerChoicePause = 300;
     syncSettingsToCSSCustomProps();
   },
 };
 
-const difficultyCommands: TCommandRegistry = {
-  easy: () => {
-    console.log("this is easy");
+const difficultyModes = ["easy", "medium", "hard"];
+
+const difficultyCommand = (mode: string) => {
+  settings.gameDifficulty = mode;
+};
+
+const themeModes = ["dark", "light"];
+
+const themeCommands: TCommandRegistry = {
+  light: () => {
+    changeTheme("light");
   },
-  medium: () => {
-    console.log("this is medium");
-  },
-  hard: () => {
-    console.log("this is hard");
+  dark: () => {
+    changeTheme("dark");
   },
 };
 
 const syncSettingsToCSSCustomProps = () => {
-  for (const [key, value] of Object.entries(settings)) {
+  for (const [key, value] of Object.entries(settings.cssProps)) {
     const kebabCase = camelToKebab(key);
     const customCssPropertyFormat = `--${kebabCase}`;
     root.style.setProperty(customCssPropertyFormat, `${value}ms`);
@@ -60,8 +70,12 @@ const syncSettingsToCSSCustomProps = () => {
 
 const GameConfig = {
   settings,
+  speedModes,
   speedCommands,
-  difficultyCommands,
+  difficultyModes,
+  themeModes,
+  themeCommands,
+  difficultyCommand,
   syncSettingsToCSSCustomProps,
 };
 
